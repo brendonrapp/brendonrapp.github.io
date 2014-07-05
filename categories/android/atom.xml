@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: android | Economy of Effort]]></title>
+  <link href="http://brendonrapp.github.io/categories/android/atom.xml" rel="self"/>
+  <link href="http://brendonrapp.github.io/"/>
+  <updated>2014-07-04T21:38:22-07:00</updated>
+  <id>http://brendonrapp.github.io/</id>
+  <author>
+    <name><![CDATA[Brendon Rapp]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Turn an Android Handset into a Free Wifi Phone with Google Voice]]></title>
+    <link href="http://brendonrapp.github.io/2010/07/30/turn-an-android-handset-into-a-free-wifi-phone-with-google-voice/"/>
+    <updated>2010-07-30T09:00:07-07:00</updated>
+    <id>http://brendonrapp.github.io/2010/07/30/turn-an-android-handset-into-a-free-wifi-phone-with-google-voice</id>
+    <content type="html"><![CDATA[<p><strong>UPDATE 2012-08-17</strong>: I&rsquo;m surprised at how much traffic this post still gets. The post is over 2 years old at this point, and may not be directly useful anymore. The Android landscape has changed a lot, and I haven&rsquo;t touched an Android phone newer than my old G1&rsquo;s.</p>
+
+<p>There are a lot of suggestions in the comments, though, that new readers might want to check out to accomplish what I did with these instructions in 2010.</p>
+
+<p><img class="center <a" src="href="http://www.economyofeffort.com/wp-content/uploads/2010/07/screenshot_sip.png">http://www.economyofeffort.com/wp-content/uploads/2010/07/screenshot_sip.png</a>"></p>
+
+<p>My wife and I recently abandoned our T-Mobile G1&rsquo;s to become iPhone people. As much as it pained me to (temporarily, at least) abandon a nice open platform I had followed for some time, I have to confess that the new iPhones hit a sweet spot in a way that the previous three generations of iPhone simply did not (for me, at least).</p>
+
+<p>But that is a post for another time. This post is about what we did with our G1&rsquo;s once that service icon turned into an &ldquo;X&rdquo;.</p>
+
+<p>The G1 is a wifi-enabled device. Even without traditional mobile phone service, it can be used with VOIP services. There are a number of paid SIP (Session Initiation Protocol)-based VOIP services which you can pair with a SIP application on the phone to create a fully-functional wifi phone.</p>
+
+<p>But, that costs money. What about something you can use for free? Well, that&rsquo;s where Google Voice comes in.</p>
+
+<p>To understand how this works, you just need to know two things:</p>
+
+<ul>
+<li>There are a number of SIP providers that give you free incoming (domestic) calls, while charging for outbound calls.</li>
+<li>Google Voice traditionally works by calling your phone number, and then connecting you to the outbound number you intend to call (in other words, it turns an outbound call into an incoming one)</li>
+</ul>
+
+
+<p>See where I&rsquo;m going with this?</p>
+
+<p>With a Google Voice account, a SIP service account, and the right Android apps to interoperate with each, you can have an Android handset that gives you free incoming calls, and free outbound calls by way of Google Voice&rsquo;s method of connecting you.</p>
+
+<p>The phone, obviously, must be in range of (and connected to) a wifi network to be able to make and receive calls. Well, my house&rsquo;s wifi network is always on. So by setting up my wife&rsquo;s old G1 this way and plugging it into its AC adapter in the wall, we&rsquo;ve turned that G1 into an always-on, free &ldquo;home phone line&rdquo;. One with voicemail transcription and SMS, even.</p>
+
+<p>The following instructions explain how I set this up with a phone that I wiped and started from scratch with. You should have no problems creating the same setup on an existing Android phone without wiping everything &ndash; I just wiped everything so that my G1 would be clean and not running any other junk that might slow the (easily slowed) phone down.</p>
+
+<p>These instructions are geared primarily toward my use case of adding VOIP to an Android phone that no longer has active cell service. You can also add free VOIP calling to a phone that has service. If you have no data service, you can use VOIP entirely on wifi like I am. If you have 3G or EDGE data service, you have the option to have your VOIP service still be active when outside of wifi reach. You may have to make a couple of slight adjustments to these instructions for a phone that still has cell service, but they should mostly be obvious.</p>
+
+<h2>Phase 1: Getting Online with Freshly Wiped. Has-No-Service Phone</h2>
+
+<p>(skip if you&rsquo;re just adding wifi calling to your active Android phone)</p>
+
+<ul>
+<li>Skip Google Account setup for now. With no service, it can&rsquo;t connect to the Internet anyway, until we have wifi running.</li>
+<li>Set time settings (remember to set time zone &ndash; it&rsquo;s not detected if you have no phone service)</li>
+<li>Settings &ndash;> Wireless Networks
+
+<ul>
+<li>Wi-Fi (check to enable)</li>
+<li>Wi-Fi Settings &ndash;> pick your wireless network (and if you&rsquo;re like me, type in painfully long, random character encryption key!)
+
+<ul>
+<li>Type the key in again because you did it wrong the first time</li>
+</ul>
+</li>
+<li>Mobile Network Settings</li>
+<li>Data enabled (uncheck to disable)</li>
+<li>Data roaming (uncheck to disable)</li>
+</ul>
+</li>
+<li>Settings &ndash;> Accounts &amp; Senc
+
+<ul>
+<li>Now that we are on wifi, we can add our Google account</li>
+<li>Click &ldquo;Add account&rdquo;, enter Google account info as prompted</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Phase 2: Download Required Apps from Market</h2>
+
+<ul>
+<li>Log in to Google Talk (especially if you&rsquo;re on wifi only &ndash; downloading from Market often fails if you&rsquo;re not logged into Google Talk)</li>
+<li>Download <strong>Google Voice</strong></li>
+<li>Download <strong>Google Voice Call Free</strong></li>
+<li>Download <strong>sipdroid</strong></li>
+<li>Download <strong>KeepWiFi</strong></li>
+</ul>
+
+
+<h2>Phase 3: sipgate and Sipdroid</h2>
+
+<ul>
+<li>Go to <a href="http://www.sipgate.com/one">http://www.sipgate.com/one</a> and click Sign Up Now and create an account (you will need a mobile phone with SMS to receive the confirmation text)</li>
+<li>When you have the account all set up and logged in, go to My Settings and click the &ldquo;SIP Credentials&rdquo; link way on the far right of the page. Keep this handy in a browser tab.</li>
+<li><a href="http://www.hutsby.net/2010/03/how-to-sipgate-and-sipdroid.html">Configure Sipdroid</a> to use your new sipgate number:
+
+<ul>
+<li>Menu Button &ndash;> Settings &ndash;> SIP Account Settings</li>
+<li>Enter the following Sipdroid settings with the information from the sipgate.com SIP Credentials</li>
+<li>Authorization Username = SIP-ID</li>
+<li>Password = SIP-Password</li>
+<li>Server or Proxy = sipgate.com</li>
+<li>Domain = (leave blank)</li>
+</ul>
+</li>
+<li>Configure Sipdroid to use the connections you want
+
+<ul>
+<li>Settings &ndash;> Call Options</li>
+<li>For a phone with no cell service, just have <strong>Use WLAN</strong> checked</li>
+<li>If you have cell service with data, it&rsquo;s up to you whether you want to <strong>Use 3G</strong> and <strong>Use EDGE</strong> as well.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Phase 4: Google Voice</h2>
+
+<ul>
+<li>Go to <a href="http://voice.google.com">http://voice.google.com</a> and create a Google Voice account (you will need an invite to Google Voice if you don&rsquo;t yet have an account)</li>
+<li>You will be required to input a phone number to have GV forward to. You can input your sipgate number.</li>
+<li>Have Google Voice call you to confirm, enter confirmation number</li>
+<li>Launch <strong>Google Voice</strong> app
+
+<ul>
+<li>Select <strong>Do not use Google Voice to make any calls</strong>. We will be using the Google Voice Call Free app to do the dialing.
+
+<ul>
+<li>If you&rsquo;re on a phone that still has normal call service, you&rsquo;ll probably want to set this to Always Ask instead.</li>
+</ul>
+</li>
+<li>If you have phone service, you can set GV to take over as the phone&rsquo;s voicemail provider. If you have no service, ignore this option. Voicemail will come via the GV app.</li>
+<li>After setup, go to Settings &ndash;> Sync and Notifications, and enable <strong>Synchronize Inbox</strong> (and disable <strong>Notifications via text message</strong>).</li>
+</ul>
+</li>
+<li>Launch <strong>Google Voice Call Free</strong> app
+
+<ul>
+<li>Select <strong>Use GV to make all calls</strong> under Enable Callback</li>
+<li>Enter your Google Voice account info</li>
+<li>Enter your sipgate.com phone number for the Callback Number</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Phase 5: Keep WiFi Running</h2>
+
+<p>Android phones (at least, the ones I&rsquo;ve used) put the wifi connection to sleep when the phone screen goes off. We want to stop this from happening if we want the phone to sit on wifi ready to receive VOIP calls all day.</p>
+
+<ul>
+<li>Launch <strong>KeepWifi</strong></li>
+<li>Enable it!</li>
+</ul>
+
+
+<h2>Phase 6: Enjoy Your New WiFi Phone!</h2>
+
+<p>Dial phone calls as normal. Google Voice Call Free will &ldquo;intercept&rdquo; the outgoing dial, and call your phone. Answer, and then GV will connect you to the number you dialed.</p>
+
+<p>Missed calls will appear in the normal Android dialer.</p>
+
+<p>Voicemails will appear in Google Voice. As long as you have Synchronize Inbox set, it will receive a push notification when a voicemail is received, and will give you the transcription and an audio file to listen to.</p>
+]]></content>
+  </entry>
+  
+</feed>

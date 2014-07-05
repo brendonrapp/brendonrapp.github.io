@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: linux | Economy of Effort]]></title>
+  <link href="http://brendonrapp.github.io/categories/linux/atom.xml" rel="self"/>
+  <link href="http://brendonrapp.github.io/"/>
+  <updated>2014-07-04T21:38:22-07:00</updated>
+  <id>http://brendonrapp.github.io/</id>
+  <author>
+    <name><![CDATA[Brendon Rapp]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Linux USB Bootable Stick Netinstall That Works]]></title>
+    <link href="http://brendonrapp.github.io/2010/08/12/linux-usb-bootable-stick-netinstall-that-works/"/>
+    <updated>2010-08-12T07:37:26-07:00</updated>
+    <id>http://brendonrapp.github.io/2010/08/12/linux-usb-bootable-stick-netinstall-that-works</id>
+    <content type="html"><![CDATA[<p>Today, I spent a lot of time fussing with bootable USB thumbsticks, trying to set one up that would boot the new backup server I just built at work. The machine has no optical drive, so I just wanted to boot a simple netinstall and have the system pull everything it needs from remote mirrors.</p>
+
+<p>The supposed easy method was to use <a href="http://unetbootin.sourceforge.net/">Unetbootin</a>. Everything about it <em>was</em> easy, except for the part where the bootable USB sticks it created didn&rsquo;t work. Every boot attempt was met with &ldquo;Boot error&rdquo; or &ldquo;Missing operating system&rdquo;.</p>
+
+<p>Since I am on Ubuntu, I tried to use Ubuntu&rsquo;s <a href="http://en.wikipedia.org/wiki/Ubuntu_Live_USB_creator">usb-creator</a>. Also a nice app, except for the fact that it too failed to work. In usb-creator&rsquo;s case, the failure was to even get started. I would browse to the ISO that I wanted to use as the image for my boot stick, and the app refused to load it, or any ISO. No error, the app simply didn&rsquo;t respond to the input.</p>
+
+<p>So, two piece-a-junk GUI apps down. After a little digging, I found the methods that created working USB sticks on the first try.</p>
+
+<h3>For CentOS:</h3>
+
+<ol>
+<li>Download diskboot.img from a CentOS mirror&rsquo;s centos/(version)/os/(arch)/images folder.
+(I used the kernel.org mirror and i386 arch, so my diskboot.img was located at: <a href="http://mirrors.kernel.org/centos/5.5/os/i386/images/">http://mirrors.kernel.org/centos/5.5/os/i386/images/</a>)</li>
+<li>Insert USB stick (I&rsquo;ll assume it&rsquo;s /dev/sdb, adjust instructions to fit your system), format to FAT32 (I used Gparted for this)</li>
+<li>Run:
+<code>
+ dd if=diskboot.img of=/dev/sdb
+</code></li>
+<li>Remove USB drive, stick into machine that&rsquo;s getting the CentOS install, and boot
+When asked for installation media, select HTTP. Use the website and folder path of the mirror you&rsquo;re using.<br>
+So, from my example:<br>
+<strong>Website name:</strong> mirrors.kernel.org<br>
+<strong>CentOS directory:</strong> centos/5.5/os/i386<br></li>
+</ol>
+
+
+<p>Proceed through installer as normal.</p>
+
+<h3>For Debian:</h3>
+
+<ol>
+<li>Download boot.img.gz from /debian/dists/(version)/main/(installer-arch)/current/images/hd-media folder<br>
+(I did i386 stable from Debian&rsquo;s US mirror, so boot.img.gz was located at:<br>
+<a href="http://ftp.us.debian.org/debian/dists/stable/main/installer-i386/current/images/hd-media/">http://ftp.us.debian.org/debian/dists/stable/main/installer-i386/current/images/hd-media/</a>)</li>
+<li>Download Debian netinstall ISO (I used: <a href="http://cdimage.debian.org/debian-cd/5.0.5/i386/iso-cd/debian-505-i386-netinst.iso">http://cdimage.debian.org/debian-cd/5.0.5/i386/iso-cd/debian-505-i386-netinst.iso</a>)</li>
+<li>Insert USB drive (again I&rsquo;ll assume /dev/sdb) and format to FAT32</li>
+<li>Run:
+<code>
+ zcat boot.img.gz &gt; /dev/sdb
+</code></li>
+<li>Remove and re-insert USB drive. Copy the netinstall ISO to the USB drive.</li>
+<li>Stick USB into machine getting the Debian install, boot, and run through installer.</li>
+</ol>
+
+
+<p>I imagine these instructions will probably stay good for a long time. You&rsquo;ll just need to adjust for mirror location, arch and release numbers, but the URLs I&rsquo;ve provided here should give you a good clue as to where to find the necessary files on the mirror you&rsquo;re using.</p>
+]]></content>
+  </entry>
+  
+</feed>

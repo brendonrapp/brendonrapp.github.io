@@ -1,0 +1,810 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Economy of Effort</title>
+  <meta name="author" content="Brendon Rapp">
+
+  
+  <meta name="description" content="I was experiencing some very annoying pauses &amp; hangs in Thunderbird in Linux. The application would hang when launching, and periodically while &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://brendonrapp.github.io/page/2/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Economy of Effort" type="application/atom+xml">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-3578812-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <div id="logo">
+    <a href="/"><img src="/images/icons/area.jpg" alt="logo"></a>
+  </div>
+  <h1><a href="/">Economy of Effort</a></h1>
+  
+  <div class="clear"></div>
+</hgroup>
+
+<hgroup>
+  <div id="social-icons">
+    <a href="http://www.twitter.com/legion"><img src="/images/icons/webicon-twitter.png" alt="Twitter"></a>
+    <a href="http://www.linkedin.com/in/legion/"><img src="/images/icons/webicon-linkedin.png" alt="LinkedIn"></a>
+    <a href="http://github.com/brendonrapp"><img src="/images/icons/webicon-github.png" alt="GitHub"></a>
+    <a href="mailto:brendon@economyofeffort.com"><img src="/images/icons/webicon-mail.png" alt="Mail"></a>
+    <a href="atom.xml"><img src="/images/icons/webicon-rss.png" alt="RSS"></a>
+  </div>
+</hgroup>
+
+</header>
+  <nav role="navigation">
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:brendonrapp.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+
+<ul class="main-navigation">
+  <li><a href="/about">About</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="http://www.pinterest.com/legion/stuff-i-want/">Wish List</a></li>
+  <li><a href="http://steamcommunity.com/id/legion/wishlist/">Steam Wish List</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2012/04/09/pauses-hanging-in-thunderbird-in-linux-with-lightning/">Pauses/hanging in Thunderbird in Linux With Lightning</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-09T06:30:31-07:00" pubdate data-updated="true">Apr 9<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I was experiencing some very annoying pauses &amp; hangs in Thunderbird in Linux. The application would hang when launching, and periodically while open as well. CPU and RAM usage were not spiking, but the process status would show up in <em>top</em> as D (uninterruptible sleep &ndash; usually IO, according to the <em>ps</em> manpage).</p>
+
+<p>I tracked down the issue as being related to the Lightning calendaring extension. Lightning has an option for caching calendar entries for remote calendars. This <em>seems</em> like it would be a feature that improves performance, but as it turned out, it caused a lot of app-stalling IO. Each remote calendar has a Cache checkbox in its settings. Unchecking this immediately put an end to the pausing issues.</p>
+
+<p>What clued me in was <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=576017">this bug report</a>, which is almost 2 years old and still &ldquo;unconfirmed&rdquo;.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2012/03/01/fixing-slow-vim-auto-completion-with-ruby-files/">Fixing Slow Vim Auto-completion With Ruby Files</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-01T12:48:30-08:00" pubdate data-updated="true">Mar 1<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&rsquo;ve been a happy Vim user for a little while now. With the exception of Objective-C for iOS development (too much of a pain without Xcode&rsquo;s completion), I&rsquo;ve been writing all of my code in Vim.</p>
+
+<p>However, I have not been making use of Vim&rsquo;s auto-completion features, due to a serious performance issue when used with Ruby files. Completion was painfully slow. It was annoying when triggering completion manually, but it was a complete show-stopper when used with an automatic completion plugin like NeoComplCache.</p>
+
+<p>Finally, I got a clue from <a href="http://stackoverflow.com/questions/2169645/vims-autocomplete-is-excruciatingly-slow/4277400#4277400">this StackOverflow response</a>:</p>
+
+<blockquote><p>Had a very similar problem since upgrading to Vim 7.3 (from 7.2): I was using the (excellent) ACP plugin and in longer source files (C-files, 1700 LOC), the popup took ages to jump through the suggestions when I was editing near the bottom of the file.</p></blockquote>
+
+<p>Using the PerformanceValidator (from Softwareverify), I found out that some fold methods were called again and again and lead to very high processor load and slow completion.</p>
+
+<p>My workaround was to set the foldmethod (fdm) to manual. And this solved it&hellip;</p>
+
+<p>Now, I was having issues with fairly short Ruby files, as opposed to the large C files that this responder was editing. However, it clued me in to the fact that foldmethod was getting called a lot during auto-completion, and led me to experiment.</p>
+
+<p>Finally, I found the issue:</p>
+
+<p><strong>foldmethod=syntax is dog-ass slow when editing Ruby syntax files.</strong></p>
+
+<p>As soon as I switch to any other foldmethod, Ruby auto-completion becomes instant. I&rsquo;ve been using foldmethod=indent, which creates folds based on code indent levels. This seems to work as well for me as syntax-aware folding did.</p>
+
+<p>Hopefully that tip helps out anyone else who found Vim auto-completion strangely non-performant while working with Ruby files.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2011/11/03/battlefield-3-get-out-of-my-way/">Battlefield 3: Get Out of My Way!</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-03T05:02:29-07:00" pubdate data-updated="true">Nov 3<span>rd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Dear Battlefield 3,</p>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2011/11/bf3.jpg" alt="" /></p>
+
+<p><strong>Yes, I know I&rsquo;m in a Conquest checkpoint&rsquo;s capture radius!</strong> The little map in the corner that&rsquo;s got a big box next to me kind of gave that fact away.</p>
+
+<p>Now will you please <strong>get the mother-fudge out of the way?</strong> I am trying to look at things where you&rsquo;ve got your big obnoxious indicator.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2011/09/06/the-wifi-bridge-to-nowhere/">The (Wifi) Bridge to Nowhere</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-06T06:35:28-07:00" pubdate data-updated="true">Sep 6<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>At a restaurant I often go to for lunch, I recently noticed that connecting my iPad to the wifi network resulted in a strong signal, but no usable Internet.</p>
+
+<p>When I spied the router, high up on the wall, I soon discovered why.</p>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2011/09/router-to-nowhere.jpg" alt="" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2011/06/10/yubikey/">YubiKey: Inexpensive Two-Factor Authentication</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-10T05:10:27-07:00" pubdate data-updated="true">Jun 10<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img class="center" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/two-factor.gif">
+<small>Pointless trivia: This image, nicely depicting the concept of two-factor authentication, was taken from the <a href="http://www.info.gov.hk/hkma/eng/consumer/two_factor_auth_index.htm">Hong Kong central bank&rsquo;s website</a></small>></p>
+
+<h2>What is Two-Factor Authentication?</h2>
+
+<p>Normally, when you log onto a computer-based service, you enter a username to tell the system who you are, and a password to <em>authenticate</em> (prove that you are who you say you are) with the system.</p>
+
+<p>That is one-factor authentication: you are providing only one thing to prove your identity.</p>
+
+<p>Two-factor authentication is a setup where you have to provide more than one thing to authenticate yourself. In most cases, this means your password in addition with some physical device, a hardware-based <em>token</em>. (It is possible to create authentication systems that require even more than two factors. Systems that require two or more factors are more generally called <em>multi-factor authentication</em>).</p>
+
+<p>The YubiKey is an inexpensive ($25) device that provides this sort of additional authentication factor.</p>
+
+<p><img class="center" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/yubikey.jpg"></p>
+
+<h2>How does it work?</h2>
+
+<p>The YubiKey is a simple device that plugs into any USB port on your computer. The device has a single button, which, when you press it, spits out a One Time Password (OTP). In the eyes of the computer, the YubiKey is literally just a USB keyboard, and when you press the button, it enters text as if a person is typing (very fast) on that keyboard. Most operating systems support USB keyboards without any additional software, which means that at least on <strong>Windows, Mac OS X, and Linux</strong>, you can stick the YubiKey into the computer and press the button without having to install any additional software. Needless to say, this makes it incredibly convenient.</p>
+
+<p><img class="center" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/yubikey-lastpass.png"></p>
+
+<p>So, when you log into a service that supports YubiKey authentication, you&rsquo;ll enter your username and password as usual, but you&rsquo;ll also be presented with a text box for the YubiKey itself to &ldquo;type&rdquo; into. You&rsquo;ll click in the text box as if you&rsquo;re going to type in it yourself, but instead, you&rsquo;ll press the YubiKey&rsquo;s button and it will &ldquo;type in&rdquo; a very long password. Then you&rsquo;ll click to log in like normal, and assuming both your password and YubiKey are valid, you&rsquo;ll log in.</p>
+
+<h2>What makes this more secure?</h2>
+
+<p><img class="right" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/nikolai-300x225.jpg"></p>
+
+<p>The idea behind a one-time password is that, as the name states, the password can only be used once. Even if someone is sniffing your network traffic and grabs a copy of the OTP you just used, he can&rsquo;t turn around and re-use the password itself, as it&rsquo;s been used and is no longer valid.</p>
+
+<p>The idea being multi-factor authentication is that anyone who wishes to login to services as you has to be able to provide all factors. Stealing your password or stealing your YubiKey isn&rsquo;t enough &ndash; they&rsquo;d need to have both. That requirement of getting ahold of something that&rsquo;s physically in your possession dramatically reduces the number of people with opportunity to take your digital identity. A hacker in Russia might be able to set up a website to trick me into giving up my password, but it&rsquo;s a long flight for him to come get my YubiKey too.</p>
+
+<h2>How do I make services &ldquo;use&rdquo; my YubiKey?</h2>
+
+<p><img class="right" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/lastpass-logo.gif"></p>
+
+<p>First of all, to use the YubiKey, the service itself has to support YubiKey authentication. This won&rsquo;t be common with your average website, but it will be more common with more security-minded services, like <a href="http://www.lastpass.com">LastPass</a> or <a href="http://www.passpack.com">PassPack</a>.</p>
+
+<p>Secondly, before you can use your YubiKey to authenticate with a service, you have to associate your YubiKey with your account on that service. How this is done depends entirely on how that service has that feature set up. <a href="http://helpdesk.lastpass.com/security-options/yubikey-authentication/">Here, for example, is LastPass&rsquo;s instruction page</a> for associating YubiKeys with your account on their service.</p>
+
+<h2>What about services that don&rsquo;t support YubiKey?</h2>
+
+<p>If a service doesn&rsquo;t support the YubiKey directly, but does support OpenID authentication, you can use your YubiKey for two-factor authentication by using an OpenID service which supports the YubiKey itself.</p>
+
+<p><a href="http://www.clavid.com"><img class="right" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/Clavid_logo.gif"></a></p>
+
+<p><a href="http://www.clavid.com">Clavid.com</a> is such a service. With a properly set-up Clavid.com OpenID identity, you can have two-factor authentication for any service that does OpenID.</p>
+
+<p>However, outside of those options, there&rsquo;s nothing you can do to add YubiKey support to a service that doesn&rsquo;t have it, besides emailing them and bugging them to add it.</p>
+
+<h2>What if those services get hacked? Is my YubiKey compromised?</h2>
+
+<p>When you register your YubiKey with a service like LastPass, that service does not have your Yubico encrypted identity. All they store is the 12-character Yubico ID. When you tap your YubiKey&rsquo;s button and send a One-Time Password to that service, they don&rsquo;t have the means of processing the password and verifying your identity. Instead, they send that password (which contains your 12-character ID) to the Yubico servers, which responds back with a &ldquo;yes&rdquo; or &ldquo;no&rdquo; to that service. Yubico acts as an authentication gateway for that factor.</p>
+
+<p>So, only Yubico has the information necessary to process the passwords that your YubiKey creates. So, that leads to the question: what if Yubico is hacked? That is the scenario where your YubiKey&rsquo;s identity may be compromised. Indeed, this happened with another token authentication system recently, <a href="http://www.extremetech.com/article2/0,2845,2386541,00.asp">RSA&rsquo;s SecurID</a>. However, as long as you are using YubiKeys for multi-factor authentication, and not as a replacement for passwords, then the result of this would be that your accounts are still protected by your passwords. In other words, you&rsquo;d be in the exact same place as if you weren&rsquo;t using YubiKeys to begin with.</p>
+
+<h2>The YubiKey website says this thing supports a bunch of different authentication systems. What&rsquo;s the story there?</h2>
+
+<p>The YubiKey is quite a flexible little device, and can indeed be used with a number of different authentication systems.</p>
+
+<p>The most common of these, the thing that people are generally referring to when talking about YubiKey authentication, is Yubico&rsquo;s YubiKey OTP authentication service. This is what standard YubiKeys come ready to work with right out-of-the-box, and this is what services like LastPass are referring to when stating that they support YubiKey.</p>
+
+<p>However, you can program YubiKeys to support different systems. One thing you can do is program the YubiKey to store a single <a href="http://www.yubico.com/static-password">static password</a>. You press the button, and the YubiKey types in this password. This is a way to be able to create a and use a long, complex password that you can&rsquo;t possibly memorize. And because it&rsquo;s just a plain password, you can use it with any password-based system. This isn&rsquo;t multi-factor authentication (since you&rsquo;re back to using just a password, not something in addition to a password), but it can be very useful in certain circumstances. Yubico mentions an ideal use case: <a href="http://static.yubico.com/var/uploads/pdfs/TrueCrypt%202011-03-23.pdf">long passwords for encrypting TrueCrypt vaults</a>.</p>
+
+<p><img class="right" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/oath.png"></p>
+
+<p>YubiKeys can be programmed to work with Open Authentication (OATH). Now, read that closely. That is OATH, a system developed by VeriSign, and not OAuth, a system developed by Twitter. It took me a while before I noticed this, as I had only ever heard of OAuth before. <a href="http://blogs.verisign.com/identity-emea/2008/07/oauth_and_oath_confusing_1.php">Here&rsquo;s a post from a VeriSign blogger</a> describing the difference between these two unfortunately similarly-named projects. OATH is used in (formerly VeriSign&rsquo;s, now Symantec&rsquo;s) VIP authentication system, which we&rsquo;ll talk about later. Yubico does not run any OATH services themselves.</p>
+
+<p>YubiKeys can also be programmed to work with SAML authentication systems. SAML is used by Google Apps&#8217; Single Sign On feature, and Yubico provides a SAML server which can be used to set up SAML-based Single Sign On for your Google Apps domain. <a href="http://wiki.yubico.com/wiki/index.php/SAMLServerStepByStep">Here are Yubico&rsquo;s step by step instructions</a> for doing that.</p>
+
+<p>In general, these other non-Yubico systems are things you would use with a specific purpose in mind, not for generally-available web services.</p>
+
+<h2>Can you use all these services on the same YubiKey?</h2>
+
+<p>Originally, YubiKeys supported only one &ldquo;identity&rdquo;, meaning you had to pick and choose only one of these authentication systems to use your YubiKey with.</p>
+
+<p>Newer YubiKeys support two identities, so you make one YubiKey work with two different authentication systems. Naturally, most users will have a Yubico identity as one of their two. By default, the second identity is blank, so setting a key up to work with another authentication system requires using one of the <a href="http://www.yubico.com/personalization-tool">free personalization software tools</a> to program the second identity. It can be a little tricky if you haven&rsquo;t done it before, so be patient and find good instructions (I may write some of my own in another post).</p>
+
+<p>The way that you use a YubiKey with two different services is pretty clever. If you press the YubiKey button for 0 to 1.5 seconds, it outputs the results for the programmed identity in the first slot. Hold the button longer &ndash; 2.5 to 5 seconds &ndash; and it does the output for the second identity instead. There is a &ldquo;dead zone&rdquo; gap in the (approximately) 1.5-2.5 second range so that you can&rsquo;t accidentally end up at the &ldquo;border&rdquo; between the two. Any tap at all is sufficient for triggering slot 1, so you&rsquo;ll tap for slot 1 and hold the button down for slot 2, and you&rsquo;ll get nothing at all if you try to let go in no man&rsquo;s land.</p>
+
+<h2>What about the Symantec VIP service?</h2>
+
+<p><img class="center" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/VIP-Access.png">
+<small>The &ldquo;V&rdquo; still stands for VeriSign</small></p>
+
+<p>Symantec&rsquo;s VIP service uses OATH. However, there is a catch. While you can create an OATH-compatible identity, end users like us have no way of getting that identity into the VIP service. They do not provide a means of uploading your own created identity, as Yubico does with their service.</p>
+
+<p>As such, Yubico has created the <a href="http://yubico.com/VIP">Symantec VIP YubiKey</a>. It&rsquo;s a normal YubiKey, except with slot 1 pre-programmed with a Symantec VIP identity, which was entered in to the VIP service at the time of manufacturing, per Symantec&rsquo;s rules, as explained by the YubiKey YouTube user <a href="http://www.youtube.com/comment?lc=_MHd7s7c6pOoAzr_CTkpfIPzE-8HKVXNNZPVXZ_SbFk">in this YouTube comment reply</a>:</p>
+
+<blockquote><p>The [Symantec VIP] YubiKey is the same standard YubiKey &ndash; it already supported OATH. The problem is loading secrets and Symantec&rsquo;s rules are that they can only be loaded at the time of manufacture. Hence the need for a new SKU.</p></blockquote>
+
+<p>So, if you wish to use a YubiKey with the VIP service, you need to buy the &ldquo;VIP&rdquo;-specific model. Note that this model does <em>not</em> come pre-programmed with a Yubico identity, but you are of course free to create one on own for slot 2. Also, the VIP credential is hard-coded into slot 1 and can&rsquo;t be removed, so you only want to get the VIP model if you do intend on using VIP.</p>
+
+<h2>And what if you lose it, or it breaks?</h2>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2011/06/lost-300x169.jpg"></p>
+
+<p>One big issue with multi-factor authentication is, what happens if you lose or damage one of the factors?</p>
+
+<p>Many services have a recovery process for this, where you have to jump through hoops to prove that you&rsquo;re who you claim to be. It&rsquo;s also possible to order an identical replacement YubiKey that contains the same identity as the one you lost. Again, here you have to jump through hoops to prove your identity.</p>
+
+<p>But there is a better, more forward-thinking way of protecting yourself from losing or damaging YubiKeys &ndash; more YubiKeys! Every YubiKey-compatible service I&rsquo;ve run into so far allows you to associate multiple YubiKeys to your account, allowing you to authenticate using any one of them.</p>
+
+<p>Thus, I own three YubiKeys:
+&hellip; one on my keyring,
+&hellip; one locked up somewhere safe in my house,
+&hellip; and one locked up in my bank safe deposit box.</p>
+
+<p>Should I lose or break the one on my keyring, I have backups available.</p>
+
+<p>It does mean, however, that for every new YubiKey-compatible service I start using, I need to round up all my keys to associate each of them with the new account. But in practice, this is exceedingly rare &ndash; I only have a few things I use YubiKeys with, but they&rsquo;re important things.</p>
+
+<h2>&ldquo;Would you like to know more?&rdquo;</h2>
+
+<p>I&rsquo;ll be writing some more posts as I go dig deeper into what you can do with the YubiKey. LastPass and OpenID are certainly cool and sufficient for picking up some YubiKeys, but I think the ability to integrate it with your own services is more interesting.</p>
+
+<p>There is a PAM module for YubiKey authentication, allowing it to be used with things like SSH and VPN. There are also plugins for web-based CMSs like Wordpress. I&rsquo;m going to dig around and I&rsquo;ll share what I find.</p>
+
+<p>If you have any questions, please ask them and I&rsquo;ll try to answer them, maybe in my next post. Also, if anything in this post is incorrect, please let me know and I will correct it. I am simply a consumer and do not work for Yubico or have any stake in their product other than the ~$75 I&rsquo;ve invested in the three keys I own.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2011/06/07/stuff-i-like-that-you-should-too-homebrew-for-mac-os-x/">Stuff I Like That You Should Too: Homebrew for Mac OS X</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-07T05:51:51-07:00" pubdate data-updated="true">Jun 7<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Mac OS X is a UNIX-based operating system. Apple proudly states that fact whenever they&rsquo;re pitching OS X.</p>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2011/06/apple-unix.png"></p>
+
+<p>A lot of people &ndash; myself included &ndash; like OS X in part because of this fact. I am primarily a Linux user, but for my personal laptop, it&rsquo;s nice to have a system with all the friendly-out-of-the-box UI trappings of a general consumer product, while still having UNIX at my fingertips.</p>
+
+<p>As a UNIX system, though, Mac OS X has some limiting factors. One of the big ones is that the base system (the set of core tools that make up the OS, named Darwin on the Mac) is not really updatable. Updates come from Apple packaged as part of general operating system updates, but even when Apple does push out updates, it usually not all that up-to-date.</p>
+
+<p>What&rsquo;s more, the base system doesn&rsquo;t necessarily come with everything you might want. You can always compile from source, but this is 2011 and package management is a good thing.</p>
+
+<p>There are three main community projects which bring package management for UNIX programs to Mac OS X. They are <a href="http://finkproject.org/">Fink</a>, <a href="http://www.macports.org/">MacPorts</a>, and <a href="http://mxcl.github.com/homebrew/">Homebrew</a>.</p>
+
+<p><a href="http://mxcl.github.com/homebrew/"><img src="http://www.economyofeffort.com/wp-content/uploads/2011/06/homebrew.png"></a></p>
+
+<p>Of these, my favorite is Homebrew. Homebrew is very light and lean, and ideal for people who just want to install some select packages to augment the Darwin base system.</p>
+
+<p>Both Fink and MacPorts work around Darwin by existing in their own little ecosystems. When installing something that depends on another tool that already exists in Darwin, these package managers tend to install their own copies of those tools instead of using the one already on the system. There are some compatibility advantages to this, but at the same time, there is some confusion when there are multiple copies of libraries and binaries on the same system.</p>
+
+<p>Homebrew takes the other approach, relying on what is provided in the Darwin base system instead of replicating everything itself. It augments Darwin instead of treating it as unreliable and building its own little world.</p>
+
+<p>Homebrew in general &ldquo;feels&rdquo; nicer than Fink or MacPorts. In <a href="http://news.ycombinator.com/item?id=1096177">the words</a> of HackerNews commenter dschobel: &ldquo;There is so much less friction than using macports or fink that I dropped them immediately.&rdquo; That&rsquo;s a good way of putting it. Homebrew is just less noisy and less intrusive.</p>
+
+<p>There are other advantages to Homebrew. The scripts (or &ldquo;formula&rdquo; in Homebrew nomenclature) for building and installing packages are simple Ruby scripts. Combine the ease of creating formula with the ease of submitting them to the project &ndash; as it <a href="https://github.com/mxcl/homebrew">lives on Github</a> and anyone can contribute with a simple fork and a pull request &ndash; and you&rsquo;ve got an environment for rapid crowdsourced updates.</p>
+
+<p>And update it has. Originally I ran Homebrew with MacPorts as a backup for things that weren&rsquo;t yet in Homebrew, but the number of such packages has decreased dramatically. The 1587 formulas (as of this writing) in Homebrew is still much less than the 8100 packages in MacPorts or the 12000 packages in Fink, but the important stuff is well represented (and part of the difference is due to Homebrew intentionally excluding things already in Darwin). Still, it is perfectly fine to run more than one package manager to get the package coverage you need.</p>
+
+<p>Homebrew is very easy to use &ndash; I won&rsquo;t bother replicating the explanation of basic commands here, as the <a href="http://mxcl.github.com/homebrew/">home page</a> and the <a href="https://github.com/mxcl/homebrew/wiki/Installation">instructions on the wiki</a> cover them nicely. But I will share one little BASH alias that I use. There is no single Homebrew command for upgrading all of your installed Homebrew packages to their latest versions, the way you might in a Debian-based OS with an &ldquo;apt-get upgrade&rdquo;. But a handy little BASH alias takes care of that:</p>
+
+<p>[bash]# Homebrew &ndash; upgrade all installed packages
+alias brew-upgrade=&lsquo;brew update &amp;&amp; brew list | xargs brew install&rsquo;[/bash]</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2011/06/06/os-x-homebrew-gnutls-build-failure-fix/">OS X Homebrew - Gnutls Build Failure Fix</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-06T06:21:18-07:00" pubdate data-updated="true">Jun 6<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When trying to update my Homebrew install, I was getting this error when building <em>gnutls</em>:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Error: Failed executing: make install
+</span><span class='line'>Please report this bug: https://github.com/mxcl/homebrew/wiki/new-issue
+</span><span class='line'>These existing issues may help you:  
+</span><span class='line'>https://github.com/mxcl/homebrew/issues/#issue/4236</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The Github page linked does have the answer, but I missed it for a while because I didn&rsquo;t scroll down to <a href="https://github.com/mxcl/homebrew/issues/4236#issuecomment-1045448">the money post</a>. The answer is to paste the following into your terminal:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>for dep in $(brew deps gnutls); do brew remove --force $dep; done  
+</span><span class='line'>brew install gnutls</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Thank you, <a href="https://github.com/jabley">jabley</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2011/06/06/stuff-i-like-that-you-should-too-moleskine-notebooks/">Stuff I Like That You Should Too: Moleskine Notebooks</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-06T05:55:11-07:00" pubdate data-updated="true">Jun 6<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Yes, I know they&rsquo;re the hipster&rsquo;s notebook and that they have a cultish following. Yes, I know that their posturing as the <a href="http://www.moleskine.com/moleskine_world/_the_legendary_notebook_moleskine.php">notebook of Hemingway and Picasso</a> is a healthy dose of creative license. Yes, I know that they&rsquo;re overpriced and that for all the talk of Italian design and French paper, they&rsquo;re <a href="http://www.moleskine.com/catalogue/moleskine_quality.php">bound together by cheap Chinese labor</a>.</p>
+
+<p>But frankly, none of that speaks to the quality of the notebook. And as I nearly fill my first one with a year&rsquo;s worth of work notes, I must say that mine has been a durable, reliable tool.</p>
+
+<p><img class="left" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/moleskine.jpg"> I&rsquo;ve never been completely happy with computer-based note-taking solutions (though I have come closer with Evernote on the iPad and iPhone). And like many geek brains &ndash; constantly preoccupied with the last technical problem it was trying to solve &ndash; mine is a forgetful one.</p>
+
+<p>So, a year ago, I invested in my first Moleskine notebook. I had, of course, heard all of the praise from the true believers. I decided to give them a shot myself.</p>
+
+<p>My writing needs are not like those of, say, actual <em>writers</em>. But I needed a good, compact notebook that I could take everywhere, and one that would be able to hold its own on the inside of a laptop bag, being smashed up against larger and heavier objects.</p>
+
+<p>The Moleskine is beautifully and simply designed. The importance of the little strap that holds the book closed cannot be easily overstated. Unlike every other paper-based thing that is subjected to the interior of my laptop bag, the Moleskine pages stay intact and unmolested, locked away behind an impenetrable shell held closed by that handy little strap.</p>
+
+<p>As much as I like the idea of going completely paperless (as I am with magazines and books), the &ldquo;best tool for the job&rdquo; mindset wins out. I will continue to use Evernote for certain things, but for my daily work notes, I will keep reaching for my Moleskine.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2011/05/20/adobe-reader-xxxl/">Adobe Reader X(XXL)</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-20T06:00:42-07:00" pubdate data-updated="true">May 20<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There&rsquo;s &ldquo;bloat&rdquo;, and then there&rsquo;s BLOAT.</p>
+
+<p>&ldquo;Bloat&rdquo; is spending 5% of your CPU cycles and RAM to have a nice-looking user interface. &ldquo;Bloat&rdquo; is having the nerve to create a desktop environment that <em>might</em> not run well on a computer that&rsquo;s 15 years old.</p>
+
+<p>BLOAT is a PDF reader that is a 70 MB download, and (according to the installer) takes up 418 MB of space in total once extracted.</p>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2011/05/adobe-reader-x.jpg"></p>
+
+<p>If Adobe software were people, they&rsquo;d be dead from <a href="http://knowyourmeme.com/memes/diabeetus">DIABEETUS</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2011/04/15/strange-and-amazing/">Strange and Amazing</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-15T15:09:39-07:00" pubdate data-updated="true">Apr 15<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As a kid of around 9 or 10, I had a &ldquo;young adult&rdquo; focused football book. It was all about stories of players and games from football&rsquo;s past. It&rsquo;s almost the only football book I remember owning, and I literally read the covers off of it.</p>
+
+<p>Having no idea who authored it or any sort of inkling of the book title, I tried to find the book. Armed only with a vague memory of what it looked like (yellowed pages, and some yellow on the cover somewhere) and a much less vague memory of the stories contained within, I headed over to Google Books to try and come up with some search queries to find the book in their archive of scanned books.</p>
+
+<p>My first go-to queries related to the 222-0 Cumberland vs. Georgia Tech game. I knew very well that this story came from that book, but no joy. I searched for Dick &ldquo;Night Train&rdquo; Lane, but the hits there didn&rsquo;t yield my book either.</p>
+
+<p>Finally, I struck gold. I remembered the story of Tony Dorsett and his 1,000 yard season streak (dating back to his high school days), and how the streak was broken by the 1982 player&rsquo;s strike. (In my memory, I thought it was the 1987 strike, but luckily, that didn&rsquo;t matter). I searched for: <a href="https://encrypted.google.com/search?q=tony+dorsett+strike&amp;btnG=Search&amp;hl=en&amp;tbo=1&amp;tbm=bks&amp;sa=2">Tony Dorsett 1,000 yards strike</a> and <a href="http://books.google.com/books?id=5nNt_sPPMOMC&amp;q=tony+dorsett+strike&amp;dq=tony+dorsett+strike&amp;hl=en&amp;ei=ZhGmTdnmOIH2tgOB3t35DA&amp;sa=X&amp;oi=book_result&amp;ct=result&amp;resnum=4&amp;ved=0CDwQ6AEwAw">found the exact page I was looking for</a>:</p>
+
+<p><a href="http://www.economyofeffort.com/wp-content/uploads/2011/04/dorsett.png"><img src="http://www.economyofeffort.com/wp-content/uploads/2011/04/dorsett.png" alt="" /></a></p>
+
+<p>It was only a snippet, but I vividly remember the phrasing of those sentences. I knew I had found what I had been trying in vain for the past few years to dig up in my memory.</p>
+
+<p>The book was Sports Illustrated: Strange and Amazing Football Stories, written in 1986. And I&rsquo;ve come to figure out that I was incredibly lucky with that search phrase. Google Books does not have anywhere near the full text of the book archived, which is why neither Cumberland nor Night Train put me on the right track. Now that I knew the book&rsquo;s name and could pull it up on Google Books, I had a search bar that searched only this specific book. Most of the stories I remembered came up with no hits, and even ones that did came up with no scanned page snippets. The only hit I&rsquo;ve been able to come up with that gave me a look at the book was the Dorsett query.</p>
+
+<p>But that was of no consequence any longer. Now I knew the book&rsquo;s name and author. Mystery solved; I had the bastard right where I wanted him. Next stop was Amazon, which gave me plenty of used copies to choose from. I picked out one listed in good condition, and a few days later:</p>
+
+<p><a href="http://www.economyofeffort.com/wp-content/uploads/2011/04/5614821296_f2c188c855_b.jpg"><img src="http://www.economyofeffort.com/wp-content/uploads/2011/04/5614821296_f2c188c855_b.jpg" alt="" /></a></p>
+
+<p>Mission accomplished.</p>
+
+<p>Not being very long, the book was easy to breeze through in an evening. Reading through it confirmed every memory I had about it, and how many old football stories and tales of old players I knew came directly from this book:</p>
+
+<ul>
+<li>Cumberland losing to Georgia Tech in the most lopsided game ever, 222-0</li>
+<li>The New York Giants spanking Sammy Baugh&rsquo;s Redskins 73-0 in the 1940 championship game</li>
+<li>The <em>Heidi</em> game</li>
+<li>The Stanford band game</li>
+<li>Flutie&rsquo;s hail mary</li>
+<li>Old players like Bronko Nagurski, Red Grange, Dick &ldquo;Night Train&rdquo; Lane</li>
+<li>Jim Thorpe and the Oorang Indians (and lots of tales of early pro teams, which were more like traveling acts than a sports league)</li>
+<li>Raymond Berry and his practice habits (including making his wife, Sally Berry, throw him passes to get more reps)</li>
+<li>Chuck Bednarik as the last bastion of iron man football</li>
+<li>Knute Rockne&rsquo;s Notre Dame all-stars versus the New York Giants</li>
+<li>Abner Haynes&rsquo;s &ldquo;we&rsquo;ll kick to the clock&rdquo;</li>
+</ul>
+
+
+<p>I could list plenty more. It&rsquo;s a nice collection of stories, especially given what the  book is. The author, Bill Gutman, apparently churned out these kinds of young reader sports books by the dozen, for publishers like Scholastic and, as in the case of this book, Archway (putting it alongside the likes of Hardy Boys and Nancy Drew books).</p>
+
+<p>Sadly, fact-checking may have been a tad loose in this book, as I picked out one glaring factual error. At the end of telling the Jerry Kramer story, the author tied things up with a nice but oh-so-wrong sentence:</p>
+
+<blockquote><p>&ldquo;No wonder Jerry Kramer ended up in pro football&rsquo;s Hall of Fame&rdquo;.</p></blockquote>
+
+<p>Should I ever meet Kramer, I would ask him to sign this book, a relic from an alternate reality exactly like our own save for a Jerry Kramer bust in Canton.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/page/3/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2014/07/04/zsh/">Zsh, Tmux, Vim, and 256 Color Madness</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/08/03/careful-what-you-name-your-rails-partials/">Careful What You Name Your Rails Partials</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/07/29/reattach-to-user-namespace-the-fix-for-your-tmux-in-os-x-woes/">Reattach-to-user-namespace: The Fix for Your Tmux in OS X Woes</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/07/26/no-numpads/">No Numpads</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/08/17/goodbye-wordpress/">Goodbye Wordpress, Hello Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Brendon Rapp -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'economyofeffort';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

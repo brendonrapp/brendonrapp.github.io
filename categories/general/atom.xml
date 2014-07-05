@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: General | Economy of Effort]]></title>
+  <link href="http://brendonrapp.github.io/categories/general/atom.xml" rel="self"/>
+  <link href="http://brendonrapp.github.io/"/>
+  <updated>2014-07-04T21:38:22-07:00</updated>
+  <id>http://brendonrapp.github.io/</id>
+  <author>
+    <name><![CDATA[Brendon Rapp]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Overclocking: Getting the Low-Hanging Fruit]]></title>
+    <link href="http://brendonrapp.github.io/2012/05/27/overclocking-getting-the-low-hanging-fruit/"/>
+    <updated>2012-05-27T06:43:11-07:00</updated>
+    <id>http://brendonrapp.github.io/2012/05/27/overclocking-getting-the-low-hanging-fruit</id>
+    <content type="html"><![CDATA[<p>I have started playing a game called Day Z (a mod for the game ArmA 2). I will write about this at a later time. One thing I will mention, though, is that ArmA 2 is a very CPU-demanding game. As a result, I found myself wanting to get some extra performance out of my system&rsquo;s processor. I decided that I would overclock it, as I have done on many of my systems before.</p>
+
+<p>One thing to understand about CPU production is that Intel and AMD don&rsquo;t design completely separate cores for each CPU product they sell. Rather, they&rsquo;ll make one CPU core and clock it at different speeds to make a range of products. What this means to overclockers is that it&rsquo;s often trivially easy to buy a CPU from the low-end of that range, and overclock it to run at the speed of the high-end.</p>
+
+<p>To be honest, this barely qualifies for &ldquo;overclocking&rdquo;. It&rsquo;s more like removing an artificial restriction that makes the CPU run slower than the higher speeds of which it is capable. &ldquo;Real&rdquo; overclockers like to take CPUs and see just how far they can push those cores, way beyond the normal range that Intel or AMD are willing to clock those chips for wide production. Overclockers utilize more aggressive methods of keeping the chip cool, increase voltage beyond the stock levels, and other such tweaks to push a core to its maximum stable (or, sometimes, not-so-stable) limits.</p>
+
+<p>This is not the level of overclocking that I participate in. I am simply interested in getting the low-hanging fruit. Taking a chip clocked at the low-end of the range of CPUs using the same core, and turning it up to the high-end, is a very easy way to spend less on a CPU and end up with the same level of performance. Sometimes, depending on how much cushion is left, a chip can go even higher relatively painlessly. (Intel/AMD don&rsquo;t necessarily always max out a core&rsquo;s capable range. Sometimes they simply move on to the next core.) When buying CPUs, I tend to buy on the low-end of the core&rsquo;s range, knowing that I will probably have an easy overclock ahead of me if I need more CPU power.</p>
+
+<p>My current system runs an AMD Phenom II x6 hex-core CPU. It&rsquo;s the 1055T, giving it a stock clock of 2.8 GHz. The other chips that use the &ldquo;Thuban&rdquo; core that this one does run up to 3.3 GHz. What&rsquo;s more, overclockers found it trivial to clock them up much higher &ndash; AMD definitely did not release any CPUs that reack the peak range of this core. So, I bought a nice big heatsink/fan combo (Cooler Master Hyper 212 Plus), replaced the crappy stock AMD heatsink, and clocked the chip up to 3.5 GHz. It&rsquo;s a nice 700 MHz boost, yet overall it is still a very conservative overclock. With the new heatsink, my CPU temperatures are chilly cool (a good 15 Celsius cooler than they were at 2.8 GHz with the stock AMD fan), so I know heat is no factor. I hear 3.8 GHz is reasonably achievable, though with some slight voltage bumps. Nothing I&rsquo;d be afraid of, but at this point, I start to reach diminishing returns. I have successfully picked the low-hanging fruit.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Pauses/hanging in Thunderbird in Linux with Lightning]]></title>
+    <link href="http://brendonrapp.github.io/2012/04/09/pauses-hanging-in-thunderbird-in-linux-with-lightning/"/>
+    <updated>2012-04-09T06:30:31-07:00</updated>
+    <id>http://brendonrapp.github.io/2012/04/09/pauses-hanging-in-thunderbird-in-linux-with-lightning</id>
+    <content type="html"><![CDATA[<p>I was experiencing some very annoying pauses &amp; hangs in Thunderbird in Linux. The application would hang when launching, and periodically while open as well. CPU and RAM usage were not spiking, but the process status would show up in <em>top</em> as D (uninterruptible sleep &ndash; usually IO, according to the <em>ps</em> manpage).</p>
+
+<p>I tracked down the issue as being related to the Lightning calendaring extension. Lightning has an option for caching calendar entries for remote calendars. This <em>seems</em> like it would be a feature that improves performance, but as it turned out, it caused a lot of app-stalling IO. Each remote calendar has a Cache checkbox in its settings. Unchecking this immediately put an end to the pausing issues.</p>
+
+<p>What clued me in was <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=576017">this bug report</a>, which is almost 2 years old and still &ldquo;unconfirmed&rdquo;.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Fixing slow Vim auto-completion with Ruby files]]></title>
+    <link href="http://brendonrapp.github.io/2012/03/01/fixing-slow-vim-auto-completion-with-ruby-files/"/>
+    <updated>2012-03-01T12:48:30-08:00</updated>
+    <id>http://brendonrapp.github.io/2012/03/01/fixing-slow-vim-auto-completion-with-ruby-files</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve been a happy Vim user for a little while now. With the exception of Objective-C for iOS development (too much of a pain without Xcode&rsquo;s completion), I&rsquo;ve been writing all of my code in Vim.</p>
+
+<p>However, I have not been making use of Vim&rsquo;s auto-completion features, due to a serious performance issue when used with Ruby files. Completion was painfully slow. It was annoying when triggering completion manually, but it was a complete show-stopper when used with an automatic completion plugin like NeoComplCache.</p>
+
+<p>Finally, I got a clue from <a href="http://stackoverflow.com/questions/2169645/vims-autocomplete-is-excruciatingly-slow/4277400#4277400">this StackOverflow response</a>:</p>
+
+<blockquote><p>Had a very similar problem since upgrading to Vim 7.3 (from 7.2): I was using the (excellent) ACP plugin and in longer source files (C-files, 1700 LOC), the popup took ages to jump through the suggestions when I was editing near the bottom of the file.</p></blockquote>
+
+<p>Using the PerformanceValidator (from Softwareverify), I found out that some fold methods were called again and again and lead to very high processor load and slow completion.</p>
+
+<p>My workaround was to set the foldmethod (fdm) to manual. And this solved it&hellip;</p>
+
+<p>Now, I was having issues with fairly short Ruby files, as opposed to the large C files that this responder was editing. However, it clued me in to the fact that foldmethod was getting called a lot during auto-completion, and led me to experiment.</p>
+
+<p>Finally, I found the issue:</p>
+
+<p><strong>foldmethod=syntax is dog-ass slow when editing Ruby syntax files.</strong></p>
+
+<p>As soon as I switch to any other foldmethod, Ruby auto-completion becomes instant. I&rsquo;ve been using foldmethod=indent, which creates folds based on code indent levels. This seems to work as well for me as syntax-aware folding did.</p>
+
+<p>Hopefully that tip helps out anyone else who found Vim auto-completion strangely non-performant while working with Ruby files.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The (Wifi) Bridge to Nowhere]]></title>
+    <link href="http://brendonrapp.github.io/2011/09/06/the-wifi-bridge-to-nowhere/"/>
+    <updated>2011-09-06T06:35:28-07:00</updated>
+    <id>http://brendonrapp.github.io/2011/09/06/the-wifi-bridge-to-nowhere</id>
+    <content type="html"><![CDATA[<p>At a restaurant I often go to for lunch, I recently noticed that connecting my iPad to the wifi network resulted in a strong signal, but no usable Internet.</p>
+
+<p>When I spied the router, high up on the wall, I soon discovered why.</p>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2011/09/router-to-nowhere.jpg" alt="" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Adobe Reader X(XXL)]]></title>
+    <link href="http://brendonrapp.github.io/2011/05/20/adobe-reader-xxxl/"/>
+    <updated>2011-05-20T06:00:42-07:00</updated>
+    <id>http://brendonrapp.github.io/2011/05/20/adobe-reader-xxxl</id>
+    <content type="html"><![CDATA[<p>There&rsquo;s &ldquo;bloat&rdquo;, and then there&rsquo;s BLOAT.</p>
+
+<p>&ldquo;Bloat&rdquo; is spending 5% of your CPU cycles and RAM to have a nice-looking user interface. &ldquo;Bloat&rdquo; is having the nerve to create a desktop environment that <em>might</em> not run well on a computer that&rsquo;s 15 years old.</p>
+
+<p>BLOAT is a PDF reader that is a 70 MB download, and (according to the installer) takes up 418 MB of space in total once extracted.</p>
+
+<p><img class="<a" src="href="http://www.economyofeffort.com/wp-content/uploads/2011/05/adobe-reader-x.jpg">http://www.economyofeffort.com/wp-content/uploads/2011/05/adobe-reader-x.jpg</a>"></p>
+
+<p>If Adobe software were people, they&rsquo;d be dead from <a href="http://knowyourmeme.com/memes/diabeetus">DIABEETUS</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>
