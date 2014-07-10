@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Economy of Effort]]></title>
   <link href="http://brendonrapp.github.io/categories/ruby/atom.xml" rel="self"/>
   <link href="http://brendonrapp.github.io/"/>
-  <updated>2014-07-04T21:38:22-07:00</updated>
+  <updated>2014-07-09T21:22:58-07:00</updated>
   <id>http://brendonrapp.github.io/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
@@ -12,6 +12,70 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Vim tricks for Ruby hashes]]></title>
+    <link href="http://brendonrapp.github.io/2014/07/09/vim-tricks-for-ruby-hashes/"/>
+    <updated>2014-07-09T19:59:00-07:00</updated>
+    <id>http://brendonrapp.github.io/2014/07/09/vim-tricks-for-ruby-hashes</id>
+    <content type="html"><![CDATA[<p>I have a couple of functions in my .vimrc for manipulating Ruby hashes.</p>
+
+<p>The first one is to convert hashes from Ruby 1.8 style into Ruby 1.9+ style, eg.</p>
+
+<p>```ruby</p>
+
+<h1>before</h1>
+
+<p>:symbol_key => &lsquo;value&rsquo;</p>
+
+<h1>after</h1>
+
+<p>symbol_key: &lsquo;value&rsquo;
+```</p>
+
+<p>I create this function for both Normal and Visual modes to allow updating either a selected hash, or the entire file.
+```vim
+function! RubyHashesAll()
+  :%s/:([^ ]<em>)(\s</em>)=>/\1:/ge
+endfunction</p>
+
+<p>function! RubyHashesSelected()
+  :&lsquo;&lt;,&rsquo;>s/:([^ ]<em>)(\s</em>)=>/\1:/ge
+endfunction</p>
+
+<p>nmap <Leader>rhh :call RubyHashesAll()<CR>
+vmap <Leader>rhh :call RubyHashesSelected()<CR>
+```</p>
+
+<p>Next, I have one for taking a hash and extracting an array of the hash keys.</p>
+
+<p>```ruby</p>
+
+<h1>before</h1>
+
+<p>{ &lsquo;one&rsquo; => two, :three => &lsquo;four&rsquo;, five: 6 }</p>
+
+<h1>after</h1>
+
+<p>[&lsquo;one&rsquo;, :three, :five]
+```</p>
+
+<p>Here, I have the command bound only in Visual mode, as I don&rsquo;t see a case where I&rsquo;d want to do this globally.</p>
+
+<p>```vim
+function! RubyExtractHashKeys()
+  :&lsquo;&lt;,&rsquo;>s/([:&lsquo;&ldquo;]\?[a-zA-Z]+[&rsquo;&rdquo;]\?)\s<em>=>[^,}]+([,}])/\1\2/ge
+  :&lsquo;&lt;,&rsquo;>s/([a-zA-Z]+)[:]\s</em>[^,}]+([,}])/:\1\2/ge
+  :&lsquo;&lt;,&rsquo;>s/{\s<em>/[/ge
+  :&lsquo;&lt;,&rsquo;>s/\s</em>}/]/ge
+endfunction</p>
+
+<p>vmap <Leader>rhe :call RubyExtractHashKeys()<CR>
+```</p>
+
+<p>The regexes can probably be improved to fix some edge cases, and I&rsquo;m certain there&rsquo;s a way in Vim to make it so that I don&rsquo;t have to define the All and Selected versions of RubyHashes as separate functions. But these do the job for me now, until I reach a higher plane of Vim mastery.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Careful What You Name Your Rails Partials]]></title>

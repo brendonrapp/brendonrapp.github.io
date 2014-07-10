@@ -9,7 +9,7 @@
   <meta name="author" content="Brendon Rapp">
 
   
-  <meta name="description" content="tl;dr: You want $TERM to be screen-256color when tmux is running, and you want it to be xterm-256color when tmux is not running. Also, launch tmux &hellip;">
+  <meta name="description" content="I have a couple of functions in my .vimrc for manipulating Ruby hashes. The first one is to convert hashes from Ruby 1.8 style into Ruby 1.9+ style, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -87,6 +87,136 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2014/07/09/vim-tricks-for-ruby-hashes/">Vim Tricks for Ruby Hashes</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-09T19:59:00-07:00" pubdate data-updated="true">Jul 9<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have a couple of functions in my .vimrc for manipulating Ruby hashes.</p>
+
+<p>The first one is to convert hashes from Ruby 1.8 style into Ruby 1.9+ style, eg.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># before</span>
+</span><span class='line'><span class="ss">:symbol_key</span> <span class="o">=&gt;</span> <span class="s1">&#39;value&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># after</span>
+</span><span class='line'><span class="n">symbol_key</span><span class="p">:</span> <span class="s1">&#39;value&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I create this function for both Normal and Visual modes to allow updating either a selected hash, or the entire file.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">function</span><span class="p">!</span> RubyHashesAll<span class="p">()</span>
+</span><span class='line'>  :%<span class="k">s</span><span class="sr">/:\([^ ]*\)\(\s*\)=&gt;/</span>\<span class="m">1</span>:/ge
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function</span><span class="p">!</span> RubyHashesSelected<span class="p">()</span>
+</span><span class='line'>  :<span class="s1">&#39;&lt;,&#39;</span><span class="p">&gt;</span><span class="k">s</span><span class="sr">/:\([^ ]*\)\(\s*\)=&gt;/</span>\<span class="m">1</span>:/ge
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'>
+</span><span class='line'>nmap <span class="p">&lt;</span>Leader<span class="p">&gt;</span>rhh :<span class="k">call</span> RubyHashesAll<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
+</span><span class='line'>vmap <span class="p">&lt;</span>Leader<span class="p">&gt;</span>rhh :<span class="k">call</span> RubyHashesSelected<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Next, I have one for taking a hash and extracting an array of the hash keys.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># before</span>
+</span><span class='line'><span class="p">{</span> <span class="s1">&#39;one&#39;</span> <span class="o">=&gt;</span> <span class="n">two</span><span class="p">,</span> <span class="ss">:three</span> <span class="o">=&gt;</span> <span class="s1">&#39;four&#39;</span><span class="p">,</span> <span class="ss">five</span><span class="p">:</span> <span class="mi">6</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># after</span>
+</span><span class='line'><span class="o">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="ss">:three</span><span class="p">,</span> <span class="ss">:five</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here, I have the command bound only in Visual mode, as I don&rsquo;t see a case where I&rsquo;d want to do this globally.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">function</span><span class="p">!</span> RubyExtractHashKeys<span class="p">()</span>
+</span><span class='line'>  :<span class="s1">&#39;&lt;,&#39;</span><span class="p">&gt;</span><span class="k">s</span><span class="sr">/\([:&#39;&quot;]\?[a-zA-Z]\+[&#39;&quot;]\?\)\s*=&gt;[^,}]\+\([,}]\)/</span>\<span class="m">1</span>\<span class="m">2</span>/ge
+</span><span class='line'>  :<span class="s1">&#39;&lt;,&#39;</span><span class="p">&gt;</span><span class="k">s</span><span class="sr">/\([a-zA-Z]\+\)[:]\s*[^,}]\+\([,}]\)/</span>:\<span class="m">1</span>\<span class="m">2</span>/ge
+</span><span class='line'>  :<span class="s1">&#39;&lt;,&#39;</span><span class="p">&gt;</span><span class="k">s</span><span class="sr">/{\s*/</span>\[/ge
+</span><span class='line'>  :<span class="s1">&#39;&lt;,&#39;</span><span class="p">&gt;</span><span class="k">s</span><span class="sr">/\s*}/</span>\]/ge
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'>
+</span><span class='line'>vmap <span class="p">&lt;</span>Leader<span class="p">&gt;</span>rhe :<span class="k">call</span> RubyExtractHashKeys<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The regexes can probably be improved to fix some edge cases, and I&rsquo;m certain there&rsquo;s a way in Vim to make it so that I don&rsquo;t have to define the All and Selected versions of RubyHashes as separate functions. But these do the job for me now, until I reach a higher plane of Vim mastery.</p>
+</div>
+  
+  
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/ruby/'>ruby</a>, <a class='category' href='/categories/vim/'>vim</a>
+  
+</span>
+
+
+      </p>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -184,6 +314,20 @@
 </div>
   
   
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/tmux/'>tmux</a>, <a class='category' href='/categories/unix/'>unix</a>, <a class='category' href='/categories/vim/'>vim</a>, <a class='category' href='/categories/zsh/'>zsh</a>
+  
+</span>
+
+
+      </p>
+    </footer>
+  
 
 
     </article>
@@ -235,6 +379,20 @@
 <p><img class="center" src="/media/images/hyphen.jpg"></p>
 </div>
   
+  
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/rails/'>rails</a>, <a class='category' href='/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+      </p>
+    </footer>
   
 
 
@@ -326,6 +484,20 @@ $ port install tmux-pasteboard
 </div>
   
   
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/os-x/'>OS X</a>, <a class='category' href='/categories/homebrew/'>homebrew</a>, <a class='category' href='/categories/tmux/'>tmux</a>
+  
+</span>
+
+
+      </p>
+    </footer>
+  
 
 
     </article>
@@ -405,6 +577,20 @@ $ port install tmux-pasteboard
 <p>It&rsquo;s been a couple of years now since I bought this keyboard, and while the idea of spending $100 on a keyboard was a tough pill to swallow at the time, I would not hesitate to do it again. The compact size make life nicer on my desk, and the action of the mechanical key switches is so much more enjoyable than mashing the rubber dome switches on a non-mechanical keyboard.</p>
 </div>
   
+  
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/computers/'>computers</a>, <a class='category' href='/categories/hardware/'>hardware</a>, <a class='category' href='/categories/keyboards/'>keyboards</a>
+  
+</span>
+
+
+      </p>
+    </footer>
   
 
 
@@ -616,6 +802,20 @@ By default, users can run <code>rake preview</code> to make Octopress spin up a 
 </div>
   
   
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/blogging/'>blogging</a>, <a class='category' href='/categories/octopress/'>octopress</a>, <a class='category' href='/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+      </p>
+    </footer>
+  
 
 
     </article>
@@ -669,6 +869,20 @@ By default, users can run <code>rake preview</code> to make Octopress spin up a 
 <p>While it&rsquo;s not quite the same thing as Chrome being able to include V8 in iOS Chrome, the ability to use Nitro in Chrome takes away one of the two major disadvantages Chrome has on iOS. (The other disadvantage &ndash; not being the default browser &ndash; can be solved with the Browser Chooser app, allowing users to elevate Chrome to the iOS default browser).</p>
 </div>
   
+  
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/ios/'>ios</a>
+  
+</span>
+
+
+      </p>
+    </footer>
   
 
 
@@ -769,6 +983,20 @@ By default, users can run <code>rake preview</code> to make Octopress spin up a 
 </div>
   
   
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/search/'>search</a>
+  
+</span>
+
+
+      </p>
+    </footer>
+  
 
 
     </article>
@@ -843,6 +1071,20 @@ By default, users can run <code>rake preview</code> to make Octopress spin up a 
 </div>
   
   
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+      </p>
+    </footer>
+  
 
 
     </article>
@@ -889,110 +1131,19 @@ By default, users can run <code>rake preview</code> to make Octopress spin up a 
 </div>
   
   
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/2012/05/10/error-building-ruby-1-8-7-with-rbenvruby-install-on-linux-with-glibc-2-14/">Error Building Ruby 1.8.7 With Rbenv/ruby-install on Linux With Glibc >= 2.14</a></h1>
-      
-    
-    
+    <footer>
       <p class="meta">
-        
+        categories: 
 
-
-
-
-
-
-
-
+<span class="categories">
   
+    <a class='category' href='/categories/general/'>General</a>
+  
+</span>
 
 
-<time datetime="2012-05-10T07:26:47-07:00" pubdate data-updated="true">May 10<span>th</span>, 2012</time>
-        
       </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If you&rsquo;re using rbenv and ruby-build on a Linux that has updated to glibc 2.14 or newer, you may have encountered an error like this when attempting to build an older version of MRI:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ rbenv install 1.8.7-p357 rbenv: 1.9.3-p194
-</span><span class='line'>    Downloading http://ftp.ruby-lang.org/pub/ruby/1.8/ruby-1.8.7-p357.tar.gz...
-</span><span class='line'>    Installing ruby-1.8.7-p357...
-</span><span class='line'>
-</span><span class='line'>    BUILD FAILED
-</span><span class='line'>
-</span><span class='line'>    Inspect or clean up the working tree at /tmp/ruby-build.20120508145707.21228
-</span><span class='line'>    Results logged to /tmp/ruby-build.20120508145707.21228.log
-</span><span class='line'>
-</span><span class='line'>    Last 10 log lines:
-</span><span class='line'>    callback.func:79:24: error: ‘proc’ undeclared here (not in a function)
-</span><span class='line'>    callback.func:79:39: error: ‘argc’ undeclared here (not in a function)
-</span><span class='line'>    callback.func:79:45: error: ‘argv’ undeclared here (not in a function)
-</span><span class='line'>    callback.func:82:1: error: expected identifier or ‘(’ before ‘}’ token
-</span><span class='line'>    dl.c:106:1: error: expected ‘;’, ‘,’ or ‘)’ before ‘static’
-</span><span class='line'>    cp ../.././ext/dl/lib/dl/import.rb ../../.ext/common/dl
-</span><span class='line'>    make[1]: *** [dl.o] Error 1
-</span><span class='line'>    make[1]: *** Waiting for unfinished jobs....
-</span><span class='line'>    make[1]: Leaving directory `/tmp/ruby-build.20120508145707.21228/ruby-1.8.7-p357/ext/dl'
-</span><span class='line'>    make: *** [all] Error 1</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The issue isn&rsquo;t specific to ruby-build or rbenv, but rather is an issue with <a href="http://bugs.ruby-lang.org/issues/5108">building Ruby after upgrading glibc to 2.14</a>:</p>
-
-<blockquote><p>This is caused by the fact that the generated file callback.func is corrupt. The corruption is triggered by a recent glibc change:</p></blockquote>
-
-<p><a href="http://sourceware.org/git/?p=glibc.git;a=commitdiff;h=glibc-2.13-161-gfcabc0f">http://sourceware.org/git/?p=glibc.git;a=commitdiff;h=glibc-2.13-161-gfcabc0f</a></p>
-
-<p>which was to fix a POSIX compatibility issue:</p>
-
-<p><a href="http://sourceware.org/bugzilla/show_bug.cgi?id=12724">http://sourceware.org/bugzilla/show_bug.cgi?id=12724</a></p>
-
-<p>Patches are provided to manually patch the Ruby source before building, but what if you&rsquo;re using something like rbenv and ruby-install, instead of building Ruby manually?</p>
-
-<p><a href="https://gist.github.com/2159108">This Gist</a>, from GitHub user kungfoo, provides a ruby-build definition for building Ruby 1.8.7-p358 with the required patch for building on a system with the updated glibc.</p>
-
-<p>To date, I had only used rbenv and ruby-build to build Rubies from ruby-build&rsquo;s included definitions. Turns out, it&rsquo;s quite easy to use this definition, once I realized that that&rsquo;s what this was.</p>
-
-<p>Simply do the following:</p>
-
-<pre><code>$ vim /tmp/1.8.7-p358-with-rogue-stdout-patch
-... paste contents of Gist into file, save and exit ...
-$ rbenv install /tmp/1.8.7-p358-with-rogue-stdout-patch
-</code></pre>
-
-<p>Note, the filename will be the name that rbenv uses to identify this Ruby, so if you don&rsquo;t want the name to be &ldquo;1.8.7-p358-with-rogue-stdout-patch&rdquo;, name the file to match the name you prefer.</p>
-</div>
-  
+    </footer>
   
 
 
@@ -1013,6 +1164,10 @@ $ rbenv install /tmp/1.8.7-p358-with-rogue-stdout-patch
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/07/09/vim-tricks-for-ruby-hashes/">Vim Tricks for Ruby Hashes</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/07/04/zsh/">Zsh, Tmux, Vim, and 256 Color Madness</a>
       </li>
     
@@ -1026,10 +1181,6 @@ $ rbenv install /tmp/1.8.7-p358-with-rogue-stdout-patch
     
       <li class="post">
         <a href="/2013/07/26/no-numpads/">No Numpads</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/08/17/goodbye-wordpress/">Goodbye Wordpress, Hello Octopress</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Economy of Effort]]></title>
   <link href="http://brendonrapp.github.io/atom.xml" rel="self"/>
   <link href="http://brendonrapp.github.io/"/>
-  <updated>2014-07-04T21:38:22-07:00</updated>
+  <updated>2014-07-09T21:22:58-07:00</updated>
   <id>http://brendonrapp.github.io/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
@@ -12,6 +12,93 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Vim tricks for Ruby hashes]]></title>
+    <link href="http://brendonrapp.github.io/2014/07/09/vim-tricks-for-ruby-hashes/"/>
+    <updated>2014-07-09T19:59:00-07:00</updated>
+    <id>http://brendonrapp.github.io/2014/07/09/vim-tricks-for-ruby-hashes</id>
+    <content type="html"><![CDATA[<p>I have a couple of functions in my .vimrc for manipulating Ruby hashes.</p>
+
+<p>The first one is to convert hashes from Ruby 1.8 style into Ruby 1.9+ style, eg.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># before</span>
+</span><span class='line'><span class="ss">:symbol_key</span> <span class="o">=&gt;</span> <span class="s1">&#39;value&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># after</span>
+</span><span class='line'><span class="n">symbol_key</span><span class="p">:</span> <span class="s1">&#39;value&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I create this function for both Normal and Visual modes to allow updating either a selected hash, or the entire file.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">function</span><span class="p">!</span> RubyHashesAll<span class="p">()</span>
+</span><span class='line'>  :%<span class="k">s</span><span class="sr">/:\([^ ]*\)\(\s*\)=&gt;/</span>\<span class="m">1</span>:/ge
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function</span><span class="p">!</span> RubyHashesSelected<span class="p">()</span>
+</span><span class='line'>  :<span class="s1">&#39;&lt;,&#39;</span><span class="p">&gt;</span><span class="k">s</span><span class="sr">/:\([^ ]*\)\(\s*\)=&gt;/</span>\<span class="m">1</span>:/ge
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'>
+</span><span class='line'>nmap <span class="p">&lt;</span>Leader<span class="p">&gt;</span>rhh :<span class="k">call</span> RubyHashesAll<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
+</span><span class='line'>vmap <span class="p">&lt;</span>Leader<span class="p">&gt;</span>rhh :<span class="k">call</span> RubyHashesSelected<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Next, I have one for taking a hash and extracting an array of the hash keys.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># before</span>
+</span><span class='line'><span class="p">{</span> <span class="s1">&#39;one&#39;</span> <span class="o">=&gt;</span> <span class="n">two</span><span class="p">,</span> <span class="ss">:three</span> <span class="o">=&gt;</span> <span class="s1">&#39;four&#39;</span><span class="p">,</span> <span class="ss">five</span><span class="p">:</span> <span class="mi">6</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># after</span>
+</span><span class='line'><span class="o">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="ss">:three</span><span class="p">,</span> <span class="ss">:five</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here, I have the command bound only in Visual mode, as I don&rsquo;t see a case where I&rsquo;d want to do this globally.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">function</span><span class="p">!</span> RubyExtractHashKeys<span class="p">()</span>
+</span><span class='line'>  :<span class="s1">&#39;&lt;,&#39;</span><span class="p">&gt;</span><span class="k">s</span><span class="sr">/\([:&#39;&quot;]\?[a-zA-Z]\+[&#39;&quot;]\?\)\s*=&gt;[^,}]\+\([,}]\)/</span>\<span class="m">1</span>\<span class="m">2</span>/ge
+</span><span class='line'>  :<span class="s1">&#39;&lt;,&#39;</span><span class="p">&gt;</span><span class="k">s</span><span class="sr">/\([a-zA-Z]\+\)[:]\s*[^,}]\+\([,}]\)/</span>:\<span class="m">1</span>\<span class="m">2</span>/ge
+</span><span class='line'>  :<span class="s1">&#39;&lt;,&#39;</span><span class="p">&gt;</span><span class="k">s</span><span class="sr">/{\s*/</span>\[/ge
+</span><span class='line'>  :<span class="s1">&#39;&lt;,&#39;</span><span class="p">&gt;</span><span class="k">s</span><span class="sr">/\s*}/</span>\]/ge
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'>
+</span><span class='line'>vmap <span class="p">&lt;</span>Leader<span class="p">&gt;</span>rhe :<span class="k">call</span> RubyExtractHashKeys<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The regexes can probably be improved to fix some edge cases, and I&rsquo;m certain there&rsquo;s a way in Vim to make it so that I don&rsquo;t have to define the All and Selected versions of RubyHashes as separate functions. But these do the job for me now, until I reach a higher plane of Vim mastery.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[zsh, tmux, vim, and 256 color madness]]></title>
@@ -931,58 +1018,6 @@ alias brew-upgrade=&lsquo;brew update &amp;&amp; brew list | xargs brew install&
 <p><img src="http://www.economyofeffort.com/wp-content/uploads/2011/05/adobe-reader-x.jpg"></p>
 
 <p>If Adobe software were people, they&rsquo;d be dead from <a href="http://knowyourmeme.com/memes/diabeetus">DIABEETUS</a>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Strange and Amazing]]></title>
-    <link href="http://brendonrapp.github.io/2011/04/15/strange-and-amazing/"/>
-    <updated>2011-04-15T15:09:39-07:00</updated>
-    <id>http://brendonrapp.github.io/2011/04/15/strange-and-amazing</id>
-    <content type="html"><![CDATA[<p>As a kid of around 9 or 10, I had a &ldquo;young adult&rdquo; focused football book. It was all about stories of players and games from football&rsquo;s past. It&rsquo;s almost the only football book I remember owning, and I literally read the covers off of it.</p>
-
-<p>Having no idea who authored it or any sort of inkling of the book title, I tried to find the book. Armed only with a vague memory of what it looked like (yellowed pages, and some yellow on the cover somewhere) and a much less vague memory of the stories contained within, I headed over to Google Books to try and come up with some search queries to find the book in their archive of scanned books.</p>
-
-<p>My first go-to queries related to the 222-0 Cumberland vs. Georgia Tech game. I knew very well that this story came from that book, but no joy. I searched for Dick &ldquo;Night Train&rdquo; Lane, but the hits there didn&rsquo;t yield my book either.</p>
-
-<p>Finally, I struck gold. I remembered the story of Tony Dorsett and his 1,000 yard season streak (dating back to his high school days), and how the streak was broken by the 1982 player&rsquo;s strike. (In my memory, I thought it was the 1987 strike, but luckily, that didn&rsquo;t matter). I searched for: <a href="https://encrypted.google.com/search?q=tony+dorsett+strike&amp;btnG=Search&amp;hl=en&amp;tbo=1&amp;tbm=bks&amp;sa=2">Tony Dorsett 1,000 yards strike</a> and <a href="http://books.google.com/books?id=5nNt_sPPMOMC&amp;q=tony+dorsett+strike&amp;dq=tony+dorsett+strike&amp;hl=en&amp;ei=ZhGmTdnmOIH2tgOB3t35DA&amp;sa=X&amp;oi=book_result&amp;ct=result&amp;resnum=4&amp;ved=0CDwQ6AEwAw">found the exact page I was looking for</a>:</p>
-
-<p><a href="http://www.economyofeffort.com/wp-content/uploads/2011/04/dorsett.png"><img src="http://www.economyofeffort.com/wp-content/uploads/2011/04/dorsett.png" alt="" /></a></p>
-
-<p>It was only a snippet, but I vividly remember the phrasing of those sentences. I knew I had found what I had been trying in vain for the past few years to dig up in my memory.</p>
-
-<p>The book was Sports Illustrated: Strange and Amazing Football Stories, written in 1986. And I&rsquo;ve come to figure out that I was incredibly lucky with that search phrase. Google Books does not have anywhere near the full text of the book archived, which is why neither Cumberland nor Night Train put me on the right track. Now that I knew the book&rsquo;s name and could pull it up on Google Books, I had a search bar that searched only this specific book. Most of the stories I remembered came up with no hits, and even ones that did came up with no scanned page snippets. The only hit I&rsquo;ve been able to come up with that gave me a look at the book was the Dorsett query.</p>
-
-<p>But that was of no consequence any longer. Now I knew the book&rsquo;s name and author. Mystery solved; I had the bastard right where I wanted him. Next stop was Amazon, which gave me plenty of used copies to choose from. I picked out one listed in good condition, and a few days later:</p>
-
-<p><a href="http://www.economyofeffort.com/wp-content/uploads/2011/04/5614821296_f2c188c855_b.jpg"><img src="http://www.economyofeffort.com/wp-content/uploads/2011/04/5614821296_f2c188c855_b.jpg" alt="" /></a></p>
-
-<p>Mission accomplished.</p>
-
-<p>Not being very long, the book was easy to breeze through in an evening. Reading through it confirmed every memory I had about it, and how many old football stories and tales of old players I knew came directly from this book:</p>
-
-<ul>
-<li>Cumberland losing to Georgia Tech in the most lopsided game ever, 222-0</li>
-<li>The New York Giants spanking Sammy Baugh&rsquo;s Redskins 73-0 in the 1940 championship game</li>
-<li>The <em>Heidi</em> game</li>
-<li>The Stanford band game</li>
-<li>Flutie&rsquo;s hail mary</li>
-<li>Old players like Bronko Nagurski, Red Grange, Dick &ldquo;Night Train&rdquo; Lane</li>
-<li>Jim Thorpe and the Oorang Indians (and lots of tales of early pro teams, which were more like traveling acts than a sports league)</li>
-<li>Raymond Berry and his practice habits (including making his wife, Sally Berry, throw him passes to get more reps)</li>
-<li>Chuck Bednarik as the last bastion of iron man football</li>
-<li>Knute Rockne&rsquo;s Notre Dame all-stars versus the New York Giants</li>
-<li>Abner Haynes&rsquo;s &ldquo;we&rsquo;ll kick to the clock&rdquo;</li>
-</ul>
-
-
-<p>I could list plenty more. It&rsquo;s a nice collection of stories, especially given what the  book is. The author, Bill Gutman, apparently churned out these kinds of young reader sports books by the dozen, for publishers like Scholastic and, as in the case of this book, Archway (putting it alongside the likes of Hardy Boys and Nancy Drew books).</p>
-
-<p>Sadly, fact-checking may have been a tad loose in this book, as I picked out one glaring factual error. At the end of telling the Jerry Kramer story, the author tied things up with a nice but oh-so-wrong sentence:</p>
-
-<blockquote><p>&ldquo;No wonder Jerry Kramer ended up in pro football&rsquo;s Hall of Fame&rdquo;.</p></blockquote>
-
-<p>Should I ever meet Kramer, I would ask him to sign this book, a relic from an alternate reality exactly like our own save for a Jerry Kramer bust in Canton.</p>
 ]]></content>
   </entry>
   

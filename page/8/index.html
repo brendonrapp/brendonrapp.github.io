@@ -9,7 +9,7 @@
   <meta name="author" content="Brendon Rapp">
 
   
-  <meta name="description" content="In honor of Peter King&rsquo;s &ldquo;5 Things I Think I Think&rdquo; musing on the NFL, I present my own &ldquo;five things&rdquo; on games I have &hellip;">
+  <meta name="description" content="My brother was struggling with a poor wifi connection from his upstairs room to the Airport router downstairs at his house. Given that it is a house &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -94,6 +94,87 @@
   <header>
     
       <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2009/04/16/the-wifi-predator/">The Wifi &#8220;Predator&#8221;</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-16T15:39:41-07:00" pubdate data-updated="true">Apr 16<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>My brother was struggling with a poor wifi connection from his upstairs room to the Airport router downstairs at his house. Given that it is a house he shares with roommates, I figured instead of trying to solve the problem of making wifi reach all ends of the house (especially since the house is in Los Angeles and I am not), I thought a better plan would be to make him a setup that will allow him to pick up wifi signals better, as well as repeat them in his local area.</p>
+
+<p><a href="http://picasaweb.google.com/lh/photo/UgsQMrfGyTGlfToDjgJXAQ?feat=embedwebsite"><img src="http://lh4.ggpht.com/_qL0aKA9MDVY/SeelU6rtzsI/AAAAAAAAAMk/84HCNXQyB2E/s400/118.jpg" alt="" /></a></p>
+
+<p>So, inspired by <a href="http://www.i-hacked.com/content/view/261/42/">an article I read a few months back</a>, I cobbled together a little something to do the job. Not quite as elegant a form factor as the article&rsquo;s tripod-mounted beauty, but a little more sensible for setting up on top of a bookshelf, or carrying around in a duffel bag.</p>
+
+<p>The key components here are:</p>
+
+<ul>
+<li><p>Linksys WRT54GL wifi router</p></li>
+<li><p><a href="http://shop3.frys.com/%7BlD6LaOuhZ7YvRiH4cTF8hA**.node2%7D/product/5286717">Super Cantenna</a> off-the-shelf &ldquo;cantenna&rdquo;-style 2.4 GHz antenna</p></li>
+<li><p>DD-WRT firmware <a href="http://sourceforge.net/project/showfiles.php?group_id=185052">build with AutoAP included</a></p></li>
+</ul>
+
+
+<p>The WRT54GL is the go-to router for anyone that wants to run open source firmware (and even if you&rsquo;re just a regular wifi user, you want this). Here, we use a build of the DD-WRT firmware with AutoAP built in, provided by the AutoAP Sourceforge project.</p>
+
+<p><a href="http://www.dd-wrt.com/wiki/index.php/Autoap">AutoAP</a> is a brilliant little script that scans for open wifi connections, finds the strongest one that provides you a &ldquo;live&rdquo; connection to the Internet, and connects the router to this access point and repeats the signal. It also allows you to set a list of &ldquo;preferred&rdquo; networks for AutoAP to prioritize above random points. The easiest way to get AutoAP is to install a firmware image that comes with it. I used the <a href="http://sourceforge.net/project/showfiles.php?group_id=185052">AutoAP NG v24 Micro</a> build offered up on AutoAP&rsquo;s Sourceforge downloads page.</p>
+
+<p>Installation involves simply logging into the router&rsquo;s default firmware, and using the built-in firmware update function to &ldquo;update&rdquo; to the open-source firmware. (The Linksys firmware seems to like IE best &ndash; stupid Linksys &ndash; so for safety, I flash the firmware through IE. Though I have done it in other browsers before, I have also had the admin panel get pissy on non-IE browsers).</p>
+
+<p>Once the DD-WRT firmware with AutoAP is installed, the router needs to be set up as a repeater. All the instructions you need on this part are here. The idea is to make the router set up to connect to remote access points as a client and repeat their signal, while also offering up its own SSIDÂ  that you connect to. The router&rsquo;s &ldquo;physical interface&rdquo; represents the router&rsquo;s connection to the remote access point, while the &ldquo;virtual interface&rdquo; is your private repeated version of that network, complete with the SSID and encryption of your choosing. This makes things easy, as while the router jumps to different access points, your client machines connect only to your private SSID.</p>
+
+<p>When the router is properly set up to work as a repeater, then AutoAP can be used. AutoAP functionality can be accessed from a web browser at <a href="http://routerIP/user/cgi-bin/autoap.cgi.">http://routerIP/user/cgi-bin/autoap.cgi.</a> (Bookmark this, as it&rsquo;s not available through the regular DD-WRT panel). It&rsquo;s pretty self-explanatory as to how to turn &ldquo;on&rdquo; and &ldquo;off&rdquo;. When turned on, it will connect to and begin repeating whatever open network it can find with the strongest signal. AutoAP will automatically &ldquo;fill in&rdquo; the SSID information of the newly-repeated network in DD-WRT&rsquo;s Basic Wireless settings tab (what you yourself would fill in if repeating a signal manually &ndash; and which you can still do when you switch AutoAP off. This is necessary when you want to repeat a WPA/WPA2 encrypted signal, as AutoAP can only deal with open or WEP-encrypted access pointsÂ  &ndash; and only the latter when keys are known).</p>
+
+<p>A repeater works best with a nice high-gain antenna to work with. The <a href="http://shop3.frys.com/%7BlD6LaOuhZ7YvRiH4cTF8hA**.node2%7D/product/5286717">Super Cantenna</a> is a convenient off-the-shelf solution. Unlike the nearest Pringles can, it has a handy tripod that allows you to control tilt and even horizontal-axis rotation (&ldquo;rolling&rdquo; the cantenna away from it&rsquo;s &ldquo;upright&rdquo; position can lead to a better signal in some cases). Moreover, it&rsquo;s got an RP-SMA connector and an RP-TNC adapter. The WRT54GL&rsquo;s removable antenna connections are RP-TNC connectors, so the included adapter takes care of compatibility. Unscrew the existing antennas (at least one of them &ndash; you can leave one on if you want, which you may consider if you find you need an omnidirectional antenna to help extend the reach of your repeated signal), and using the Super Cantenna&rsquo;s RP-TNC adapter, screw the Cantenna in. Done!</p>
+
+<p>You may want to play around with the &ldquo;Xmit Power&rdquo; option in DD-WRT&rsquo;s Wireless &ndash;> Advanced Settings area. Higher can mean better range, but too high can mean excess noise and degraded signal quality. It&rsquo;s something one has to play around with to find the optimal setting for their environment.</p>
+
+<p>So, there you have it. Perfect for hopping onto the open wifi of the hotel next door, when your hotel proves to be too cheap to provide it themselves. Or, if you&rsquo;re in a living situation where you don&rsquo;t necessarily control all the wires, it lets you establish your personal repeated wifi haven.</p>
+</div>
+  
+  
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/general/'>General</a>
+  
+</span>
+
+
+      </p>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
         <h1 class="entry-title"><a href="/2009/04/07/5-things-far-cry/">5 Things: Far Cry</a></h1>
       
     
@@ -164,6 +245,20 @@
 </div>
   
   
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/games/'>Games</a>, <a class='category' href='/categories/sports/'>Sports</a>
+  
+</span>
+
+
+      </p>
+    </footer>
+  
 
 
     </article>
@@ -206,6 +301,20 @@
 <p>Powered by <a href="http://alexking.org/projects/wordpress">Twitter Tools</a>.</p>
 </div>
   
+  
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/general/'>General</a>
+  
+</span>
+
+
+      </p>
+    </footer>
   
 
 
@@ -250,6 +359,20 @@
 <p>Powered by <a href="http://alexking.org/projects/wordpress">Twitter Tools</a>.</p>
 </div>
   
+  
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/general/'>General</a>
+  
+</span>
+
+
+      </p>
+    </footer>
   
 
 
@@ -296,6 +419,20 @@
 </div>
   
   
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/general/'>General</a>
+  
+</span>
+
+
+      </p>
+    </footer>
+  
 
 
     </article>
@@ -338,6 +475,20 @@
 <p>Powered by <a href="http://alexking.org/projects/wordpress">Twitter Tools</a>.</p>
 </div>
   
+  
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/general/'>General</a>
+  
+</span>
+
+
+      </p>
+    </footer>
   
 
 
@@ -384,6 +535,20 @@
 </div>
   
   
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/general/'>General</a>
+  
+</span>
+
+
+      </p>
+    </footer>
+  
 
 
     </article>
@@ -421,6 +586,20 @@
   <div class="entry-content"><p>The nightmare is over.</p>
 </div>
   
+  
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/general/'>General</a>
+  
+</span>
+
+
+      </p>
+    </footer>
   
 
 
@@ -466,6 +645,20 @@
 </div>
   
   
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/general/'>General</a>, <a class='category' href='/categories/girls/'>Girls</a>
+  
+</span>
+
+
+      </p>
+    </footer>
+  
 
 
     </article>
@@ -508,43 +701,19 @@
 </div>
   
   
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/2008/05/22/oh-god/">Oh God&#8230;</a></h1>
-      
-    
-    
+    <footer>
       <p class="meta">
-        
+        categories: 
 
-
-
-
-
-
-
-
+<span class="categories">
   
+    <a class='category' href='/categories/general/'>General</a>
+  
+</span>
 
 
-<time datetime="2008-05-22T05:22:06-07:00" pubdate data-updated="true">May 22<span>nd</span>, 2008</time>
-        
       </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Awful doesn&rsquo;t cover it&hellip; make sure you at least get to 2:50 though&hellip;</p>
-</div>
-  
+    </footer>
   
 
 
@@ -567,6 +736,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/07/09/vim-tricks-for-ruby-hashes/">Vim Tricks for Ruby Hashes</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/07/04/zsh/">Zsh, Tmux, Vim, and 256 Color Madness</a>
       </li>
     
@@ -580,10 +753,6 @@
     
       <li class="post">
         <a href="/2013/07/26/no-numpads/">No Numpads</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/08/17/goodbye-wordpress/">Goodbye Wordpress, Hello Octopress</a>
       </li>
     
   </ul>
