@@ -4,7 +4,7 @@
   <title><![CDATA[Category: octopress | Economy of Effort]]></title>
   <link href="http://brendonrapp.github.io/categories/octopress/atom.xml" rel="self"/>
   <link href="http://brendonrapp.github.io/"/>
-  <updated>2014-07-20T02:04:46-07:00</updated>
+  <updated>2014-07-20T02:30:40-07:00</updated>
   <id>http://brendonrapp.github.io/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Fixed the Archive Page]]></title>
+    <link href="http://brendonrapp.github.io/2014/07/20/fixed-the-archive-page/"/>
+    <updated>2014-07-20T02:18:00-07:00</updated>
+    <id>http://brendonrapp.github.io/2014/07/20/fixed-the-archive-page</id>
+    <content type="html"><![CDATA[<p>Finally got around to fixing the Archive page on this site.</p>
+
+<p>If I recall correctly, what happened originally is that I was attempting to get rid of the &ldquo;/blog/&rdquo; part of the archive path, but got distracted halfway through and left it incomplete.</p>
+
+<p>For reference: this part of the archive path is not a user-configurable part of Octopress per se. It is a default location for a file in Jekyll, which is in <code>source/blog/archive</code> in an Octopress site repository. Simply moving the <code>archive/</code> folder out of <code>blog/</code> and into the top level of <code>source/</code> will make the archive page generate without the &ldquo;/blog/&rdquo; part of the page. (For further reference, see <a href="https://github.com/imathis/octopress/issues/464#issuecomment-5587568">the workaround post</a> on the <a href="https://github.com/imathis/octopress/issues/464">issue on Github</a>)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Goodbye Wordpress, Hello Octopress]]></title>

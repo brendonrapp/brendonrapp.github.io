@@ -4,7 +4,7 @@
   <title><![CDATA[Economy of Effort]]></title>
   <link href="http://brendonrapp.github.io/atom.xml" rel="self"/>
   <link href="http://brendonrapp.github.io/"/>
-  <updated>2014-07-20T02:04:46-07:00</updated>
+  <updated>2014-07-20T02:30:40-07:00</updated>
   <id>http://brendonrapp.github.io/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Fixed the Archive Page]]></title>
+    <link href="http://brendonrapp.github.io/2014/07/20/fixed-the-archive-page/"/>
+    <updated>2014-07-20T02:18:00-07:00</updated>
+    <id>http://brendonrapp.github.io/2014/07/20/fixed-the-archive-page</id>
+    <content type="html"><![CDATA[<p>Finally got around to fixing the Archive page on this site.</p>
+
+<p>If I recall correctly, what happened originally is that I was attempting to get rid of the &ldquo;/blog/&rdquo; part of the archive path, but got distracted halfway through and left it incomplete.</p>
+
+<p>For reference: this part of the archive path is not a user-configurable part of Octopress per se. It is a default location for a file in Jekyll, which is in <code>source/blog/archive</code> in an Octopress site repository. Simply moving the <code>archive/</code> folder out of <code>blog/</code> and into the top level of <code>source/</code> will make the archive page generate without the &ldquo;/blog/&rdquo; part of the page. (For further reference, see <a href="https://github.com/imathis/octopress/issues/464#issuecomment-5587568">the workaround post</a> on the <a href="https://github.com/imathis/octopress/issues/464">issue on Github</a>)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Vim tricks for Ruby hashes]]></title>
@@ -1001,23 +1014,6 @@ alias brew-upgrade=&lsquo;brew update &amp;&amp; brew list | xargs brew install&
 <p>The Moleskine is beautifully and simply designed. The importance of the little strap that holds the book closed cannot be easily overstated. Unlike every other paper-based thing that is subjected to the interior of my laptop bag, the Moleskine pages stay intact and unmolested, locked away behind an impenetrable shell held closed by that handy little strap.</p>
 
 <p>As much as I like the idea of going completely paperless (as I am with magazines and books), the &ldquo;best tool for the job&rdquo; mindset wins out. I will continue to use Evernote for certain things, but for my daily work notes, I will keep reaching for my Moleskine.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Adobe Reader X(XXL)]]></title>
-    <link href="http://brendonrapp.github.io/2011/05/20/adobe-reader-xxxl/"/>
-    <updated>2011-05-20T06:00:42-07:00</updated>
-    <id>http://brendonrapp.github.io/2011/05/20/adobe-reader-xxxl</id>
-    <content type="html"><![CDATA[<p>There&rsquo;s &ldquo;bloat&rdquo;, and then there&rsquo;s BLOAT.</p>
-
-<p>&ldquo;Bloat&rdquo; is spending 5% of your CPU cycles and RAM to have a nice-looking user interface. &ldquo;Bloat&rdquo; is having the nerve to create a desktop environment that <em>might</em> not run well on a computer that&rsquo;s 15 years old.</p>
-
-<p>BLOAT is a PDF reader that is a 70 MB download, and (according to the installer) takes up 418 MB of space in total once extracted.</p>
-
-<p><img src="http://www.economyofeffort.com/wp-content/uploads/2011/05/adobe-reader-x.jpg"></p>
-
-<p>If Adobe software were people, they&rsquo;d be dead from <a href="http://knowyourmeme.com/memes/diabeetus">DIABEETUS</a>.</p>
 ]]></content>
   </entry>
   

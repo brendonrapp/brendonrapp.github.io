@@ -9,7 +9,7 @@
   <meta name="author" content="Brendon Rapp">
 
   
-  <meta name="description" content="I don&rsquo;t care for celebrity &ldquo;news&rdquo; much, but it&rsquo;s hard to pass on this one: Paris Hilton believed in Santa Claus until she was &hellip;">
+  <meta name="description" content="I&rsquo;ve finally got a Linux desktop set up how I want it, with the fewest steps possible. Step 1: Download and install Ubuntu Linux (&ldquo;Breezy &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,7 +77,7 @@
 
 <ul class="main-navigation">
   <li><a href="/about">About</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/archives">Archive</a></li>
   <li><a href="http://www.pinterest.com/legion/stuff-i-want/">Wish List</a></li>
   <li><a href="http://steamcommunity.com/id/legion/wishlist/">Steam Wish List</a></li>
 </ul>
@@ -87,6 +87,68 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2005/12/08/ubuntu/">Ubuntu</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-12-08T07:03:32-08:00" pubdate data-updated="true">Dec 8<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&rsquo;ve finally got a Linux desktop set up how I want it, with the fewest steps possible.</p>
+
+<p>Step 1: Download and install <a href="http://www.ubuntulinux.org">Ubuntu Linux</a> (&ldquo;Breezy&rdquo; has been a big step forward IMO)
+Step 2: Run the <a href="http://ubuntuforums.org/showthread.php?t=66563">Automatix</a> script to install all the pesky &ldquo;non-free&rdquo; stuff (Flash, Java, Windows fonts &amp; media codecs, etc) with a few mouse clicks and no manual tinkering
+Step 3: Open a terminal, type &ldquo;dpkg-reconfigure fontconfig&rdquo;, set Hinting to None, and Sub-pixel Rendering to Always</p>
+
+<p>Step 3 was a revelation. I have long tried to get my Linux desktop fonts to look more closely like Cleartype on Windows. I was long been led to believe that hinting was the answer, and indeed, hinting was a big improvement over no hinting. But in the end, what I wanted was only sub-pixel rendering without hinting interfering with it. All that tinkering with font configuration files and stuff was unnecessary &ndash; just turning hinting off and sub-pixel rendering on in Fontconfig was all that I needed.</p>
+
+<p>The Automatix script is something every Linux distro needs. Right now it is a 3rd party project with no shortage of developer drama surrounding it, but as it stands now, it just works. It gets all that non-free stuff installed without any of the hiccups that always seem to accompany doing it yourself.</p>
+
+<p>It&rsquo;s pretty sweet, and this last Ubuntu install and setup routine has easily been the most painless desktop Linux setup I&rsquo;ve ever done.</p>
+</div>
+  
+  
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/tech/'>Tech</a>
+  
+</span>
+
+
+      </p>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -634,66 +696,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/2005/11/09/gmail-for-the-win/">Gmail for the Win</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-11-09T14:31:57-08:00" pubdate data-updated="true">Nov 9<span>th</span>, 2005</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Recently, I switched all of my &ldquo;public&rdquo; email use to a Gmail account: <a href="&#109;&#x61;&#x69;&#x6c;&#116;&#111;&#58;&#108;&#x65;&#x67;&#105;&#x6f;&#110;&#x32;&#x38;&#64;&#x67;&#109;&#97;&#x69;&#x6c;&#46;&#x63;&#x6f;&#109;&#46;">&#x6c;&#x65;&#x67;&#105;&#111;&#110;&#50;&#56;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#111;&#109;&#46;</a></p>
-
-<p>I had used Gmail before, but only as a throwaway email account. I had continued to use my own (economyofeffort.com) email accounts for my public mail. I used the IMAP server to allow me to access mail from different computers, using Thunderbird. Problem was, the spam filtering isn&rsquo;t as good if you&rsquo;re marking spam on differing Thunderbird installs (because each only sees a portion of your junk mail marks, so there&rsquo;s a lot of emails that are spam that would&rsquo;ve been filtered out on other computers). Plus, I have long held to the superiority of a true email client versus web-based mail.</p>
-
-<p>But after watching a number of people at the Austin Game Conference use Gmail for their mail, I decided it was time to make my public email go through Gmail.</p>
-
-<p>And frankly, it&rsquo;s great. It is much snappier than accessing my mail over the IMAP server, especially when dealing with large volumes of mail. And the junk mail filter works beautifully without me needing to train it (or re-train it if I&rsquo;m using a Thunderbird on a different computer, or a different OS on the same computer, etc).</p>
-
-<p>My parents still use Hotmail for their email. I will switch them over soon.</p>
-</div>
-  
-  
-    <footer>
-      <p class="meta">
-        categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/categories/tech/'>Tech</a>
-  
-</span>
-
-
-      </p>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/18/">&larr; Older</a>
@@ -711,6 +713,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/07/20/fixed-the-archive-page/">Fixed the Archive Page</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/07/09/vim-tricks-for-ruby-hashes/">Vim Tricks for Ruby Hashes</a>
       </li>
     
@@ -724,10 +730,6 @@
     
       <li class="post">
         <a href="/2013/07/29/reattach-to-user-namespace-the-fix-for-your-tmux-in-os-x-woes/">Reattach-to-user-namespace: The Fix for Your Tmux in OS X Woes</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/07/26/no-numpads/">No Numpads</a>
       </li>
     
   </ul>
