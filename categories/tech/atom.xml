@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Tech | Economy of Effort]]></title>
+  <link href="http://brendonrapp.github.io/categories/tech/atom.xml" rel="self"/>
+  <link href="http://brendonrapp.github.io/"/>
+  <updated>2014-07-20T02:04:46-07:00</updated>
+  <id>http://brendonrapp.github.io/</id>
+  <author>
+    <name><![CDATA[Brendon Rapp]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[The Aftermath of Dan]]></title>
+    <link href="http://brendonrapp.github.io/2009/08/07/the-aftermath-of-dan/"/>
+    <updated>2009-08-07T18:29:54-07:00</updated>
+    <id>http://brendonrapp.github.io/2009/08/07/the-aftermath-of-dan</id>
+    <content type="html"><![CDATA[<p>I work for a small design studio. Their core business is creating logos, designing signage for corporate events, and all that jazz. Over the past few years, they&rsquo;ve found clients wanting more and more electronic-based content from them. First it was email blasts and static websites, then they wanted websites that did more than just serve up static content, and pretty soon it became web applications and even small desktop applications. Hence the creation of the job which I now fill.</p>
+
+<p>I wasn&rsquo;t the first one to fill the job. A couple of guys came before me. My immediate predecessor, we&rsquo;ll call &ldquo;Dan&rdquo;. Dan was not particularly beloved. On the contrary, it was those oh-so-important &ldquo;people skills&rdquo; (or lack thereof) that led to his, shall we say, unscheduled exit from the position. My first week on the job ended with me getting the raise that would have been saved for after my 3 month performance review, helped in no small part to solving problems in that first week that had been long-standing issues. Most importantly, I was Not Dan.</p>
+
+<p>I recently read a cute little article linked on Hacker News and reddit: <a href="http://sites.google.com/site/yacoset/Home/signs-that-you-re-a-bad-programmer">Signs that you&rsquo;re a bad programmer</a>. A lot of these can be applied to the code Dan left behind. Particularly, #2: &ldquo;Poor understanding of the language&rsquo;s programming mode&rdquo;, and its first symptom: &ldquo;Using whatever syntax is necessary to break out of the model, then writing the remainder of the program in their familiar language&rsquo;s style&rdquo;.</p>
+
+<p>Dan apparently got started as a FORTRAN programmer back in the day. It&rsquo;s clear that he never really understood PHP. One of the most contentious parts of PHP development is mixing PHP code alongside HTML markup. Whether the HTML is separated out in templates, mixed with inline PHP, stored entirely in echo statements or HEREDOCs, or even just written there in the file after &ldquo;jumping out&rdquo; of PHP mode, there&rsquo;s a number of ways to approach the issue of PHP&rsquo;s coexistence with HTML markup.</p>
+
+<p>Unfortunately, the language&rsquo;s flexibility means approaches like Dan&rsquo;s are possible. Dan clearly never quite wrapped his head around the practices I mentioned above. Instead, his concept of HTML within PHP was to wrap all HTML generation inside of tiny PHP functions. Here&rsquo;s an example:</p>
+
+<pre><code>startTable("725", "0", "", "id=addTable");
+ startRow("center","2","","","noPad");
+ if($assId) {
+ displayButton("Update Record", "what");
+ } else {
+ displayButton("Add Job", "what");
+ }
+ displayButton("Reset", "what", "reset");
+ endRow();
+ startRow("center","2","","","","top");
+ echo "&lt;b&gt;Attach File:&amp;nbsp;&lt;/b&gt; ";
+ displayFormItem("file", "fileNam");
+ displayButton("Upload", "what");
+ endRow();
+</code></pre>
+
+<p>This generates the HTML:</p>
+
+<pre><code>&lt;&lt;span&gt;table&lt;/span&gt;&lt;span&gt; width&lt;/span&gt;=&lt;span&gt;"725" &lt;/span&gt;&lt;span&gt;id&lt;/span&gt;=&lt;span&gt;addTable &lt;/span&gt;&lt;span&gt;border&lt;/span&gt;=&lt;span&gt;"0" &lt;/span&gt;&lt;span&gt;cellpadding&lt;/span&gt;=&lt;span&gt;"0" &lt;/span&gt;&lt;span&gt;cellspacing&lt;/span&gt;=&lt;span&gt;"0"&lt;/span&gt;&gt;
+&lt;&lt;span&gt;tr&lt;/span&gt;&gt;&lt;&lt;span&gt;td&lt;/span&gt;&lt;span&gt; class&lt;/span&gt;=&lt;span&gt;noPad &lt;/span&gt;&lt;span&gt;align&lt;/span&gt;=&lt;span&gt;center &lt;/span&gt;&lt;span&gt;colspan&lt;/span&gt;=&lt;span&gt;2&lt;/span&gt;&gt;
+&lt;&lt;span&gt;input&lt;/span&gt;&lt;span&gt; type&lt;/span&gt;=&lt;span&gt;submit &lt;/span&gt;&lt;span&gt;name&lt;/span&gt;=&lt;span&gt;"what" &lt;/span&gt;&lt;span&gt;value&lt;/span&gt;=&lt;span&gt;"Update Record"&lt;/span&gt;&gt;
+&lt;/&lt;span&gt;td&lt;/span&gt;&gt;&lt;/&lt;span&gt;tr&lt;/span&gt;&gt;
+&lt;&lt;span&gt;tr&lt;/span&gt;&gt;&lt;&lt;span&gt;td&lt;/span&gt;&lt;span&gt; align&lt;/span&gt;=&lt;span&gt;center &lt;/span&gt;&lt;span&gt;valign&lt;/span&gt;=&lt;span&gt;"top" &lt;/span&gt;&lt;span&gt;colspan&lt;/span&gt;=&lt;span&gt;2&lt;/span&gt;&gt;
+&lt;&lt;span&gt;b&lt;/span&gt;&gt;Attach File:&amp;&lt;span&gt;nbsp;&lt;/span&gt;&lt;/&lt;span&gt;b&lt;/span&gt;&gt; &lt;&lt;span&gt;input&lt;/span&gt;&lt;span&gt; type&lt;/span&gt;=&lt;span&gt;file &lt;/span&gt;&lt;span&gt;name&lt;/span&gt;=&lt;span&gt;"fileNam" &lt;/span&gt;&lt;span&gt;value&lt;/span&gt;=&lt;span&gt;""&gt;&lt;/span&gt;
+&lt;&lt;span&gt;input&lt;/span&gt;&lt;span&gt; type&lt;/span&gt;=&lt;span&gt;submit &lt;/span&gt;&lt;span&gt;name&lt;/span&gt;=&lt;span&gt;"what" &lt;/span&gt;&lt;span&gt;value&lt;/span&gt;=&lt;span&gt;"Upload"&lt;/span&gt;&gt;
+&lt;/&lt;span&gt;td&lt;/span&gt;&gt;&lt;/&lt;span&gt;tr&lt;/span&gt;&gt;
+</code></pre>
+
+<p>Yes, instead of simply writing the HTML, everything is stuck in a function. &ldquo;endRow()&rdquo;, for example, is literally nothing more than an echo statement for &ldquo;</td></tr>&rdquo;. Every tag related to HTML tables has a function, some of which accept a ton of possible arguments for every possible thing you might want to put into that tag (a CSS class, id, border, inline CSS, etc). startRow() takes up to 7 arguments. Reading Dan&rsquo;s awful code means needing to remember what those arguments are (and what order they&rsquo;re in), as opposed to simply reading the very clear HTML that they spit out. What are those blanks for arguments #3 and #4 for in the startRow on line 2?Â  They&rsquo;re some potential <td> attributes (because, despite being &ldquo;startRow&rdquo;, the function echoes <tr> with no attributes, and then echoes the first <td>, and all these attributes belong to that first <td> tag). In this case, they&rsquo;re attributes that aren&rsquo;t being used. Which attributes? Who knows? You&rsquo;d have to go look at the definition of startRow. (Also note: this isn&rsquo;t a worst-case example. This is a pretty tame example of the kind of crap Dan did like this.)</p>
+
+<p>PHP can be useful in HTML generation &ndash; using Zend_Form from the Zend Framework, for example, can be very handy for creating forms with validation. Dan, however, wrapped trivial HTML into PHP functions, providing <em>absolutely no</em> additional value of their own, while unnecessarily increasing complexity and destroying readability.</p>
+
+<p>That&rsquo;s not the only gift Dan left behind, of course. Relative paths seemed to confuse Dan greatly. That meant the use of a lot of unnecessary absolute paths. It also meant that Dan would take his &ldquo;lib&rdquo; folder, which stored all his library code, and <em>copy it into subdirectories</em> so that the relative path &ldquo;lib/&rdquo; would still be valid, as opposed to usingÂ  &ldquo;/lib/&rdquo; or &ldquo;../lib/&rdquo; (or, on the HTML side, the <base> tag. Dan and <base> have never met.)</p>
+
+<p>These are just immediate things I ran into today, when fixing some old Dan code. It should come as no surprise that, even ignoring the &ldquo;WTFs&rdquo; like these, Dan Code &trade; is pretty bad code. None of it is shocking enough to be TheDailyWTF material, but it gets a small moment of recognition here today.</p>
+
+<p>Now I hate Dan too.</p>
+
+<p>(Side note: one of the most frightening parts of entering the work force was doing so with no professional programming experience. I&rsquo;d been writing code nonstop since entering college, but it was a constant flurry of jumping from language to language, paradigm to paradigm, and no settling in and mastering one development technology. That&rsquo;s a <strong>good</strong> academic approach, as it breeds the ability to rapidly pick up new technologies, and develops an understanding that separates a concept from its implementation in a specific language&hellip; but it&rsquo;s no fun to then go out and see job postings wanting X years of experience all centered around one language. That blow is softened when, even in your greenness, you&rsquo;re still better than the guy that was there before you.)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[13" MacBook Pro]]></title>
+    <link href="http://brendonrapp.github.io/2009/07/09/13-macbook-pro/"/>
+    <updated>2009-07-09T15:48:38-07:00</updated>
+    <id>http://brendonrapp.github.io/2009/07/09/13-macbook-pro</id>
+    <content type="html"><![CDATA[<p>In a move somewhat uncharacteristic of me, I went out and bought the new 13" MacBook Pro as soon as they became available for purchase. To understand why, we have to go back in time a little bit, back to&hellip;</p>
+
+<h2>My Old Flame</h2>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2009/07/12inchpb.jpg" alt="12inchpb" /></p>
+
+<p>As an undergrad in college, I had a 12" aluminum PowerBook. It was the first Mac (or Apple product of any kind, for that matter) that I had ever owned. By college, I had been using Linux for a few years, so the relatively new UNIX-based OS X (it was only up to 10.2, or &ldquo;Jaguar&rdquo;, by that time) was intriguing, and the form factor was ideal for lugging between CS classes.</p>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2009/07/powerbook-12.jpg" alt="powerbook-12" /></p>
+
+<p>The aluminum PowerBook was a delight. It was light, sturdy, and had a very beautiful LCD screen for its time &ndash; especially compared to the old IBM ThinkPad 600E of mine that it replaced (which, by the way, was a tank in its own right). The keyboard reached the length of the body, wasting no space and provided very comfortable full-sized keys. It was the same sized keyboard as the larger PowerBooks; Apple simply made the body big enough to fit it and not a hair wider. Such an efficient use of space.</p>
+
+<p>I was disappointed to see the 12" PowerBook line disappear as quickly as it came &ndash; a victim of its own popularity and success. Apple went through major changes, including the nearly unbelievable (but necessary) migration away from the PowerPC architecture to the x86 arch. But the 12" PowerBook never came back.</p>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2009/07/INSPIRON-6000.jpg" alt="INSPIRON 6000" /><img src="http://www.economyofeffort.com/wp-content/uploads/2009/07/MacBook_13-inch_1_83_GHz_White.jpg" alt="MacBook_13-inch_1_83_GHz_White" /></p>
+
+<p>After a stint with a bulky Dell laptop, I came back to Apple with the 13" white MacBook. It&rsquo;s a nice machine and had the kind of power and battery life that I needed, but I still longed for a true successor to the 12" PowerBook. I often said that all I wanted was for Apple to take the 12" PowerBook, make it widescreen and Core 2 Duo, and throw in the backlit keyboard that eluded the 12" PB.</p>
+
+<p>Then, Apple announced the new 13" MacBook Pro&hellip;</p>
+
+<p>Within days, I was preparing my white MacBook to be listed for sale on Craigslist.</p>
+
+<h2>Form Factor &amp; Weight</h2>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2009/07/macbook-pro-13.png" alt="macbook-pro-13" /></p>
+
+<p>Seeing as I bought this as a replacement for the 13" plastic MacBook, I wasn&rsquo;t expecting a huge difference in form factor. But while the numbers aren&rsquo;t impressive on the page, they make quite a difference in hand.</p>
+
+<p>My MacBook weighed 5.2 lbs, and the new 13" MBP weighs 4.5 lbs. It seems as if there&rsquo;s some threshold between those two numbers, because the MBP has noticeably less &ldquo;heft&rdquo;.</p>
+
+<p>Part of the difference is also the sturdiness of the case. Far from unsturdy, the plastic MacBook body still has some give &amp; wiggle like pretty much any other laptop. The aluminum unibody on the MacBook Pro, however, is the epitome of fit and finish. The body has no flex or wiggle to it, and the LED screen stays exactly where you put it.</p>
+
+<p>It has the &ldquo;chiclet&rdquo; style keyboard that I was first exposed to on my white 13" MacBook, and have come to really appreciate. From a pure cleanliness standpoint, the fact that the keys don&rsquo;t create little valleys of crevaces for dust or hair or snack crumbs to go spelunking in is a big plus. I&rsquo;m also very thrilled to finally have the backlit keys; one of the few features from the PowerBook line which was left off of the 12" PowerBook.</p>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2009/07/apple-macbook-pro-13-inch_large.jpg" alt="apple-macbook-pro-13-inch_large" /></p>
+
+<p>The touchpad is now one big surface with no buttons. Instead, the pad is physically clickable. I was unsure of how I would like this, as I never liked the &ldquo;tap to click&rdquo; of Synaptics touchpads on PC laptops. Picking up and re-placing my fingers on the touchpad triggered false clicks constantly, so turning &ldquo;tapping&rdquo; off is always the first thing I do after freshly installing Linux or Windows on a PC laptop.</p>
+
+<p>But making the MacBook Pro touchpad click involves actually pushing to make the pad physically &ldquo;click&rdquo;. And that makes all the difference in the world. No more false taps. And converting the space that buttons would normally take up into additional touchpad space makes for a HUGE surface area that is simply wonderful. The two-finger scrolling really benefits from the added real estate. It makes casual web browsing with the laptop in your lap (where the machine might not be flat and level like on a desk) a lot more convenient.</p>
+
+<h2>Beauty in LED</h2>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2009/07/macbookaluminum-3.jpg" alt="macbookaluminum-3" /></p>
+
+<p>I couldn&rsquo;t possibly say enough good things about the LED panel in the MBP. It is<strong> bright</strong>, and crystal clear. LED panels reach instant 100% luminance, as opposed to LCDs which require a bit of &ldquo;warming up&rdquo; in order to reach full brightness. It&rsquo;s a very noticeable difference. It means that dimming the panel to save battery doesn&rsquo;t leave you with a half-bright screen when you start using it again.</p>
+
+<p>But even compared to a fully warmed-up LCD panel, it&rsquo;s a night-and-day difference. The LED is just amazingly bright. Like, you walk up to someone that&rsquo;s using their own laptop, whip out yours, and they say, &ldquo;holy sh*t, that&rsquo;s bright!&rdquo;. Even the damn white Apple logo on the back of the panel shines like it&rsquo;s trying to pierce through fog and warn ships in the night of the pending coastline.</p>
+
+<p>The beautiful screen definitely requires calibration out of the box. My system, at least, came with a very washed-out image &ndash; clearly the result of an overly-high contrast setting. Unfortunately, there isn&rsquo;t a simple contrast slider to adjust. Fortunately, there is a guided calibration routine that works out pretty well. <strong>You must check the &ldquo;Expert&rdquo; checkbox, though!</strong> Otherwise, you won&rsquo;t be able to do much besides change the color temperature. With the expert checkbox checked, you go through a series of adjustments where you make the inner solid-colored Apple logo as closely as possible match the surrounding alternating shaded lines in appearance. If you understand how these things work (it helps to look off-center or &ldquo;blur&rdquo; your vision, so that the alternating line pattern kind of &ldquo;blends&rdquo; together into a single color), you&rsquo;ll come out the other side with an excellent off-the-cuff color calibration. You can&rsquo;t do much better without investing in a colorimeter.</p>
+
+<h2>Battery</h2>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2009/07/macbook_pro_13_battery.jpg" alt="macbook_pro_13_battery" /></p>
+
+<p>Battery life is what drove me to buy the white MacBook, and I was elated to see that the 13" MacBook Pro got the built-in lithium polymer battery that was, until that point, exclusive to the 17" MBP (the updated 15" MBP that came out alongside the 13" also got the new battery, whereas the previous 15" MBP lacked it).</p>
+
+<p>I don&rsquo;t know if the battery will last 7 hours the way Apple claims. I do know it lasts a damn long time &ndash; long enough to change my usage patterns. I&rsquo;m not nearly as tethered to the power cord with this laptop as I was even with the white MacBook. I unplug and walk around with it, and don&rsquo;t feel like I&rsquo;m living under a countdown clock.</p>
+
+<h2>UNIX</h2>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2009/07/sexybsd.jpg" alt="sexybsd" />I love UNIX-like OSs. I feel naked without a terminal window and a Bash prompt. Darwin (the open source UNIX OS that the rest of OS X is built on top of) provides a userland that&rsquo;s mostly based on FreeBSD, but mixes in some GNU and even NetBSD. It&rsquo;s not bad on its own, but most users from a UNIX background will want to install some tools that aren&rsquo;t present in Darwin&rsquo;s base system, or install newer versions than what Darwin comes with.</p>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2009/07/unix_hero20071016.png" alt="unix_hero20071016" />Fortunately, there&rsquo;s two great projects that make this easy: <a href="http://www.finkproject.org/">Fink</a> and <a href="http://www.macports.org/">MacPorts</a>. Both have their advantages. MacPorts is very straightforward: there&rsquo;s one single software tree, everything is built from source, and is generally kept the most up-to-date. Fink, on the other hand, has about twice the number of packages offered, provides binaries (pre-compiled apps, meaning you don&rsquo;t have to wait for the new programs you&rsquo;re installing to compile &ndash; which can take some time) as well as install-from-source. However, with a binary distribution and two separate source distributions (&ldquo;stable&rdquo; and &ldquo;unstable&rdquo;), it&rsquo;s a lot less straightforward &ndash; especially if you <a href="http://www.finkproject.org/faq/upgrade-fink.php">run into an issue</a> that has you scratching your head wondering why you&rsquo;re not seeing the packages you should be. The two can be run in tandem (Fink installs to /sw, and MacPorts to /opt/local, and both strictly avoid interfering with Darwin&rsquo;s base system), and that&rsquo;s how I have my system set up.</p>
+
+<p>The terminal emulator included with OS X is nice enough, but I highly recommend <a href="http://iterm.sourceforge.net/">iTerm</a> instead. That and Firefox are my first downloads on a new Mac.</p>
+
+<h2>Running Windows &hellip; because I have strategy games on Steam that will run on this</h2>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2009/07/windows7_macBookPro.jpg" alt="windows7_macBookPro" /></p>
+
+<p>Windows 7 release candidate installs without issue through Boot Camp. Simply use Boot Camp Assistant to carve out a partition, install from CD, then pop in the Leopard install DVD from inside the Windows environment to install all the necessary drivers.</p>
+
+<p>If you want to be able to choose between OS X and your Boot Camp OS at boot time, install <a href="http://refit.sourceforge.net">rEFIt</a>.</p>
+
+<h2>The Apple Store Experience</h2>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2009/07/apple-store.jpg" alt="apple-store" /></p>
+
+<p>I&rsquo;m always uncomfortable around computer salesmen. Particularly at an Apple Store, where the average clientele isn&rsquo;t expected to be programmers, system builders, or UNIX geeks, let alone all three. The store is geared to serve normal people, as well it should be.</p>
+
+<p>But it did leave me wanting to avoid having to sit through a sales pitch that&rsquo;s scripted for the tech-unsavvy-but-OMG-shiny crowd. It meant walking into the store and basically pointing at the 13" MacBook Pro and saying, &ldquo;I want to buy this one. 2.26 GHz. Go get it.&rdquo; But not quite so gruff. (Also, putting the Terminal icon in some display machines' docks. Just helping them put their best foot forward).</p>
+
+<p>I will say one thing for the Apple Store &ndash; I&rsquo;ve never overheard the kind of completely falsified garbage that I used to hear salesmen at CompUSA say to customers (before that company came crashing down, leaving good ol' Fresno with pretty much nowhere to go for computer parts).</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[New sites coming]]></title>
+    <link href="http://brendonrapp.github.io/2008/02/21/new-sites-coming/"/>
+    <updated>2008-02-21T13:08:56-08:00</updated>
+    <id>http://brendonrapp.github.io/2008/02/21/new-sites-coming</id>
+    <content type="html"><![CDATA[<p>Over the next few months, I will be creating a couple of new websites.</p>
+
+<p>The first will be a daily gaming/technology blog. Stay tuned.</p>
+
+<p>Right now, though, I have the flu. :(</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Laptop Surgery]]></title>
+    <link href="http://brendonrapp.github.io/2007/11/01/laptop-surgery/"/>
+    <updated>2007-11-01T19:56:48-07:00</updated>
+    <id>http://brendonrapp.github.io/2007/11/01/laptop-surgery</id>
+    <content type="html"><![CDATA[<p><a href="http://www.economyofeffort.com/wp-content/uploads/2007/11/h779.jpg"><img src="http://www.economyofeffort.com/wp-content/uploads/2007/11/h779.jpg" alt="Dell Inspiron 6000" /></a>Concerned that my laptop&rsquo;s thermal performance wasn&rsquo;t what it used to be, I cracked open my 2 &frac12; year old Dell Inspiron 6000d laptop, compressed air in hand, and performed some serious guts cleaning. Some thick dust was blocking the vent that both the CPU and GPU air gets exhausted out. I cleaned that out, and I also removed the CPU heatsink and applied a fresh layer of thermal paste.</p>
+
+<p>The difference? A drop of over 20 degrees <em>Celsius</em> (68 Fahrenheit) in the average CPU temperature. Not only that, but the once warm system now is cool to the touch. Most importantly, the laptop has gone from unsatisfactory performance running Team Fortress 2 at 640x480 (it turns out the CPU kept scaling the clock speed down to cool off) to running very nicely at 1280x800 with some GPU overclocking (now possible with the dramatic drop in heat).</p>
+
+<p>I expected the compressed air and thermal paste to make a difference, but not <em>that</em> much. It&rsquo;s amazing what dust and insufficient CPU paste will do.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Test Post]]></title>
+    <link href="http://brendonrapp.github.io/2006/06/14/test-post/"/>
+    <updated>2006-06-14T08:17:12-07:00</updated>
+    <id>http://brendonrapp.github.io/2006/06/14/test-post</id>
+    <content type="html"><![CDATA[<p>Test post, testing new versions of plugins for Wordpress 2.0.</p>
+]]></content>
+  </entry>
+  
+</feed>

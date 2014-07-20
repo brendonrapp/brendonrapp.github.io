@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Stuff I Like | Economy of Effort]]></title>
+  <link href="http://brendonrapp.github.io/categories/stuff-i-like/atom.xml" rel="self"/>
+  <link href="http://brendonrapp.github.io/"/>
+  <updated>2014-07-20T02:04:46-07:00</updated>
+  <id>http://brendonrapp.github.io/</id>
+  <author>
+    <name><![CDATA[Brendon Rapp]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Stuff I Like That You Should Too: Homebrew for Mac OS X]]></title>
+    <link href="http://brendonrapp.github.io/2011/06/07/stuff-i-like-that-you-should-too-homebrew-for-mac-os-x/"/>
+    <updated>2011-06-07T05:51:51-07:00</updated>
+    <id>http://brendonrapp.github.io/2011/06/07/stuff-i-like-that-you-should-too-homebrew-for-mac-os-x</id>
+    <content type="html"><![CDATA[<p>Mac OS X is a UNIX-based operating system. Apple proudly states that fact whenever they&rsquo;re pitching OS X.</p>
+
+<p><img class="<a" src="href="http://www.economyofeffort.com/wp-content/uploads/2011/06/apple-unix.png">http://www.economyofeffort.com/wp-content/uploads/2011/06/apple-unix.png</a>"></p>
+
+<p>A lot of people &ndash; myself included &ndash; like OS X in part because of this fact. I am primarily a Linux user, but for my personal laptop, it&rsquo;s nice to have a system with all the friendly-out-of-the-box UI trappings of a general consumer product, while still having UNIX at my fingertips.</p>
+
+<p>As a UNIX system, though, Mac OS X has some limiting factors. One of the big ones is that the base system (the set of core tools that make up the OS, named Darwin on the Mac) is not really updatable. Updates come from Apple packaged as part of general operating system updates, but even when Apple does push out updates, it usually not all that up-to-date.</p>
+
+<p>What&rsquo;s more, the base system doesn&rsquo;t necessarily come with everything you might want. You can always compile from source, but this is 2011 and package management is a good thing.</p>
+
+<p>There are three main community projects which bring package management for UNIX programs to Mac OS X. They are <a href="http://finkproject.org/">Fink</a>, <a href="http://www.macports.org/">MacPorts</a>, and <a href="http://mxcl.github.com/homebrew/">Homebrew</a>.</p>
+
+<p><a href="http://mxcl.github.com/homebrew/"><img src="http://www.economyofeffort.com/wp-content/uploads/2011/06/homebrew.png"></a></p>
+
+<p>Of these, my favorite is Homebrew. Homebrew is very light and lean, and ideal for people who just want to install some select packages to augment the Darwin base system.</p>
+
+<p>Both Fink and MacPorts work around Darwin by existing in their own little ecosystems. When installing something that depends on another tool that already exists in Darwin, these package managers tend to install their own copies of those tools instead of using the one already on the system. There are some compatibility advantages to this, but at the same time, there is some confusion when there are multiple copies of libraries and binaries on the same system.</p>
+
+<p>Homebrew takes the other approach, relying on what is provided in the Darwin base system instead of replicating everything itself. It augments Darwin instead of treating it as unreliable and building its own little world.</p>
+
+<p>Homebrew in general &ldquo;feels&rdquo; nicer than Fink or MacPorts. In <a href="http://news.ycombinator.com/item?id=1096177">the words</a> of HackerNews commenter dschobel: &ldquo;There is so much less friction than using macports or fink that I dropped them immediately.&rdquo; That&rsquo;s a good way of putting it. Homebrew is just less noisy and less intrusive.</p>
+
+<p>There are other advantages to Homebrew. The scripts (or &ldquo;formula&rdquo; in Homebrew nomenclature) for building and installing packages are simple Ruby scripts. Combine the ease of creating formula with the ease of submitting them to the project &ndash; as it <a href="https://github.com/mxcl/homebrew">lives on Github</a> and anyone can contribute with a simple fork and a pull request &ndash; and you&rsquo;ve got an environment for rapid crowdsourced updates.</p>
+
+<p>And update it has. Originally I ran Homebrew with MacPorts as a backup for things that weren&rsquo;t yet in Homebrew, but the number of such packages has decreased dramatically. The 1587 formulas (as of this writing) in Homebrew is still much less than the 8100 packages in MacPorts or the 12000 packages in Fink, but the important stuff is well represented (and part of the difference is due to Homebrew intentionally excluding things already in Darwin). Still, it is perfectly fine to run more than one package manager to get the package coverage you need.</p>
+
+<p>Homebrew is very easy to use &ndash; I won&rsquo;t bother replicating the explanation of basic commands here, as the <a href="http://mxcl.github.com/homebrew/">home page</a> and the <a href="https://github.com/mxcl/homebrew/wiki/Installation">instructions on the wiki</a> cover them nicely. But I will share one little BASH alias that I use. There is no single Homebrew command for upgrading all of your installed Homebrew packages to their latest versions, the way you might in a Debian-based OS with an &ldquo;apt-get upgrade&rdquo;. But a handy little BASH alias takes care of that:</p>
+
+<p>[bash]# Homebrew &ndash; upgrade all installed packages
+alias brew-upgrade=&lsquo;brew update &amp;&amp; brew list | xargs brew install&rsquo;[/bash]</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Stuff I Like That You Should Too: Moleskine Notebooks]]></title>
+    <link href="http://brendonrapp.github.io/2011/06/06/stuff-i-like-that-you-should-too-moleskine-notebooks/"/>
+    <updated>2011-06-06T05:55:11-07:00</updated>
+    <id>http://brendonrapp.github.io/2011/06/06/stuff-i-like-that-you-should-too-moleskine-notebooks</id>
+    <content type="html"><![CDATA[<p>Yes, I know they&rsquo;re the hipster&rsquo;s notebook and that they have a cultish following. Yes, I know that their posturing as the <a href="http://www.moleskine.com/moleskine_world/_the_legendary_notebook_moleskine.php">notebook of Hemingway and Picasso</a> is a healthy dose of creative license. Yes, I know that they&rsquo;re overpriced and that for all the talk of Italian design and French paper, they&rsquo;re <a href="http://www.moleskine.com/catalogue/moleskine_quality.php">bound together by cheap Chinese labor</a>.</p>
+
+<p>But frankly, none of that speaks to the quality of the notebook. And as I nearly fill my first one with a year&rsquo;s worth of work notes, I must say that mine has been a durable, reliable tool.</p>
+
+<p><img class="left <a" src="href="http://www.economyofeffort.com/wp-content/uploads/2011/06/moleskine.jpg">http://www.economyofeffort.com/wp-content/uploads/2011/06/moleskine.jpg</a>"> I&rsquo;ve never been completely happy with computer-based note-taking solutions (though I have come closer with Evernote on the iPad and iPhone). And like many geek brains &ndash; constantly preoccupied with the last technical problem it was trying to solve &ndash; mine is a forgetful one.</p>
+
+<p>So, a year ago, I invested in my first Moleskine notebook. I had, of course, heard all of the praise from the true believers. I decided to give them a shot myself.</p>
+
+<p>My writing needs are not like those of, say, actual <em>writers</em>. But I needed a good, compact notebook that I could take everywhere, and one that would be able to hold its own on the inside of a laptop bag, being smashed up against larger and heavier objects.</p>
+
+<p>The Moleskine is beautifully and simply designed. The importance of the little strap that holds the book closed cannot be easily overstated. Unlike every other paper-based thing that is subjected to the interior of my laptop bag, the Moleskine pages stay intact and unmolested, locked away behind an impenetrable shell held closed by that handy little strap.</p>
+
+<p>As much as I like the idea of going completely paperless (as I am with magazines and books), the &ldquo;best tool for the job&rdquo; mindset wins out. I will continue to use Evernote for certain things, but for my daily work notes, I will keep reaching for my Moleskine.</p>
+]]></content>
+  </entry>
+  
+</feed>

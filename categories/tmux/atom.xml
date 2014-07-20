@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: tmux | Economy of Effort]]></title>
+  <link href="http://brendonrapp.github.io/categories/tmux/atom.xml" rel="self"/>
+  <link href="http://brendonrapp.github.io/"/>
+  <updated>2014-07-20T02:04:46-07:00</updated>
+  <id>http://brendonrapp.github.io/</id>
+  <author>
+    <name><![CDATA[Brendon Rapp]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[zsh, tmux, vim, and 256 color madness]]></title>
+    <link href="http://brendonrapp.github.io/2014/07/04/zsh/"/>
+    <updated>2014-07-04T21:20:00-07:00</updated>
+    <id>http://brendonrapp.github.io/2014/07/04/zsh</id>
+    <content type="html"><![CDATA[<p><strong>tl;dr: You want $TERM to be <code>screen-256color</code> when tmux is running, and you want it to be <code>xterm-256color</code> when tmux is <em>not</em> running. Also, launch tmux with <code>-2</code> argument.</strong></p>
+
+<p>I love <a href="https://wiki.archlinux.org/index.php/Tmux">tmux</a>. It is the primary reason why I switched from using gVim to console vim. I love having a fully terminal-based workflow. It beats switching between a GUI editor app and terminal window any day.</p>
+
+<p>This switch, however, was not without some issues. Here are the solutions to two that I encountered.</p>
+
+<h3>Weirdness with zsh, tmux, and vim</h3>
+
+<h4>Problems:</h4>
+
+<ul>
+<li>when $TERM is <code>screen-256color</code> but tmux is <em>not</em> running, zsh will echo your command into the output when you hit Enter:</li>
+</ul>
+
+
+<p><img src="/media/images/screen-256color-no-tmux.png" alt="" /></p>
+
+<p>Notice how the output of the &ldquo;ls&rdquo; and &ldquo;echo&rdquo; commands repeat themselves in the output stream as soon as I switched to <code>screen-256color</code>.</p>
+
+<ul>
+<li>when $TERM is <code>xterm-256color</code> while tmux is running, colors will not display properly in Vim:</li>
+</ul>
+
+
+<p style="text-align:left !important;"><code>vim /etc/default/grub</code> while <code>TERM=screen-256color</code>:</p>
+
+
+<p><img src="/media/images/tmux-vim-screen-256color.png" alt="" /></p>
+
+<p style="text-align:left !important;"><code>vim /etc/default/grub</code> while <code>TERM=xterm-256color</code>:</p>
+
+
+<p><img src="/media/images/tmux-vim-xterm-256color.png" alt="" /></p>
+
+<h4>Solution:</h4>
+
+<p>In my zsh config (~/.zshrc), I set xterm-256color to be the default TERM, but right after that, added a command that would re-export TERM as screen-256color if tmux is running:</p>
+
+<pre><code>export TERM=xterm-256color
+[ -n "$TMUX" ] &amp;&amp; export TERM=screen-256color
+</code></pre>
+
+<h3>No Vim colorschemes when tmux is launched by terminal app in place of shell</h3>
+
+<h4>Problem:</h4>
+
+<p>I ran into a specific set of circumstances where my Vim colorscheme would not display.</p>
+
+<p>Terminal applications usually launch a shell by default, but some (like gnome-terminal) have the option of defining a command to be run rather instead of the shell.</p>
+
+<p>If I set this command to <code>tmux</code>, tmux would indeed launch. However, if I then ran Vim, the colorscheme would not display correctly.</p>
+
+<p>However, if I allowed gnome-terminal to launch a shell, and then ran <code>tmux</code> myself from that shell, Vim would display properly within that tmux session.</p>
+
+<h4>Solution:</h4>
+
+<p>I got my clue from <a href="http://stackoverflow.com/questions/10158508/lose-vim-colorscheme-in-tmux-mode">this StackOverflow post</a>. Basically, what is happening is that, when running <code>tmux</code> from within my shell, which is configured for 256 colors, tmux would launch in 256 color mode. But when I had gnome-terminal launch tmux directly, it would not.</p>
+
+<p>The easy way around this was to use the &ldquo;-2&rdquo; argument for tmux, making the command <code>tmux -2</code>.</p>
+
+<p><img src="/media/images/gnome-terminal-auto-tmux.png" alt="" /></p>
+
+<p>With that command in place, tmux launches whenever firing up gnome-terminal, and does so in 256 color mode.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[reattach-to-user-namespace: The Fix For Your tmux in OS X Woes]]></title>
+    <link href="http://brendonrapp.github.io/2013/07/29/reattach-to-user-namespace-the-fix-for-your-tmux-in-os-x-woes/"/>
+    <updated>2013-07-29T17:21:00-07:00</updated>
+    <id>http://brendonrapp.github.io/2013/07/29/reattach-to-user-namespace-the-fix-for-your-tmux-in-os-x-woes</id>
+    <content type="html"><![CDATA[<p><img class="center" src="/media/images/tmux-osx.jpg"></p>
+
+<p><strong>tl;dr: Things not behaving right in tmux on OS X? Install reattach-to-user-namespace</strong></p>
+
+<p>Are you a tmux + Mac OS X user? Have you had any of the following problems?</p>
+
+<ul>
+<li>Running <code>launchctl</code> to start services fails with a message like <code>launch_msg(): Socket is not connected</code></li>
+<li>Using the OS X Pasteboard commands <code>pbcopy</code> and <code>pbpaste</code> and having them not work</li>
+<li>Launching a GUI app from the terminal and getting a &ldquo;ghost window&rdquo;: the app window loads in the background, with no dock icon, cannot be Command-Tab&rsquo;d to, and the app&rsquo;s menu does not populate the top bar when the window gains focus</li>
+</ul>
+
+
+<p>Why does this happen? Chris Johnsen has some <a href="https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard">details</a>&hellip;</p>
+
+<blockquote><p><em>tmux</em> uses the <em>daemon(3)</em> library function when starting its server process. In Mac OS X 10.5, Apple changed <em>daemon(3)</em> to move the resulting process from its original bootstrap namespace to the root bootstrap namespace. This means that the <em>tmux</em> server, and its children, will automatically and uncontrollably lose access to what would have been their original bootstrap namespace (i.e. the one that has access to the pasteboard service).</p></blockquote>
+
+<p>It turns out that Apple has patched the version of GNU screen that they distribute with OS X to avoid this problem. But this is 2013, and we UNIX geeks have moved on to tmux, right? Chris goes on in that README to explain why porting Apple&rsquo;s screen patch to tmux would be tricky.</p>
+
+<p>So, instead, he provides the <em>reattach-to-user-namespace</em> wrapper program. This allows us to launch a process and have that process be attached to the per-user bootstrap namespace, which, to put it simply, makes the program behave as we are expecting.</p>
+
+<p>The &ldquo;trick&rdquo; is to configure tmux to launch its shells with the <em>reattach-to-user-namespace</em> wrapper. By doing that, the shells tmux launches, as well as everything those shells launch, will be attached to the user namespace, and the problems listed at the top of this post will no longer be issues. We can use the <code>default-command</code> option in ~/.tmux.conf to wrap our shell launching command.</p>
+
+<p>First, we need to install <em>reattach-to-user-namespace</em>. If you use Homebrew or MacPorts, this is as easy as:</p>
+
+<pre><code>; with Homebrew
+$ brew install reattach-to-user-namespace
+
+; with MacPorts
+$ port install tmux-pasteboard
+</code></pre>
+
+<p>I use the same dotfiles for Linux as well as OS X, so I only want to do this in the OS X environment. I accomplish this with the following:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>~/.tmux.conf </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>&amp;ldquo; at the <span class="k">end</span> of the <span class="k">file</span>
+</span><span class='line'><span class="k">if</span><span class="p">-</span><span class="k">shell</span> &amp;lsquo;test &amp;rdquo;$<span class="p">(</span>uname<span class="p">)</span>&amp;ldquo; <span class="p">=</span> <span class="c">&quot;Darwin&amp;rdquo;&amp;rsquo; &amp;lsquo;source ~/.tmux-osx.conf&amp;rsquo;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>~/.tmux-osx.conf </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">set</span><span class="p">-</span><span class="k">option</span> <span class="p">-</span><span class="k">g</span> default<span class="p">-</span>command &amp;ldquo;reattach<span class="p">-</span><span class="k">to</span><span class="p">-</span>user<span class="p">-</span>namespace <span class="p">-</span><span class="k">l</span> zsh&amp;rdquo;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>If you only use OS X, you can skip creating an external file, and just put the set-option line directly in your ~/.tmux.conf. Also, I am using zsh, so my command to <em>reattach-to-user-namespace</em> is zsh. If you&rsquo;re using a different shell, change that to your shell&rsquo;s name.</p>
+
+<p>With this configuration in place, kill and re-launch tmux. The shells that tmux launches should now get attached to the user namespace, and namespace-related issues should be resolved.</p>
+]]></content>
+  </entry>
+  
+</feed>

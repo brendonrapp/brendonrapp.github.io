@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>zsh, tmux, vim, and 256 color madness - Economy of Effort</title>
+  <meta name="author" content="Brendon Rapp">
+
+  
+  <meta name="description" content="tl;dr: You want $TERM to be screen-256color when tmux is running, and you want it to be xterm-256color when tmux is not running. Also, launch tmux &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://brendonrapp.github.io/2014/07/04/zsh/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Economy of Effort" type="application/atom+xml">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-3578812-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <div id="logo">
+    <a href="/"><img src="/images/icons/area.jpg" alt="logo"></a>
+  </div>
+  <h1><a href="/">Economy of Effort</a></h1>
+  
+  <div class="clear"></div>
+</hgroup>
+
+<hgroup>
+  <div id="social-icons">
+    <a href="http://www.twitter.com/legion"><img src="/images/icons/webicon-twitter.png" alt="Twitter"></a>
+    <a href="http://www.linkedin.com/in/legion/"><img src="/images/icons/webicon-linkedin.png" alt="LinkedIn"></a>
+    <a href="http://github.com/brendonrapp"><img src="/images/icons/webicon-github.png" alt="GitHub"></a>
+    <a href="mailto:brendon@economyofeffort.com"><img src="/images/icons/webicon-mail.png" alt="Mail"></a>
+    <a href="atom.xml"><img src="/images/icons/webicon-rss.png" alt="RSS"></a>
+  </div>
+</hgroup>
+
+</header>
+  <nav role="navigation">
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:brendonrapp.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+
+<ul class="main-navigation">
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="http://www.pinterest.com/legion/stuff-i-want/">Wish List</a></li>
+  <li><a href="http://steamcommunity.com/id/legion/wishlist/">Steam Wish List</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Zsh, Tmux, Vim, and 256 Color Madness</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-04T21:20:00-07:00" pubdate data-updated="true">Jul 4<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><strong>tl;dr: You want $TERM to be <code>screen-256color</code> when tmux is running, and you want it to be <code>xterm-256color</code> when tmux is <em>not</em> running. Also, launch tmux with <code>-2</code> argument.</strong></p>
+
+<p>I love <a href="https://wiki.archlinux.org/index.php/Tmux">tmux</a>. It is the primary reason why I switched from using gVim to console vim. I love having a fully terminal-based workflow. It beats switching between a GUI editor app and terminal window any day.</p>
+
+<p>This switch, however, was not without some issues. Here are the solutions to two that I encountered.</p>
+
+<h3>Weirdness with zsh, tmux, and vim</h3>
+
+<h4>Problems:</h4>
+
+<ul>
+<li>when $TERM is <code>screen-256color</code> but tmux is <em>not</em> running, zsh will echo your command into the output when you hit Enter:</li>
+</ul>
+
+
+<p><img src="/media/images/screen-256color-no-tmux.png" alt="" /></p>
+
+<p>Notice how the output of the &ldquo;ls&rdquo; and &ldquo;echo&rdquo; commands repeat themselves in the output stream as soon as I switched to <code>screen-256color</code>.</p>
+
+<ul>
+<li>when $TERM is <code>xterm-256color</code> while tmux is running, colors will not display properly in Vim:</li>
+</ul>
+
+
+<p style="text-align:left !important;"><code>vim /etc/default/grub</code> while <code>TERM=screen-256color</code>:</p>
+
+
+<p><img src="/media/images/tmux-vim-screen-256color.png" alt="" /></p>
+
+<p style="text-align:left !important;"><code>vim /etc/default/grub</code> while <code>TERM=xterm-256color</code>:</p>
+
+
+<p><img src="/media/images/tmux-vim-xterm-256color.png" alt="" /></p>
+
+<h4>Solution:</h4>
+
+<p>In my zsh config (~/.zshrc), I set xterm-256color to be the default TERM, but right after that, added a command that would re-export TERM as screen-256color if tmux is running:</p>
+
+<pre><code>export TERM=xterm-256color
+[ -n "$TMUX" ] &amp;&amp; export TERM=screen-256color
+</code></pre>
+
+<h3>No Vim colorschemes when tmux is launched by terminal app in place of shell</h3>
+
+<h4>Problem:</h4>
+
+<p>I ran into a specific set of circumstances where my Vim colorscheme would not display.</p>
+
+<p>Terminal applications usually launch a shell by default, but some (like gnome-terminal) have the option of defining a command to be run rather instead of the shell.</p>
+
+<p>If I set this command to <code>tmux</code>, tmux would indeed launch. However, if I then ran Vim, the colorscheme would not display correctly.</p>
+
+<p>However, if I allowed gnome-terminal to launch a shell, and then ran <code>tmux</code> myself from that shell, Vim would display properly within that tmux session.</p>
+
+<h4>Solution:</h4>
+
+<p>I got my clue from <a href="http://stackoverflow.com/questions/10158508/lose-vim-colorscheme-in-tmux-mode">this StackOverflow post</a>. Basically, what is happening is that, when running <code>tmux</code> from within my shell, which is configured for 256 colors, tmux would launch in 256 color mode. But when I had gnome-terminal launch tmux directly, it would not.</p>
+
+<p>The easy way around this was to use the &ldquo;-2&rdquo; argument for tmux, making the command <code>tmux -2</code>.</p>
+
+<p><img src="/media/images/gnome-terminal-auto-tmux.png" alt="" /></p>
+
+<p>With that command in place, tmux launches whenever firing up gnome-terminal, and does so in 256 color mode.</p>
+</div>
+  <footer>
+    <p class="meta">
+      categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/tmux/'>tmux</a>, <a class='category' href='/categories/unix/'>unix</a>, <a class='category' href='/categories/vim/'>vim</a>, <a class='category' href='/categories/zsh/'>zsh</a>
+  
+</span>
+
+
+    </p>
+  </footer>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Brendon Rapp</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-04T21:20:00-07:00" pubdate data-updated="true">Jul 4<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/tmux/'>tmux</a>, <a class='category' href='/categories/unix/'>unix</a>, <a class='category' href='/categories/vim/'>vim</a>, <a class='category' href='/categories/zsh/'>zsh</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/2013/08/03/careful-what-you-name-your-rails-partials/" title="Previous Post: Careful What You Name Your Rails Partials">&laquo; Careful What You Name Your Rails Partials</a>
+      
+      
+        <a class="basic-alignment right articlenav" href="/2014/07/09/vim-tricks-for-ruby-hashes/" title="Next Post: Vim tricks for Ruby hashes">Vim tricks for Ruby hashes &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2014/07/09/vim-tricks-for-ruby-hashes/">Vim Tricks for Ruby Hashes</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/07/04/zsh/">Zsh, Tmux, Vim, and 256 Color Madness</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/08/03/careful-what-you-name-your-rails-partials/">Careful What You Name Your Rails Partials</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/07/29/reattach-to-user-namespace-the-fix-for-your-tmux-in-os-x-woes/">Reattach-to-user-namespace: The Fix for Your Tmux in OS X Woes</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/07/26/no-numpads/">No Numpads</a>
+      </li>
+    
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Brendon Rapp -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'economyofeffort';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://brendonrapp.github.io/2014/07/04/zsh/';
+        var disqus_url = 'http://brendonrapp.github.io/2014/07/04/zsh/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

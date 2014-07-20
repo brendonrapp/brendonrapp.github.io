@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>YubiKey: Inexpensive Two-Factor Authentication - Economy of Effort</title>
+  <meta name="author" content="Brendon Rapp">
+
+  
+  <meta name="description" content="Pointless trivia: This image, nicely depicting the concept of two-factor authentication, was taken from the Hong Kong central bank&rsquo;s website> &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://brendonrapp.github.io/2011/06/10/yubikey/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Economy of Effort" type="application/atom+xml">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-3578812-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <div id="logo">
+    <a href="/"><img src="/images/icons/area.jpg" alt="logo"></a>
+  </div>
+  <h1><a href="/">Economy of Effort</a></h1>
+  
+  <div class="clear"></div>
+</hgroup>
+
+<hgroup>
+  <div id="social-icons">
+    <a href="http://www.twitter.com/legion"><img src="/images/icons/webicon-twitter.png" alt="Twitter"></a>
+    <a href="http://www.linkedin.com/in/legion/"><img src="/images/icons/webicon-linkedin.png" alt="LinkedIn"></a>
+    <a href="http://github.com/brendonrapp"><img src="/images/icons/webicon-github.png" alt="GitHub"></a>
+    <a href="mailto:brendon@economyofeffort.com"><img src="/images/icons/webicon-mail.png" alt="Mail"></a>
+    <a href="atom.xml"><img src="/images/icons/webicon-rss.png" alt="RSS"></a>
+  </div>
+</hgroup>
+
+</header>
+  <nav role="navigation">
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:brendonrapp.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+
+<ul class="main-navigation">
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="http://www.pinterest.com/legion/stuff-i-want/">Wish List</a></li>
+  <li><a href="http://steamcommunity.com/id/legion/wishlist/">Steam Wish List</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">YubiKey: Inexpensive Two-Factor Authentication</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-10T05:10:27-07:00" pubdate data-updated="true">Jun 10<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><img class="center" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/two-factor.gif">
+<small>Pointless trivia: This image, nicely depicting the concept of two-factor authentication, was taken from the <a href="http://www.info.gov.hk/hkma/eng/consumer/two_factor_auth_index.htm">Hong Kong central bank&rsquo;s website</a></small>></p>
+
+<h2>What is Two-Factor Authentication?</h2>
+
+<p>Normally, when you log onto a computer-based service, you enter a username to tell the system who you are, and a password to <em>authenticate</em> (prove that you are who you say you are) with the system.</p>
+
+<p>That is one-factor authentication: you are providing only one thing to prove your identity.</p>
+
+<p>Two-factor authentication is a setup where you have to provide more than one thing to authenticate yourself. In most cases, this means your password in addition with some physical device, a hardware-based <em>token</em>. (It is possible to create authentication systems that require even more than two factors. Systems that require two or more factors are more generally called <em>multi-factor authentication</em>).</p>
+
+<p>The YubiKey is an inexpensive ($25) device that provides this sort of additional authentication factor.</p>
+
+<p><img class="center" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/yubikey.jpg"></p>
+
+<h2>How does it work?</h2>
+
+<p>The YubiKey is a simple device that plugs into any USB port on your computer. The device has a single button, which, when you press it, spits out a One Time Password (OTP). In the eyes of the computer, the YubiKey is literally just a USB keyboard, and when you press the button, it enters text as if a person is typing (very fast) on that keyboard. Most operating systems support USB keyboards without any additional software, which means that at least on <strong>Windows, Mac OS X, and Linux</strong>, you can stick the YubiKey into the computer and press the button without having to install any additional software. Needless to say, this makes it incredibly convenient.</p>
+
+<p><img class="center" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/yubikey-lastpass.png"></p>
+
+<p>So, when you log into a service that supports YubiKey authentication, you&rsquo;ll enter your username and password as usual, but you&rsquo;ll also be presented with a text box for the YubiKey itself to &ldquo;type&rdquo; into. You&rsquo;ll click in the text box as if you&rsquo;re going to type in it yourself, but instead, you&rsquo;ll press the YubiKey&rsquo;s button and it will &ldquo;type in&rdquo; a very long password. Then you&rsquo;ll click to log in like normal, and assuming both your password and YubiKey are valid, you&rsquo;ll log in.</p>
+
+<h2>What makes this more secure?</h2>
+
+<p><img class="right" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/nikolai-300x225.jpg"></p>
+
+<p>The idea behind a one-time password is that, as the name states, the password can only be used once. Even if someone is sniffing your network traffic and grabs a copy of the OTP you just used, he can&rsquo;t turn around and re-use the password itself, as it&rsquo;s been used and is no longer valid.</p>
+
+<p>The idea being multi-factor authentication is that anyone who wishes to login to services as you has to be able to provide all factors. Stealing your password or stealing your YubiKey isn&rsquo;t enough &ndash; they&rsquo;d need to have both. That requirement of getting ahold of something that&rsquo;s physically in your possession dramatically reduces the number of people with opportunity to take your digital identity. A hacker in Russia might be able to set up a website to trick me into giving up my password, but it&rsquo;s a long flight for him to come get my YubiKey too.</p>
+
+<h2>How do I make services &ldquo;use&rdquo; my YubiKey?</h2>
+
+<p><img class="right" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/lastpass-logo.gif"></p>
+
+<p>First of all, to use the YubiKey, the service itself has to support YubiKey authentication. This won&rsquo;t be common with your average website, but it will be more common with more security-minded services, like <a href="http://www.lastpass.com">LastPass</a> or <a href="http://www.passpack.com">PassPack</a>.</p>
+
+<p>Secondly, before you can use your YubiKey to authenticate with a service, you have to associate your YubiKey with your account on that service. How this is done depends entirely on how that service has that feature set up. <a href="http://helpdesk.lastpass.com/security-options/yubikey-authentication/">Here, for example, is LastPass&rsquo;s instruction page</a> for associating YubiKeys with your account on their service.</p>
+
+<h2>What about services that don&rsquo;t support YubiKey?</h2>
+
+<p>If a service doesn&rsquo;t support the YubiKey directly, but does support OpenID authentication, you can use your YubiKey for two-factor authentication by using an OpenID service which supports the YubiKey itself.</p>
+
+<p><a href="http://www.clavid.com"><img class="right" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/Clavid_logo.gif"></a></p>
+
+<p><a href="http://www.clavid.com">Clavid.com</a> is such a service. With a properly set-up Clavid.com OpenID identity, you can have two-factor authentication for any service that does OpenID.</p>
+
+<p>However, outside of those options, there&rsquo;s nothing you can do to add YubiKey support to a service that doesn&rsquo;t have it, besides emailing them and bugging them to add it.</p>
+
+<h2>What if those services get hacked? Is my YubiKey compromised?</h2>
+
+<p>When you register your YubiKey with a service like LastPass, that service does not have your Yubico encrypted identity. All they store is the 12-character Yubico ID. When you tap your YubiKey&rsquo;s button and send a One-Time Password to that service, they don&rsquo;t have the means of processing the password and verifying your identity. Instead, they send that password (which contains your 12-character ID) to the Yubico servers, which responds back with a &ldquo;yes&rdquo; or &ldquo;no&rdquo; to that service. Yubico acts as an authentication gateway for that factor.</p>
+
+<p>So, only Yubico has the information necessary to process the passwords that your YubiKey creates. So, that leads to the question: what if Yubico is hacked? That is the scenario where your YubiKey&rsquo;s identity may be compromised. Indeed, this happened with another token authentication system recently, <a href="http://www.extremetech.com/article2/0,2845,2386541,00.asp">RSA&rsquo;s SecurID</a>. However, as long as you are using YubiKeys for multi-factor authentication, and not as a replacement for passwords, then the result of this would be that your accounts are still protected by your passwords. In other words, you&rsquo;d be in the exact same place as if you weren&rsquo;t using YubiKeys to begin with.</p>
+
+<h2>The YubiKey website says this thing supports a bunch of different authentication systems. What&rsquo;s the story there?</h2>
+
+<p>The YubiKey is quite a flexible little device, and can indeed be used with a number of different authentication systems.</p>
+
+<p>The most common of these, the thing that people are generally referring to when talking about YubiKey authentication, is Yubico&rsquo;s YubiKey OTP authentication service. This is what standard YubiKeys come ready to work with right out-of-the-box, and this is what services like LastPass are referring to when stating that they support YubiKey.</p>
+
+<p>However, you can program YubiKeys to support different systems. One thing you can do is program the YubiKey to store a single <a href="http://www.yubico.com/static-password">static password</a>. You press the button, and the YubiKey types in this password. This is a way to be able to create a and use a long, complex password that you can&rsquo;t possibly memorize. And because it&rsquo;s just a plain password, you can use it with any password-based system. This isn&rsquo;t multi-factor authentication (since you&rsquo;re back to using just a password, not something in addition to a password), but it can be very useful in certain circumstances. Yubico mentions an ideal use case: <a href="http://static.yubico.com/var/uploads/pdfs/TrueCrypt%202011-03-23.pdf">long passwords for encrypting TrueCrypt vaults</a>.</p>
+
+<p><img class="right" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/oath.png"></p>
+
+<p>YubiKeys can be programmed to work with Open Authentication (OATH). Now, read that closely. That is OATH, a system developed by VeriSign, and not OAuth, a system developed by Twitter. It took me a while before I noticed this, as I had only ever heard of OAuth before. <a href="http://blogs.verisign.com/identity-emea/2008/07/oauth_and_oath_confusing_1.php">Here&rsquo;s a post from a VeriSign blogger</a> describing the difference between these two unfortunately similarly-named projects. OATH is used in (formerly VeriSign&rsquo;s, now Symantec&rsquo;s) VIP authentication system, which we&rsquo;ll talk about later. Yubico does not run any OATH services themselves.</p>
+
+<p>YubiKeys can also be programmed to work with SAML authentication systems. SAML is used by Google Apps&#8217; Single Sign On feature, and Yubico provides a SAML server which can be used to set up SAML-based Single Sign On for your Google Apps domain. <a href="http://wiki.yubico.com/wiki/index.php/SAMLServerStepByStep">Here are Yubico&rsquo;s step by step instructions</a> for doing that.</p>
+
+<p>In general, these other non-Yubico systems are things you would use with a specific purpose in mind, not for generally-available web services.</p>
+
+<h2>Can you use all these services on the same YubiKey?</h2>
+
+<p>Originally, YubiKeys supported only one &ldquo;identity&rdquo;, meaning you had to pick and choose only one of these authentication systems to use your YubiKey with.</p>
+
+<p>Newer YubiKeys support two identities, so you make one YubiKey work with two different authentication systems. Naturally, most users will have a Yubico identity as one of their two. By default, the second identity is blank, so setting a key up to work with another authentication system requires using one of the <a href="http://www.yubico.com/personalization-tool">free personalization software tools</a> to program the second identity. It can be a little tricky if you haven&rsquo;t done it before, so be patient and find good instructions (I may write some of my own in another post).</p>
+
+<p>The way that you use a YubiKey with two different services is pretty clever. If you press the YubiKey button for 0 to 1.5 seconds, it outputs the results for the programmed identity in the first slot. Hold the button longer &ndash; 2.5 to 5 seconds &ndash; and it does the output for the second identity instead. There is a &ldquo;dead zone&rdquo; gap in the (approximately) 1.5-2.5 second range so that you can&rsquo;t accidentally end up at the &ldquo;border&rdquo; between the two. Any tap at all is sufficient for triggering slot 1, so you&rsquo;ll tap for slot 1 and hold the button down for slot 2, and you&rsquo;ll get nothing at all if you try to let go in no man&rsquo;s land.</p>
+
+<h2>What about the Symantec VIP service?</h2>
+
+<p><img class="center" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/VIP-Access.png">
+<small>The &ldquo;V&rdquo; still stands for VeriSign</small></p>
+
+<p>Symantec&rsquo;s VIP service uses OATH. However, there is a catch. While you can create an OATH-compatible identity, end users like us have no way of getting that identity into the VIP service. They do not provide a means of uploading your own created identity, as Yubico does with their service.</p>
+
+<p>As such, Yubico has created the <a href="http://yubico.com/VIP">Symantec VIP YubiKey</a>. It&rsquo;s a normal YubiKey, except with slot 1 pre-programmed with a Symantec VIP identity, which was entered in to the VIP service at the time of manufacturing, per Symantec&rsquo;s rules, as explained by the YubiKey YouTube user <a href="http://www.youtube.com/comment?lc=_MHd7s7c6pOoAzr_CTkpfIPzE-8HKVXNNZPVXZ_SbFk">in this YouTube comment reply</a>:</p>
+
+<blockquote><p>The [Symantec VIP] YubiKey is the same standard YubiKey &ndash; it already supported OATH. The problem is loading secrets and Symantec&rsquo;s rules are that they can only be loaded at the time of manufacture. Hence the need for a new SKU.</p></blockquote>
+
+<p>So, if you wish to use a YubiKey with the VIP service, you need to buy the &ldquo;VIP&rdquo;-specific model. Note that this model does <em>not</em> come pre-programmed with a Yubico identity, but you are of course free to create one on own for slot 2. Also, the VIP credential is hard-coded into slot 1 and can&rsquo;t be removed, so you only want to get the VIP model if you do intend on using VIP.</p>
+
+<h2>And what if you lose it, or it breaks?</h2>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2011/06/lost-300x169.jpg"></p>
+
+<p>One big issue with multi-factor authentication is, what happens if you lose or damage one of the factors?</p>
+
+<p>Many services have a recovery process for this, where you have to jump through hoops to prove that you&rsquo;re who you claim to be. It&rsquo;s also possible to order an identical replacement YubiKey that contains the same identity as the one you lost. Again, here you have to jump through hoops to prove your identity.</p>
+
+<p>But there is a better, more forward-thinking way of protecting yourself from losing or damaging YubiKeys &ndash; more YubiKeys! Every YubiKey-compatible service I&rsquo;ve run into so far allows you to associate multiple YubiKeys to your account, allowing you to authenticate using any one of them.</p>
+
+<p>Thus, I own three YubiKeys:
+&hellip; one on my keyring,
+&hellip; one locked up somewhere safe in my house,
+&hellip; and one locked up in my bank safe deposit box.</p>
+
+<p>Should I lose or break the one on my keyring, I have backups available.</p>
+
+<p>It does mean, however, that for every new YubiKey-compatible service I start using, I need to round up all my keys to associate each of them with the new account. But in practice, this is exceedingly rare &ndash; I only have a few things I use YubiKeys with, but they&rsquo;re important things.</p>
+
+<h2>&ldquo;Would you like to know more?&rdquo;</h2>
+
+<p>I&rsquo;ll be writing some more posts as I go dig deeper into what you can do with the YubiKey. LastPass and OpenID are certainly cool and sufficient for picking up some YubiKeys, but I think the ability to integrate it with your own services is more interesting.</p>
+
+<p>There is a PAM module for YubiKey authentication, allowing it to be used with things like SSH and VPN. There are also plugins for web-based CMSs like Wordpress. I&rsquo;m going to dig around and I&rsquo;ll share what I find.</p>
+
+<p>If you have any questions, please ask them and I&rsquo;ll try to answer them, maybe in my next post. Also, if anything in this post is incorrect, please let me know and I will correct it. I am simply a consumer and do not work for Yubico or have any stake in their product other than the ~$75 I&rsquo;ve invested in the three keys I own.</p>
+</div>
+  <footer>
+    <p class="meta">
+      categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/infosec/'>InfoSec</a>
+  
+</span>
+
+
+    </p>
+  </footer>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Brendon Rapp</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-10T05:10:27-07:00" pubdate data-updated="true">Jun 10<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/infosec/'>InfoSec</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/2011/06/07/stuff-i-like-that-you-should-too-homebrew-for-mac-os-x/" title="Previous Post: Stuff I Like That You Should Too: Homebrew for Mac OS X">&laquo; Stuff I Like That You Should Too: Homebrew for Mac OS X</a>
+      
+      
+        <a class="basic-alignment right articlenav" href="/2011/09/06/the-wifi-bridge-to-nowhere/" title="Next Post: The (Wifi) Bridge to Nowhere">The (Wifi) Bridge to Nowhere &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2014/07/09/vim-tricks-for-ruby-hashes/">Vim Tricks for Ruby Hashes</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/07/04/zsh/">Zsh, Tmux, Vim, and 256 Color Madness</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/08/03/careful-what-you-name-your-rails-partials/">Careful What You Name Your Rails Partials</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/07/29/reattach-to-user-namespace-the-fix-for-your-tmux-in-os-x-woes/">Reattach-to-user-namespace: The Fix for Your Tmux in OS X Woes</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/07/26/no-numpads/">No Numpads</a>
+      </li>
+    
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Brendon Rapp -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'economyofeffort';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://brendonrapp.github.io/2011/06/10/yubikey/';
+        var disqus_url = 'http://brendonrapp.github.io/2011/06/10/yubikey/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
