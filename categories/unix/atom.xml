@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: unix | Economy of Effort]]></title>
-  <link href="http://brendonrapp.github.io/categories/unix/atom.xml" rel="self"/>
-  <link href="http://brendonrapp.github.io/"/>
-  <updated>2014-07-09T21:22:58-07:00</updated>
-  <id>http://brendonrapp.github.io/</id>
+  <link href="http://www.economyofeffort.com/categories/unix/atom.xml" rel="self"/>
+  <link href="http://www.economyofeffort.com/"/>
+  <updated>2014-07-20T13:19:05-07:00</updated>
+  <id>http://www.economyofeffort.com/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[zsh, tmux, vim, and 256 color madness]]></title>
-    <link href="http://brendonrapp.github.io/2014/07/04/zsh/"/>
+    <link href="http://www.economyofeffort.com/2014/07/04/zsh/"/>
     <updated>2014-07-04T21:20:00-07:00</updated>
-    <id>http://brendonrapp.github.io/2014/07/04/zsh</id>
+    <id>http://www.economyofeffort.com/2014/07/04/zsh</id>
     <content type="html"><![CDATA[<p><strong>tl;dr: You want $TERM to be <code>screen-256color</code> when tmux is running, and you want it to be <code>xterm-256color</code> when tmux is <em>not</em> running. Also, launch tmux with <code>-2</code> argument.</strong></p>
 
 <p>I love <a href="https://wiki.archlinux.org/index.php/Tmux">tmux</a>. It is the primary reason why I switched from using gVim to console vim. I love having a fully terminal-based workflow. It beats switching between a GUI editor app and terminal window any day.</p>

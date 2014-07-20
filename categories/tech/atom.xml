@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Tech | Economy of Effort]]></title>
-  <link href="http://brendonrapp.github.io/categories/tech/atom.xml" rel="self"/>
-  <link href="http://brendonrapp.github.io/"/>
-  <updated>2014-07-09T21:22:58-07:00</updated>
-  <id>http://brendonrapp.github.io/</id>
+  <link href="http://www.economyofeffort.com/categories/tech/atom.xml" rel="self"/>
+  <link href="http://www.economyofeffort.com/"/>
+  <updated>2014-07-20T13:19:05-07:00</updated>
+  <id>http://www.economyofeffort.com/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[The Aftermath of Dan]]></title>
-    <link href="http://brendonrapp.github.io/2009/08/07/the-aftermath-of-dan/"/>
+    <link href="http://www.economyofeffort.com/2009/08/07/the-aftermath-of-dan/"/>
     <updated>2009-08-07T18:29:54-07:00</updated>
-    <id>http://brendonrapp.github.io/2009/08/07/the-aftermath-of-dan</id>
+    <id>http://www.economyofeffort.com/2009/08/07/the-aftermath-of-dan</id>
     <content type="html"><![CDATA[<p>I work for a small design studio. Their core business is creating logos, designing signage for corporate events, and all that jazz. Over the past few years, they&rsquo;ve found clients wanting more and more electronic-based content from them. First it was email blasts and static websites, then they wanted websites that did more than just serve up static content, and pretty soon it became web applications and even small desktop applications. Hence the creation of the job which I now fill.</p>
 
 <p>I wasn&rsquo;t the first one to fill the job. A couple of guys came before me. My immediate predecessor, we&rsquo;ll call &ldquo;Dan&rdquo;. Dan was not particularly beloved. On the contrary, it was those oh-so-important &ldquo;people skills&rdquo; (or lack thereof) that led to his, shall we say, unscheduled exit from the position. My first week on the job ended with me getting the raise that would have been saved for after my 3 month performance review, helped in no small part to solving problems in that first week that had been long-standing issues. Most importantly, I was Not Dan.</p>
@@ -72,9 +72,9 @@
   
   <entry>
     <title type="html"><![CDATA[13" MacBook Pro]]></title>
-    <link href="http://brendonrapp.github.io/2009/07/09/13-macbook-pro/"/>
+    <link href="http://www.economyofeffort.com/2009/07/09/13-macbook-pro/"/>
     <updated>2009-07-09T15:48:38-07:00</updated>
-    <id>http://brendonrapp.github.io/2009/07/09/13-macbook-pro</id>
+    <id>http://www.economyofeffort.com/2009/07/09/13-macbook-pro</id>
     <content type="html"><![CDATA[<p>In a move somewhat uncharacteristic of me, I went out and bought the new 13" MacBook Pro as soon as they became available for purchase. To understand why, we have to go back in time a little bit, back to&hellip;</p>
 
 <h2>My Old Flame</h2>
@@ -163,9 +163,9 @@
   
   <entry>
     <title type="html"><![CDATA[New sites coming]]></title>
-    <link href="http://brendonrapp.github.io/2008/02/21/new-sites-coming/"/>
+    <link href="http://www.economyofeffort.com/2008/02/21/new-sites-coming/"/>
     <updated>2008-02-21T13:08:56-08:00</updated>
-    <id>http://brendonrapp.github.io/2008/02/21/new-sites-coming</id>
+    <id>http://www.economyofeffort.com/2008/02/21/new-sites-coming</id>
     <content type="html"><![CDATA[<p>Over the next few months, I will be creating a couple of new websites.</p>
 
 <p>The first will be a daily gaming/technology blog. Stay tuned.</p>
@@ -176,9 +176,9 @@
   
   <entry>
     <title type="html"><![CDATA[Laptop Surgery]]></title>
-    <link href="http://brendonrapp.github.io/2007/11/01/laptop-surgery/"/>
+    <link href="http://www.economyofeffort.com/2007/11/01/laptop-surgery/"/>
     <updated>2007-11-01T19:56:48-07:00</updated>
-    <id>http://brendonrapp.github.io/2007/11/01/laptop-surgery</id>
+    <id>http://www.economyofeffort.com/2007/11/01/laptop-surgery</id>
     <content type="html"><![CDATA[<p><a href="http://www.economyofeffort.com/wp-content/uploads/2007/11/h779.jpg"><img src="http://www.economyofeffort.com/wp-content/uploads/2007/11/h779.jpg" alt="Dell Inspiron 6000" /></a>Concerned that my laptop&rsquo;s thermal performance wasn&rsquo;t what it used to be, I cracked open my 2 &frac12; year old Dell Inspiron 6000d laptop, compressed air in hand, and performed some serious guts cleaning. Some thick dust was blocking the vent that both the CPU and GPU air gets exhausted out. I cleaned that out, and I also removed the CPU heatsink and applied a fresh layer of thermal paste.</p>
 
 <p>The difference? A drop of over 20 degrees <em>Celsius</em> (68 Fahrenheit) in the average CPU temperature. Not only that, but the once warm system now is cool to the touch. Most importantly, the laptop has gone from unsatisfactory performance running Team Fortress 2 at 640x480 (it turns out the CPU kept scaling the clock speed down to cool off) to running very nicely at 1280x800 with some GPU overclocking (now possible with the dramatic drop in heat).</p>
@@ -189,9 +189,9 @@
   
   <entry>
     <title type="html"><![CDATA[Test Post]]></title>
-    <link href="http://brendonrapp.github.io/2006/06/14/test-post/"/>
+    <link href="http://www.economyofeffort.com/2006/06/14/test-post/"/>
     <updated>2006-06-14T08:17:12-07:00</updated>
-    <id>http://brendonrapp.github.io/2006/06/14/test-post</id>
+    <id>http://www.economyofeffort.com/2006/06/14/test-post</id>
     <content type="html"><![CDATA[<p>Test post, testing new versions of plugins for Wordpress 2.0.</p>
 ]]></content>
   </entry>

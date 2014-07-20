@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: rails | Economy of Effort]]></title>
-  <link href="http://brendonrapp.github.io/categories/rails/atom.xml" rel="self"/>
-  <link href="http://brendonrapp.github.io/"/>
-  <updated>2014-07-09T21:22:58-07:00</updated>
-  <id>http://brendonrapp.github.io/</id>
+  <link href="http://www.economyofeffort.com/categories/rails/atom.xml" rel="self"/>
+  <link href="http://www.economyofeffort.com/"/>
+  <updated>2014-07-20T13:19:05-07:00</updated>
+  <id>http://www.economyofeffort.com/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Careful What You Name Your Rails Partials]]></title>
-    <link href="http://brendonrapp.github.io/2013/08/03/careful-what-you-name-your-rails-partials/"/>
+    <link href="http://www.economyofeffort.com/2013/08/03/careful-what-you-name-your-rails-partials/"/>
     <updated>2013-08-03T15:53:00-07:00</updated>
-    <id>http://brendonrapp.github.io/2013/08/03/careful-what-you-name-your-rails-partials</id>
+    <id>http://www.economyofeffort.com/2013/08/03/careful-what-you-name-your-rails-partials</id>
     <content type="html"><![CDATA[<p><strong>tl;dr: Hyphens bad.</strong></p>
 
 <p>I encountered a strange bug in Rails 3.2.13 this week. I kept getting an error that traced back to the very start of a partial:</p>
@@ -32,7 +32,7 @@ _example-partial-logged-in.html.haml:1: syntax error, unexpected keyword_in, exp
 
 <p>The issue linked above contains a pull request for a better error message, which was merged into Rails 4. But for those still on Rails 3 and earlier, if you see this vague error message, now you know why.</p>
 
-<p><img class="center" src="/media/images/hyphen.jpg"></p>
+<p>{% img center /media/images/hyphen.jpg %}</p>
 ]]></content>
   </entry>
   

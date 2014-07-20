@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: General | Economy of Effort]]></title>
-  <link href="http://brendonrapp.github.io/categories/general/atom.xml" rel="self"/>
-  <link href="http://brendonrapp.github.io/"/>
-  <updated>2014-07-09T21:22:58-07:00</updated>
-  <id>http://brendonrapp.github.io/</id>
+  <link href="http://www.economyofeffort.com/categories/general/atom.xml" rel="self"/>
+  <link href="http://www.economyofeffort.com/"/>
+  <updated>2014-07-20T13:19:05-07:00</updated>
+  <id>http://www.economyofeffort.com/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Overclocking: Getting the Low-Hanging Fruit]]></title>
-    <link href="http://brendonrapp.github.io/2012/05/27/overclocking-getting-the-low-hanging-fruit/"/>
+    <link href="http://www.economyofeffort.com/2012/05/27/overclocking-getting-the-low-hanging-fruit/"/>
     <updated>2012-05-27T06:43:11-07:00</updated>
-    <id>http://brendonrapp.github.io/2012/05/27/overclocking-getting-the-low-hanging-fruit</id>
+    <id>http://www.economyofeffort.com/2012/05/27/overclocking-getting-the-low-hanging-fruit</id>
     <content type="html"><![CDATA[<p>I have started playing a game called Day Z (a mod for the game ArmA 2). I will write about this at a later time. One thing I will mention, though, is that ArmA 2 is a very CPU-demanding game. As a result, I found myself wanting to get some extra performance out of my system&rsquo;s processor. I decided that I would overclock it, as I have done on many of my systems before.</p>
 
 <p>One thing to understand about CPU production is that Intel and AMD don&rsquo;t design completely separate cores for each CPU product they sell. Rather, they&rsquo;ll make one CPU core and clock it at different speeds to make a range of products. What this means to overclockers is that it&rsquo;s often trivially easy to buy a CPU from the low-end of that range, and overclock it to run at the speed of the high-end.</p>
@@ -32,9 +32,9 @@
   
   <entry>
     <title type="html"><![CDATA[Pauses/hanging in Thunderbird in Linux with Lightning]]></title>
-    <link href="http://brendonrapp.github.io/2012/04/09/pauses-hanging-in-thunderbird-in-linux-with-lightning/"/>
+    <link href="http://www.economyofeffort.com/2012/04/09/pauses-hanging-in-thunderbird-in-linux-with-lightning/"/>
     <updated>2012-04-09T06:30:31-07:00</updated>
-    <id>http://brendonrapp.github.io/2012/04/09/pauses-hanging-in-thunderbird-in-linux-with-lightning</id>
+    <id>http://www.economyofeffort.com/2012/04/09/pauses-hanging-in-thunderbird-in-linux-with-lightning</id>
     <content type="html"><![CDATA[<p>I was experiencing some very annoying pauses &amp; hangs in Thunderbird in Linux. The application would hang when launching, and periodically while open as well. CPU and RAM usage were not spiking, but the process status would show up in <em>top</em> as D (uninterruptible sleep &ndash; usually IO, according to the <em>ps</em> manpage).</p>
 
 <p>I tracked down the issue as being related to the Lightning calendaring extension. Lightning has an option for caching calendar entries for remote calendars. This <em>seems</em> like it would be a feature that improves performance, but as it turned out, it caused a lot of app-stalling IO. Each remote calendar has a Cache checkbox in its settings. Unchecking this immediately put an end to the pausing issues.</p>
@@ -45,9 +45,9 @@
   
   <entry>
     <title type="html"><![CDATA[Fixing slow Vim auto-completion with Ruby files]]></title>
-    <link href="http://brendonrapp.github.io/2012/03/01/fixing-slow-vim-auto-completion-with-ruby-files/"/>
+    <link href="http://www.economyofeffort.com/2012/03/01/fixing-slow-vim-auto-completion-with-ruby-files/"/>
     <updated>2012-03-01T12:48:30-08:00</updated>
-    <id>http://brendonrapp.github.io/2012/03/01/fixing-slow-vim-auto-completion-with-ruby-files</id>
+    <id>http://www.economyofeffort.com/2012/03/01/fixing-slow-vim-auto-completion-with-ruby-files</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve been a happy Vim user for a little while now. With the exception of Objective-C for iOS development (too much of a pain without Xcode&rsquo;s completion), I&rsquo;ve been writing all of my code in Vim.</p>
 
 <p>However, I have not been making use of Vim&rsquo;s auto-completion features, due to a serious performance issue when used with Ruby files. Completion was painfully slow. It was annoying when triggering completion manually, but it was a complete show-stopper when used with an automatic completion plugin like NeoComplCache.</p>
@@ -74,9 +74,9 @@
   
   <entry>
     <title type="html"><![CDATA[The (Wifi) Bridge to Nowhere]]></title>
-    <link href="http://brendonrapp.github.io/2011/09/06/the-wifi-bridge-to-nowhere/"/>
+    <link href="http://www.economyofeffort.com/2011/09/06/the-wifi-bridge-to-nowhere/"/>
     <updated>2011-09-06T06:35:28-07:00</updated>
-    <id>http://brendonrapp.github.io/2011/09/06/the-wifi-bridge-to-nowhere</id>
+    <id>http://www.economyofeffort.com/2011/09/06/the-wifi-bridge-to-nowhere</id>
     <content type="html"><![CDATA[<p>At a restaurant I often go to for lunch, I recently noticed that connecting my iPad to the wifi network resulted in a strong signal, but no usable Internet.</p>
 
 <p>When I spied the router, high up on the wall, I soon discovered why.</p>
@@ -87,16 +87,16 @@
   
   <entry>
     <title type="html"><![CDATA[Adobe Reader X(XXL)]]></title>
-    <link href="http://brendonrapp.github.io/2011/05/20/adobe-reader-xxxl/"/>
+    <link href="http://www.economyofeffort.com/2011/05/20/adobe-reader-xxxl/"/>
     <updated>2011-05-20T06:00:42-07:00</updated>
-    <id>http://brendonrapp.github.io/2011/05/20/adobe-reader-xxxl</id>
+    <id>http://www.economyofeffort.com/2011/05/20/adobe-reader-xxxl</id>
     <content type="html"><![CDATA[<p>There&rsquo;s &ldquo;bloat&rdquo;, and then there&rsquo;s BLOAT.</p>
 
 <p>&ldquo;Bloat&rdquo; is spending 5% of your CPU cycles and RAM to have a nice-looking user interface. &ldquo;Bloat&rdquo; is having the nerve to create a desktop environment that <em>might</em> not run well on a computer that&rsquo;s 15 years old.</p>
 
 <p>BLOAT is a PDF reader that is a 70 MB download, and (according to the installer) takes up 418 MB of space in total once extracted.</p>
 
-<p><img class="<a" src="href="http://www.economyofeffort.com/wp-content/uploads/2011/05/adobe-reader-x.jpg">http://www.economyofeffort.com/wp-content/uploads/2011/05/adobe-reader-x.jpg</a>"></p>
+<p>{% img <a href="http://www.economyofeffort.com/wp-content/uploads/2011/05/adobe-reader-x.jpg">http://www.economyofeffort.com/wp-content/uploads/2011/05/adobe-reader-x.jpg</a> %}</p>
 
 <p>If Adobe software were people, they&rsquo;d be dead from <a href="http://knowyourmeme.com/memes/diabeetus">DIABEETUS</a>.</p>
 ]]></content>

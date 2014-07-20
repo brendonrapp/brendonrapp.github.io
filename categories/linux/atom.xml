@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: linux | Economy of Effort]]></title>
-  <link href="http://brendonrapp.github.io/categories/linux/atom.xml" rel="self"/>
-  <link href="http://brendonrapp.github.io/"/>
-  <updated>2014-07-09T21:22:58-07:00</updated>
-  <id>http://brendonrapp.github.io/</id>
+  <link href="http://www.economyofeffort.com/categories/linux/atom.xml" rel="self"/>
+  <link href="http://www.economyofeffort.com/"/>
+  <updated>2014-07-20T13:19:05-07:00</updated>
+  <id>http://www.economyofeffort.com/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Linux USB Bootable Stick Netinstall That Works]]></title>
-    <link href="http://brendonrapp.github.io/2010/08/12/linux-usb-bootable-stick-netinstall-that-works/"/>
+    <link href="http://www.economyofeffort.com/2010/08/12/linux-usb-bootable-stick-netinstall-that-works/"/>
     <updated>2010-08-12T07:37:26-07:00</updated>
-    <id>http://brendonrapp.github.io/2010/08/12/linux-usb-bootable-stick-netinstall-that-works</id>
+    <id>http://www.economyofeffort.com/2010/08/12/linux-usb-bootable-stick-netinstall-that-works</id>
     <content type="html"><![CDATA[<p>Today, I spent a lot of time fussing with bootable USB thumbsticks, trying to set one up that would boot the new backup server I just built at work. The machine has no optical drive, so I just wanted to boot a simple netinstall and have the system pull everything it needs from remote mirrors.</p>
 
 <p>The supposed easy method was to use <a href="http://unetbootin.sourceforge.net/">Unetbootin</a>. Everything about it <em>was</em> easy, except for the part where the bootable USB sticks it created didn&rsquo;t work. Every boot attempt was met with &ldquo;Boot error&rdquo; or &ldquo;Missing operating system&rdquo;.</p>

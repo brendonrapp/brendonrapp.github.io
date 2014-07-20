@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: osx | Economy of Effort]]></title>
-  <link href="http://brendonrapp.github.io/categories/osx/atom.xml" rel="self"/>
-  <link href="http://brendonrapp.github.io/"/>
-  <updated>2014-07-09T21:22:58-07:00</updated>
-  <id>http://brendonrapp.github.io/</id>
+  <link href="http://www.economyofeffort.com/categories/osx/atom.xml" rel="self"/>
+  <link href="http://www.economyofeffort.com/"/>
+  <updated>2014-07-20T13:19:05-07:00</updated>
+  <id>http://www.economyofeffort.com/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[OS X Homebrew - gnutls build failure fix]]></title>
-    <link href="http://brendonrapp.github.io/2011/06/06/os-x-homebrew-gnutls-build-failure-fix/"/>
+    <link href="http://www.economyofeffort.com/2011/06/06/os-x-homebrew-gnutls-build-failure-fix/"/>
     <updated>2011-06-06T06:21:18-07:00</updated>
-    <id>http://brendonrapp.github.io/2011/06/06/os-x-homebrew-gnutls-build-failure-fix</id>
+    <id>http://www.economyofeffort.com/2011/06/06/os-x-homebrew-gnutls-build-failure-fix</id>
     <content type="html"><![CDATA[<p>When trying to update my Homebrew install, I was getting this error when building <em>gnutls</em>:</p>
 
 <p><code>

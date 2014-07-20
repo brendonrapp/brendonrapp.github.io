@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Twitter | Economy of Effort]]></title>
-  <link href="http://brendonrapp.github.io/categories/twitter/atom.xml" rel="self"/>
-  <link href="http://brendonrapp.github.io/"/>
-  <updated>2014-07-09T21:22:58-07:00</updated>
-  <id>http://brendonrapp.github.io/</id>
+  <link href="http://www.economyofeffort.com/categories/twitter/atom.xml" rel="self"/>
+  <link href="http://www.economyofeffort.com/"/>
+  <updated>2014-07-20T13:19:05-07:00</updated>
+  <id>http://www.economyofeffort.com/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Twitter Hall of Shame: Chris Johnson]]></title>
-    <link href="http://brendonrapp.github.io/2009/07/17/twitter-hall-of-shame-chris-johnson/"/>
+    <link href="http://www.economyofeffort.com/2009/07/17/twitter-hall-of-shame-chris-johnson/"/>
     <updated>2009-07-17T13:52:09-07:00</updated>
-    <id>http://brendonrapp.github.io/2009/07/17/twitter-hall-of-shame-chris-johnson</id>
+    <id>http://www.economyofeffort.com/2009/07/17/twitter-hall-of-shame-chris-johnson</id>
     <content type="html"><![CDATA[<p>Subtitle: &ldquo;140 Characters is No Excuse&rdquo;.</p>
 
 <p><img src="http://www.economyofeffort.com/wp-content/uploads/2009/07/chris-johnson-tennessee-titans_edited-1.jpg" alt="NFL AFC Divisional Playoff Game" /></p>

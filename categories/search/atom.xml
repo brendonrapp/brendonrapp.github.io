@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: search | Economy of Effort]]></title>
-  <link href="http://brendonrapp.github.io/categories/search/atom.xml" rel="self"/>
-  <link href="http://brendonrapp.github.io/"/>
-  <updated>2014-07-09T21:22:58-07:00</updated>
-  <id>http://brendonrapp.github.io/</id>
+  <link href="http://www.economyofeffort.com/categories/search/atom.xml" rel="self"/>
+  <link href="http://www.economyofeffort.com/"/>
+  <updated>2014-07-20T13:19:05-07:00</updated>
+  <id>http://www.economyofeffort.com/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
     
@@ -15,33 +15,33 @@
   
   <entry>
     <title type="html"><![CDATA[Searching with DuckDuckGo]]></title>
-    <link href="http://brendonrapp.github.io/2012/08/14/searching-with-duckduckgo/"/>
+    <link href="http://www.economyofeffort.com/2012/08/14/searching-with-duckduckgo/"/>
     <updated>2012-08-14T19:21:00-07:00</updated>
-    <id>http://brendonrapp.github.io/2012/08/14/searching-with-duckduckgo</id>
+    <id>http://www.economyofeffort.com/2012/08/14/searching-with-duckduckgo</id>
     <content type="html"><![CDATA[<p>1993 is considered to be the starting point of the commercial Internet. For those of us living in little farm towns in the San Joaquin Valley, however, it would not be until 1995 that the Internet came into our lives.</p>
 
 <p>Weeks before the big opening of the local unlimited-use dial-up ISP, the local newspaper ran an article about the Internet and listed some websites to check out. Among the list was Infoseek, one of the first major search engines. There were a small army of search engines in those days that vied for attention: AltaVista, Excite, Lycos, WebCrawler, and of course, Yahoo. For me, though, Infoseek was my home on the Internet for the next 3 years.</p>
 
-<p><img class="center <a" src="href="http://www.economyofeffort.com/wp-content/uploads/2011/02/infoseek-crop.jpg">http://www.economyofeffort.com/wp-content/uploads/2011/02/infoseek-crop.jpg</a>"></p>
+<p>{% img center <a href="http://www.economyofeffort.com/wp-content/uploads/2011/02/infoseek-crop.jpg">http://www.economyofeffort.com/wp-content/uploads/2011/02/infoseek-crop.jpg</a> %}</p>
 
 <p>As detailed on Wikipedia&rsquo;s brief <a href="https://secure.wikimedia.org/wikipedia/en/wiki/Infoseek#History">History section for Infoseek</a>, the site peaked in 1997, was acquired by Disney in 1998 and merged with other Disney online properties <a href="http://news.cnet.com/Disney-and-Infoseek-raise-the-curtain-on-Go/2100-1023_3-219045.html">to form Go.com</a>, and by mid-1999, ceased to exist as its own site.</p>
 
 <p>I remember the day Infoseek.com began redirecting to Go.com. The lean search engine pictured above was gone, and a late &lsquo;90s &ldquo;portal&rdquo; site was in its place. By that time, however, the folks on ZDTV (the original, superior version of TechTV) had long been cluing people in on a new search engine called Google.</p>
 
-<p><img class="center <a" src="href="http://www.economyofeffort.com/wp-content/uploads/2011/02/google.jpg">http://www.economyofeffort.com/wp-content/uploads/2011/02/google.jpg</a>">
+<p>{% img center <a href="http://www.economyofeffort.com/wp-content/uploads/2011/02/google.jpg">http://www.economyofeffort.com/wp-content/uploads/2011/02/google.jpg</a> %}
 <small>Kids, this was what Google looked like when your parents started using it. At least if your parents were late &lsquo;90s geeks.</small></p>
 
 <p>Google has been my search engine since the day Infoseek kicked over to Go.com. So, that&rsquo;s almost 12 years now.</p>
 
 <p>As of the past few months, however, I have been experimenting with another search engine. I&rsquo;m not talking about Bing. I mean DuckDuckGo.</p>
 
-<p><img class="center <a" src="href="http://www.economyofeffort.com/wp-content/uploads/2011/02/duckduckgo.jpg">http://www.economyofeffort.com/wp-content/uploads/2011/02/duckduckgo.jpg</a>"></p>
+<p>{% img center <a href="http://www.economyofeffort.com/wp-content/uploads/2011/02/duckduckgo.jpg">http://www.economyofeffort.com/wp-content/uploads/2011/02/duckduckgo.jpg</a> %}</p>
 
 <p>DuckDuckGo has many things going for it, to differentiate itself from Google.</p>
 
 <p>The first is that DDG takes user privacy very seriously. Indeed, this is probably the main thing they use to separate themselves from Google, as evidenced by the <a href="http://donttrack.us/">donttrack.us</a> website and the Google-slapping billboard advertising the site:</p>
 
-<p><img class="center <a" src="href="http://www.economyofeffort.com/wp-content/uploads/2011/02/ddg_billboard2-660x441.jpg">http://www.economyofeffort.com/wp-content/uploads/2011/02/ddg_billboard2-660x441.jpg</a>">
+<p>{% img center <a href="http://www.economyofeffort.com/wp-content/uploads/2011/02/ddg_billboard2-660x441.jpg">http://www.economyofeffort.com/wp-content/uploads/2011/02/ddg_billboard2-660x441.jpg</a> %}
 <small>DDG sticks it to Google with this San Francisco billboard and the donttrack.us website.</small></p>
 
 <p>donttrack.us explains DDG&rsquo;s privacy protection better than I can, so I won&rsquo;t try to re-summarize it here. While I am not a privacy zealot, I do place some degree of value on increased privacy. I use ad-blockers, script-blockers, and other such privacy protecting browser extensions. I do consider DDG&rsquo;s privacy handling an asset, although I am not going to freeze out Google or stop using Google&rsquo;s non-search services (of which I use many) over their tracking. When it comes down to it, I will choose functionality over privacy protection, but I will make an effort to try and get both.</p>
@@ -52,11 +52,11 @@
 
 <p>For example, if you enter &ldquo;pink floyd !g&rdquo; into DuckDuckGo&hellip;</p>
 
-<p><img class="center" src="/media/images/duckduckgo.png"></p>
+<p>{% img center /media/images/duckduckgo.png %}</p>
 
 <p>&hellip; you&rsquo;ll be sent to the Google search results page for &ldquo;pink floyd&rdquo;:</p>
 
-<p><img class="center" src="/media/images/google-pinkfloyd.png"></p>
+<p>{% img center /media/images/google-pinkfloyd.png %}</p>
 
 <p>Now I can hear you thinking, &ldquo;why would you go to DDG to type a search meant for Google, instead of just going to Google in the first place?&rdquo;. The answer is, I don&rsquo;t actually go to a website to do my searching. Browsers like Chrome and Firefox have the ability to type a search into the browser directly (in the URL bar in Chrome and in Firefox if you use Foobar or Omnibar.</p>
 

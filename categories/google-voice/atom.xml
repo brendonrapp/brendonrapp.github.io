@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: google-voice | Economy of Effort]]></title>
-  <link href="http://brendonrapp.github.io/categories/google-voice/atom.xml" rel="self"/>
-  <link href="http://brendonrapp.github.io/"/>
-  <updated>2014-07-09T21:22:58-07:00</updated>
-  <id>http://brendonrapp.github.io/</id>
+  <link href="http://www.economyofeffort.com/categories/google-voice/atom.xml" rel="self"/>
+  <link href="http://www.economyofeffort.com/"/>
+  <updated>2014-07-20T13:19:05-07:00</updated>
+  <id>http://www.economyofeffort.com/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
     
@@ -15,14 +15,14 @@
   
   <entry>
     <title type="html"><![CDATA[Turn an Android Handset into a Free Wifi Phone with Google Voice]]></title>
-    <link href="http://brendonrapp.github.io/2010/07/30/turn-an-android-handset-into-a-free-wifi-phone-with-google-voice/"/>
+    <link href="http://www.economyofeffort.com/2010/07/30/turn-an-android-handset-into-a-free-wifi-phone-with-google-voice/"/>
     <updated>2010-07-30T09:00:07-07:00</updated>
-    <id>http://brendonrapp.github.io/2010/07/30/turn-an-android-handset-into-a-free-wifi-phone-with-google-voice</id>
+    <id>http://www.economyofeffort.com/2010/07/30/turn-an-android-handset-into-a-free-wifi-phone-with-google-voice</id>
     <content type="html"><![CDATA[<p><strong>UPDATE 2012-08-17</strong>: I&rsquo;m surprised at how much traffic this post still gets. The post is over 2 years old at this point, and may not be directly useful anymore. The Android landscape has changed a lot, and I haven&rsquo;t touched an Android phone newer than my old G1&rsquo;s.</p>
 
 <p>There are a lot of suggestions in the comments, though, that new readers might want to check out to accomplish what I did with these instructions in 2010.</p>
 
-<p><img class="center <a" src="href="http://www.economyofeffort.com/wp-content/uploads/2010/07/screenshot_sip.png">http://www.economyofeffort.com/wp-content/uploads/2010/07/screenshot_sip.png</a>"></p>
+<p>{% img center <a href="http://www.economyofeffort.com/wp-content/uploads/2010/07/screenshot_sip.png">http://www.economyofeffort.com/wp-content/uploads/2010/07/screenshot_sip.png</a> %}</p>
 
 <p>My wife and I recently abandoned our T-Mobile G1&rsquo;s to become iPhone people. As much as it pained me to (temporarily, at least) abandon a nice open platform I had followed for some time, I have to confess that the new iPhones hit a sweet spot in a way that the previous three generations of iPhone simply did not (for me, at least).</p>
 
