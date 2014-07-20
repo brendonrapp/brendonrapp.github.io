@@ -9,7 +9,7 @@
   <meta name="author" content="Brendon Rapp">
 
   
-  <meta name="description" content="Finally got around to fixing the Archive page on this site. If I recall correctly, what happened originally is that I was attempting to get rid of &hellip;">
+  <meta name="description" content="Haml is great. Haml is the JSON to HTML&rsquo;s XML: all of the garbage and noise stripped away, with only the data and minimal amount of ceremony &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -87,6 +87,100 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2014/07/20/convert-html-to-haml-within-vim-buffer/">Convert HTML to Haml (and Back Again) Within a Vim Buffer</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-20T13:36:00-07:00" pubdate data-updated="true">Jul 20<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://haml.info/">Haml</a> is great. Haml is the JSON to HTML&rsquo;s XML: all of the garbage and noise stripped away, with only the data and minimal amount of ceremony left.</p>
+
+<p>I use Haml on all Rails projects now, but when dealing with legacy projects, I still encounter HTML/ERb templates.</p>
+
+<p>Using the <a href="https://github.com/haml/html2haml">html2haml</a> command-line tool, I can easily convert HTML/ERb in my Vim buffer into Haml.</p>
+
+<p>The project distributes as a Ruby gem, so installing is accomplished with:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem install html2haml
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then, the magic is done with some Vim bindings to feed a buffer or visually-selected chunk of text to the application, and paste its output back into the buffer, replacing the original text.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>nmap <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="k">h</span> :%<span class="p">!</span>html2haml <span class="p">--</span>erb <span class="m">2</span><span class="p">&gt;</span> <span class="sr">/dev/</span>null<span class="p">&lt;</span>CR<span class="p">&gt;</span>:<span class="k">set</span> <span class="nb">ft</span><span class="p">=</span>haml<span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</span><span class='line'>vmap <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="k">h</span> :<span class="p">!</span>html2haml <span class="p">--</span>erb <span class="m">2</span><span class="p">&gt;</span> <span class="sr">/dev/</span>null<span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When changing the entire file, I&rsquo;ve also added the command to change the filetype in the Vim buffer, for convenience.</p>
+
+<p>That takes us from HTML/ERb to Haml, but what if we need to go back in the other direction? This is possible with the <a href="https://github.com/elia/haml2erb">haml2erb</a> tool. Unfortunately, this tool is not actively maintained the way html2haml is. For me, on Ruby 2.1.1, it was necessary to install the 0.3.0 prerelease version, as the last official version would not build. Once installed, though, it worked as expected.</p>
+
+<p>We must explicitly indicate which version to install in order to install prerelease gems:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem install haml2erb -v <span class="s1">&#39;0.3.0.pre.3&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The Vim bindings are much the same as the html2haml ones:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>nmap <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="k">e</span> :%<span class="p">!</span>haml2erb <span class="m">2</span><span class="p">&gt;</span> <span class="sr">/dev/</span>null<span class="p">&lt;</span>CR<span class="p">&gt;</span>:<span class="k">set</span> <span class="nb">ft</span><span class="p">=</span>eruby<span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</span><span class='line'>vmap <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="k">e</span> :<span class="p">!</span>haml2erb <span class="m">2</span><span class="p">&gt;</span> <span class="sr">/dev/</span>null<span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I have not used this nearly as much as html2haml, as I&rsquo;m rarely changing layout code from Haml back into HTML. However, the couple of times I have needed to do it, it has worked exactly as expected..</p>
+</div>
+  
+  
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/erb/'>erb</a>, <a class='category' href='/categories/haml/'>haml</a>, <a class='category' href='/categories/html/'>html</a>, <a class='category' href='/categories/ruby/'>ruby</a>, <a class='category' href='/categories/vim/'>vim</a>
+  
+</span>
+
+
+      </p>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -1057,94 +1151,6 @@ By default, users can run <code>rake preview</code> to make Octopress spin up a 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/2012/08/13/segfault-after-building-command-t-plugin-for-vim/">Segfault After Building Command-T Plugin for Vim</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-13T19:25:00-07:00" pubdate data-updated="true">Aug 13<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The <a href="https://wincent.com/products/command-t">Command-T plugin</a> provides TextMate-style &ldquo;go to file&rdquo; searching for Vim.</p>
-
-<p>It&rsquo;s a very nice plugin. Part of the installation process involves building/compiling the plugin, as it is partially written in C.</p>
-
-<p>I have twice encountered a situation where my Gvim would segfault when trying to launch, after having built the plugin.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>legion@legion-desktop:
-</span><span class='line'>~/.vim/bundle/command-t$ gvim
-</span><span class='line'>Vim: Caught deadly signal SEGV
-</span><span class='line'>Vim: Finished.
-</span><span class='line'>Segmentation fault</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The problem was due to building the plugin using a different version of Ruby than the one that Gvim was built with. For me, this is because I was using the Gvim that comes with my Linux distribution (Ubuntu), but not the Ruby that comes included in the distro. Instead, I am running RVM and defaulting to a more current Ruby interpreter in my Bash environment.</p>
-
-<p>The answer, for me, was to switch to the &ldquo;system&rdquo; Ruby in RVM, and then rebuild the plugin:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rvm --system
-</span><span class='line'>rake make</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I also had this happen on my Mac laptop. Same basic situation: mismatch between the version of Ruby that my copy of MacVim was built with, and the version I was using in RVM. In that case, I believe I installed a new Ruby with RVM, one that matched the version that the particular MacVim build was built with.</p>
-
-<p>To find out which version of Ruby that Vim/Gvim/MacVim was built with, use the command:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>:ruby p RUBY_VERSION</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Then, if you don&rsquo;t already have that version of Ruby in your OS, you can build a matching one from within RVM, and use that one to build the plugin.</p>
-</div>
-  
-  
-    <footer>
-      <p class="meta">
-        categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/categories/ruby/'>ruby</a>
-  
-</span>
-
-
-      </p>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -1160,6 +1166,10 @@ By default, users can run <code>rake preview</code> to make Octopress spin up a 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/07/20/convert-html-to-haml-within-vim-buffer/">Convert HTML to Haml (and Back Again) Within a Vim Buffer</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/07/20/fixed-the-archive-page/">Fixed the Archive Page</a>
       </li>
     
@@ -1173,10 +1183,6 @@ By default, users can run <code>rake preview</code> to make Octopress spin up a 
     
       <li class="post">
         <a href="/2013/08/03/careful-what-you-name-your-rails-partials/">Careful What You Name Your Rails Partials</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/07/29/reattach-to-user-namespace-the-fix-for-your-tmux-in-os-x-woes/">Reattach-to-user-namespace: The Fix for Your Tmux in OS X Woes</a>
       </li>
     
   </ul>

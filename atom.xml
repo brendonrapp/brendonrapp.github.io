@@ -4,7 +4,7 @@
   <title><![CDATA[Economy of Effort]]></title>
   <link href="http://www.economyofeffort.com/atom.xml" rel="self"/>
   <link href="http://www.economyofeffort.com/"/>
-  <updated>2014-07-20T13:18:16-07:00</updated>
+  <updated>2014-07-20T16:55:07-07:00</updated>
   <id>http://www.economyofeffort.com/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
@@ -12,6 +12,57 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Convert HTML to Haml (and Back Again) Within a Vim Buffer]]></title>
+    <link href="http://www.economyofeffort.com/2014/07/20/convert-html-to-haml-within-vim-buffer/"/>
+    <updated>2014-07-20T13:36:00-07:00</updated>
+    <id>http://www.economyofeffort.com/2014/07/20/convert-html-to-haml-within-vim-buffer</id>
+    <content type="html"><![CDATA[<p><a href="http://haml.info/">Haml</a> is great. Haml is the JSON to HTML&rsquo;s XML: all of the garbage and noise stripped away, with only the data and minimal amount of ceremony left.</p>
+
+<p>I use Haml on all Rails projects now, but when dealing with legacy projects, I still encounter HTML/ERb templates.</p>
+
+<p>Using the <a href="https://github.com/haml/html2haml">html2haml</a> command-line tool, I can easily convert HTML/ERb in my Vim buffer into Haml.</p>
+
+<p>The project distributes as a Ruby gem, so installing is accomplished with:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem install html2haml
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then, the magic is done with some Vim bindings to feed a buffer or visually-selected chunk of text to the application, and paste its output back into the buffer, replacing the original text.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>nmap <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="k">h</span> :%<span class="p">!</span>html2haml <span class="p">--</span>erb <span class="m">2</span><span class="p">&gt;</span> <span class="sr">/dev/</span>null<span class="p">&lt;</span>CR<span class="p">&gt;</span>:<span class="k">set</span> <span class="nb">ft</span><span class="p">=</span>haml<span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</span><span class='line'>vmap <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="k">h</span> :<span class="p">!</span>html2haml <span class="p">--</span>erb <span class="m">2</span><span class="p">&gt;</span> <span class="sr">/dev/</span>null<span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When changing the entire file, I&rsquo;ve also added the command to change the filetype in the Vim buffer, for convenience.</p>
+
+<p>That takes us from HTML/ERb to Haml, but what if we need to go back in the other direction? This is possible with the <a href="https://github.com/elia/haml2erb">haml2erb</a> tool. Unfortunately, this tool is not actively maintained the way html2haml is. For me, on Ruby 2.1.1, it was necessary to install the 0.3.0 prerelease version, as the last official version would not build. Once installed, though, it worked as expected.</p>
+
+<p>We must explicitly indicate which version to install in order to install prerelease gems:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem install haml2erb -v <span class="s1">&#39;0.3.0.pre.3&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The Vim bindings are much the same as the html2haml ones:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>nmap <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="k">e</span> :%<span class="p">!</span>haml2erb <span class="m">2</span><span class="p">&gt;</span> <span class="sr">/dev/</span>null<span class="p">&lt;</span>CR<span class="p">&gt;</span>:<span class="k">set</span> <span class="nb">ft</span><span class="p">=</span>eruby<span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</span><span class='line'>vmap <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="k">e</span> :<span class="p">!</span>haml2erb <span class="m">2</span><span class="p">&gt;</span> <span class="sr">/dev/</span>null<span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I have not used this nearly as much as html2haml, as I&rsquo;m rarely changing layout code from Haml back into HTML. However, the couple of times I have needed to do it, it has worked exactly as expected..</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Fixed the Archive Page]]></title>
@@ -993,27 +1044,6 @@ alias brew-upgrade=&lsquo;brew update &amp;&amp; brew list | xargs brew install&
 
 
 <p>Thank you, <a href="https://github.com/jabley">jabley</a>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Stuff I Like That You Should Too: Moleskine Notebooks]]></title>
-    <link href="http://www.economyofeffort.com/2011/06/06/stuff-i-like-that-you-should-too-moleskine-notebooks/"/>
-    <updated>2011-06-06T05:55:11-07:00</updated>
-    <id>http://www.economyofeffort.com/2011/06/06/stuff-i-like-that-you-should-too-moleskine-notebooks</id>
-    <content type="html"><![CDATA[<p>Yes, I know they&rsquo;re the hipster&rsquo;s notebook and that they have a cultish following. Yes, I know that their posturing as the <a href="http://www.moleskine.com/moleskine_world/_the_legendary_notebook_moleskine.php">notebook of Hemingway and Picasso</a> is a healthy dose of creative license. Yes, I know that they&rsquo;re overpriced and that for all the talk of Italian design and French paper, they&rsquo;re <a href="http://www.moleskine.com/catalogue/moleskine_quality.php">bound together by cheap Chinese labor</a>.</p>
-
-<p>But frankly, none of that speaks to the quality of the notebook. And as I nearly fill my first one with a year&rsquo;s worth of work notes, I must say that mine has been a durable, reliable tool.</p>
-
-<p><img class="left" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/moleskine.jpg"> I&rsquo;ve never been completely happy with computer-based note-taking solutions (though I have come closer with Evernote on the iPad and iPhone). And like many geek brains &ndash; constantly preoccupied with the last technical problem it was trying to solve &ndash; mine is a forgetful one.</p>
-
-<p>So, a year ago, I invested in my first Moleskine notebook. I had, of course, heard all of the praise from the true believers. I decided to give them a shot myself.</p>
-
-<p>My writing needs are not like those of, say, actual <em>writers</em>. But I needed a good, compact notebook that I could take everywhere, and one that would be able to hold its own on the inside of a laptop bag, being smashed up against larger and heavier objects.</p>
-
-<p>The Moleskine is beautifully and simply designed. The importance of the little strap that holds the book closed cannot be easily overstated. Unlike every other paper-based thing that is subjected to the interior of my laptop bag, the Moleskine pages stay intact and unmolested, locked away behind an impenetrable shell held closed by that handy little strap.</p>
-
-<p>As much as I like the idea of going completely paperless (as I am with magazines and books), the &ldquo;best tool for the job&rdquo; mindset wins out. I will continue to use Evernote for certain things, but for my daily work notes, I will keep reaching for my Moleskine.</p>
 ]]></content>
   </entry>
   

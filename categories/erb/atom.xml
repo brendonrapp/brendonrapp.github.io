@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: erb | Economy of Effort]]></title>
+  <link href="http://www.economyofeffort.com/categories/erb/atom.xml" rel="self"/>
+  <link href="http://www.economyofeffort.com/"/>
+  <updated>2014-07-20T16:55:07-07:00</updated>
+  <id>http://www.economyofeffort.com/</id>
+  <author>
+    <name><![CDATA[Brendon Rapp]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Convert HTML to Haml (and Back Again) Within a Vim Buffer]]></title>
+    <link href="http://www.economyofeffort.com/2014/07/20/convert-html-to-haml-within-vim-buffer/"/>
+    <updated>2014-07-20T13:36:00-07:00</updated>
+    <id>http://www.economyofeffort.com/2014/07/20/convert-html-to-haml-within-vim-buffer</id>
+    <content type="html"><![CDATA[<p><a href="http://haml.info/">Haml</a> is great. Haml is the JSON to HTML&rsquo;s XML: all of the garbage and noise stripped away, with only the data and minimal amount of ceremony left.</p>
+
+<p>I use Haml on all Rails projects now, but when dealing with legacy projects, I still encounter HTML/ERb templates.</p>
+
+<p>Using the <a href="https://github.com/haml/html2haml">html2haml</a> command-line tool, I can easily convert HTML/ERb in my Vim buffer into Haml.</p>
+
+<p>The project distributes as a Ruby gem, so installing is accomplished with:</p>
+
+<p><code>bash
+$ gem install html2haml
+</code></p>
+
+<p>Then, the magic is done with some Vim bindings to feed a buffer or visually-selected chunk of text to the application, and paste its output back into the buffer, replacing the original text.</p>
+
+<p><code>vim
+nmap &lt;leader&gt;h :%!html2haml --erb 2&gt; /dev/null&lt;CR&gt;:set ft=haml&lt;CR&gt;
+vmap &lt;leader&gt;h :!html2haml --erb 2&gt; /dev/null&lt;CR&gt;
+</code></p>
+
+<p>When changing the entire file, I&rsquo;ve also added the command to change the filetype in the Vim buffer, for convenience.</p>
+
+<p>That takes us from HTML/ERb to Haml, but what if we need to go back in the other direction? This is possible with the <a href="https://github.com/elia/haml2erb">haml2erb</a> tool. Unfortunately, this tool is not actively maintained the way html2haml is. For me, on Ruby 2.1.1, it was necessary to install the 0.3.0 prerelease version, as the last official version would not build. Once installed, though, it worked as expected.</p>
+
+<p>We must explicitly indicate which version to install in order to install prerelease gems:</p>
+
+<p><code>bash
+$ gem install haml2erb -v '0.3.0.pre.3'
+</code></p>
+
+<p>The Vim bindings are much the same as the html2haml ones:</p>
+
+<p><code>vim
+nmap &lt;leader&gt;e :%!haml2erb 2&gt; /dev/null&lt;CR&gt;:set ft=eruby&lt;CR&gt;
+vmap &lt;leader&gt;e :!haml2erb 2&gt; /dev/null&lt;CR&gt;
+</code></p>
+
+<p>I have not used this nearly as much as html2haml, as I&rsquo;m rarely changing layout code from Haml back into HTML. However, the couple of times I have needed to do it, it has worked exactly as expected..</p>
+]]></content>
+  </entry>
+  
+</feed>

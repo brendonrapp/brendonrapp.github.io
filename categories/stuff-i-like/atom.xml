@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Stuff I Like | Economy of Effort]]></title>
   <link href="http://www.economyofeffort.com/categories/stuff-i-like/atom.xml" rel="self"/>
   <link href="http://www.economyofeffort.com/"/>
-  <updated>2014-07-20T13:19:05-07:00</updated>
+  <updated>2014-07-20T16:55:07-07:00</updated>
   <id>http://www.economyofeffort.com/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
@@ -20,7 +20,7 @@
     <id>http://www.economyofeffort.com/2011/06/07/stuff-i-like-that-you-should-too-homebrew-for-mac-os-x</id>
     <content type="html"><![CDATA[<p>Mac OS X is a UNIX-based operating system. Apple proudly states that fact whenever they&rsquo;re pitching OS X.</p>
 
-<p>{% img <a href="http://www.economyofeffort.com/wp-content/uploads/2011/06/apple-unix.png">http://www.economyofeffort.com/wp-content/uploads/2011/06/apple-unix.png</a> %}</p>
+<p><img class="<a" src="href="http://www.economyofeffort.com/wp-content/uploads/2011/06/apple-unix.png">http://www.economyofeffort.com/wp-content/uploads/2011/06/apple-unix.png</a>"></p>
 
 <p>A lot of people &ndash; myself included &ndash; like OS X in part because of this fact. I am primarily a Linux user, but for my personal laptop, it&rsquo;s nice to have a system with all the friendly-out-of-the-box UI trappings of a general consumer product, while still having UNIX at my fingertips.</p>
 
@@ -30,7 +30,7 @@
 
 <p>There are three main community projects which bring package management for UNIX programs to Mac OS X. They are <a href="http://finkproject.org/">Fink</a>, <a href="http://www.macports.org/">MacPorts</a>, and <a href="http://mxcl.github.com/homebrew/">Homebrew</a>.</p>
 
-<p><a href="http://mxcl.github.com/homebrew/">{% img http://www.economyofeffort.com/wp-content/uploads/2011/06/homebrew.png %}</a></p>
+<p><a href="http://mxcl.github.com/homebrew/"><img src="http://www.economyofeffort.com/wp-content/uploads/2011/06/homebrew.png"></a></p>
 
 <p>Of these, my favorite is Homebrew. Homebrew is very light and lean, and ideal for people who just want to install some select packages to augment the Darwin base system.</p>
 
@@ -60,7 +60,7 @@ alias brew-upgrade=&lsquo;brew update &amp;&amp; brew list | xargs brew install&
 
 <p>But frankly, none of that speaks to the quality of the notebook. And as I nearly fill my first one with a year&rsquo;s worth of work notes, I must say that mine has been a durable, reliable tool.</p>
 
-<p>{% img left <a href="http://www.economyofeffort.com/wp-content/uploads/2011/06/moleskine.jpg">http://www.economyofeffort.com/wp-content/uploads/2011/06/moleskine.jpg</a> %} I&rsquo;ve never been completely happy with computer-based note-taking solutions (though I have come closer with Evernote on the iPad and iPhone). And like many geek brains &ndash; constantly preoccupied with the last technical problem it was trying to solve &ndash; mine is a forgetful one.</p>
+<p><img class="left <a" src="href="http://www.economyofeffort.com/wp-content/uploads/2011/06/moleskine.jpg">http://www.economyofeffort.com/wp-content/uploads/2011/06/moleskine.jpg</a>"> I&rsquo;ve never been completely happy with computer-based note-taking solutions (though I have come closer with Evernote on the iPad and iPhone). And like many geek brains &ndash; constantly preoccupied with the last technical problem it was trying to solve &ndash; mine is a forgetful one.</p>
 
 <p>So, a year ago, I invested in my first Moleskine notebook. I had, of course, heard all of the praise from the true believers. I decided to give them a shot myself.</p>
 

@@ -9,8 +9,7 @@
   <meta name="author" content="Brendon Rapp">
 
   
-  <meta name="description" content="I (heart) the freaky Palm Pre girl.
-">
+  <meta name="description" content="I work for a small design studio. Their core business is creating logos, designing signage for corporate events, and all that jazz. Over the past few &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -88,6 +87,106 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2009/08/07/the-aftermath-of-dan/">The Aftermath of Dan</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-08-07T18:29:54-07:00" pubdate data-updated="true">Aug 7<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I work for a small design studio. Their core business is creating logos, designing signage for corporate events, and all that jazz. Over the past few years, they&rsquo;ve found clients wanting more and more electronic-based content from them. First it was email blasts and static websites, then they wanted websites that did more than just serve up static content, and pretty soon it became web applications and even small desktop applications. Hence the creation of the job which I now fill.</p>
+
+<p>I wasn&rsquo;t the first one to fill the job. A couple of guys came before me. My immediate predecessor, we&rsquo;ll call &ldquo;Dan&rdquo;. Dan was not particularly beloved. On the contrary, it was those oh-so-important &ldquo;people skills&rdquo; (or lack thereof) that led to his, shall we say, unscheduled exit from the position. My first week on the job ended with me getting the raise that would have been saved for after my 3 month performance review, helped in no small part to solving problems in that first week that had been long-standing issues. Most importantly, I was Not Dan.</p>
+
+<p>I recently read a cute little article linked on Hacker News and reddit: <a href="http://sites.google.com/site/yacoset/Home/signs-that-you-re-a-bad-programmer">Signs that you&rsquo;re a bad programmer</a>. A lot of these can be applied to the code Dan left behind. Particularly, #2: &ldquo;Poor understanding of the language&rsquo;s programming mode&rdquo;, and its first symptom: &ldquo;Using whatever syntax is necessary to break out of the model, then writing the remainder of the program in their familiar language&rsquo;s style&rdquo;.</p>
+
+<p>Dan apparently got started as a FORTRAN programmer back in the day. It&rsquo;s clear that he never really understood PHP. One of the most contentious parts of PHP development is mixing PHP code alongside HTML markup. Whether the HTML is separated out in templates, mixed with inline PHP, stored entirely in echo statements or HEREDOCs, or even just written there in the file after &ldquo;jumping out&rdquo; of PHP mode, there&rsquo;s a number of ways to approach the issue of PHP&rsquo;s coexistence with HTML markup.</p>
+
+<p>Unfortunately, the language&rsquo;s flexibility means approaches like Dan&rsquo;s are possible. Dan clearly never quite wrapped his head around the practices I mentioned above. Instead, his concept of HTML within PHP was to wrap all HTML generation inside of tiny PHP functions. Here&rsquo;s an example:</p>
+
+<pre><code>startTable("725", "0", "", "id=addTable");
+ startRow("center","2","","","noPad");
+ if($assId) {
+ displayButton("Update Record", "what");
+ } else {
+ displayButton("Add Job", "what");
+ }
+ displayButton("Reset", "what", "reset");
+ endRow();
+ startRow("center","2","","","","top");
+ echo "&lt;b&gt;Attach File:&amp;nbsp;&lt;/b&gt; ";
+ displayFormItem("file", "fileNam");
+ displayButton("Upload", "what");
+ endRow();
+</code></pre>
+
+<p>This generates the HTML:</p>
+
+<pre><code>&lt;&lt;span&gt;table&lt;/span&gt;&lt;span&gt; width&lt;/span&gt;=&lt;span&gt;"725" &lt;/span&gt;&lt;span&gt;id&lt;/span&gt;=&lt;span&gt;addTable &lt;/span&gt;&lt;span&gt;border&lt;/span&gt;=&lt;span&gt;"0" &lt;/span&gt;&lt;span&gt;cellpadding&lt;/span&gt;=&lt;span&gt;"0" &lt;/span&gt;&lt;span&gt;cellspacing&lt;/span&gt;=&lt;span&gt;"0"&lt;/span&gt;&gt;
+&lt;&lt;span&gt;tr&lt;/span&gt;&gt;&lt;&lt;span&gt;td&lt;/span&gt;&lt;span&gt; class&lt;/span&gt;=&lt;span&gt;noPad &lt;/span&gt;&lt;span&gt;align&lt;/span&gt;=&lt;span&gt;center &lt;/span&gt;&lt;span&gt;colspan&lt;/span&gt;=&lt;span&gt;2&lt;/span&gt;&gt;
+&lt;&lt;span&gt;input&lt;/span&gt;&lt;span&gt; type&lt;/span&gt;=&lt;span&gt;submit &lt;/span&gt;&lt;span&gt;name&lt;/span&gt;=&lt;span&gt;"what" &lt;/span&gt;&lt;span&gt;value&lt;/span&gt;=&lt;span&gt;"Update Record"&lt;/span&gt;&gt;
+&lt;/&lt;span&gt;td&lt;/span&gt;&gt;&lt;/&lt;span&gt;tr&lt;/span&gt;&gt;
+&lt;&lt;span&gt;tr&lt;/span&gt;&gt;&lt;&lt;span&gt;td&lt;/span&gt;&lt;span&gt; align&lt;/span&gt;=&lt;span&gt;center &lt;/span&gt;&lt;span&gt;valign&lt;/span&gt;=&lt;span&gt;"top" &lt;/span&gt;&lt;span&gt;colspan&lt;/span&gt;=&lt;span&gt;2&lt;/span&gt;&gt;
+&lt;&lt;span&gt;b&lt;/span&gt;&gt;Attach File:&amp;&lt;span&gt;nbsp;&lt;/span&gt;&lt;/&lt;span&gt;b&lt;/span&gt;&gt; &lt;&lt;span&gt;input&lt;/span&gt;&lt;span&gt; type&lt;/span&gt;=&lt;span&gt;file &lt;/span&gt;&lt;span&gt;name&lt;/span&gt;=&lt;span&gt;"fileNam" &lt;/span&gt;&lt;span&gt;value&lt;/span&gt;=&lt;span&gt;""&gt;&lt;/span&gt;
+&lt;&lt;span&gt;input&lt;/span&gt;&lt;span&gt; type&lt;/span&gt;=&lt;span&gt;submit &lt;/span&gt;&lt;span&gt;name&lt;/span&gt;=&lt;span&gt;"what" &lt;/span&gt;&lt;span&gt;value&lt;/span&gt;=&lt;span&gt;"Upload"&lt;/span&gt;&gt;
+&lt;/&lt;span&gt;td&lt;/span&gt;&gt;&lt;/&lt;span&gt;tr&lt;/span&gt;&gt;
+</code></pre>
+
+<p>Yes, instead of simply writing the HTML, everything is stuck in a function. &ldquo;endRow()&rdquo;, for example, is literally nothing more than an echo statement for &ldquo;</td></tr>&rdquo;. Every tag related to HTML tables has a function, some of which accept a ton of possible arguments for every possible thing you might want to put into that tag (a CSS class, id, border, inline CSS, etc). startRow() takes up to 7 arguments. Reading Dan&rsquo;s awful code means needing to remember what those arguments are (and what order they&rsquo;re in), as opposed to simply reading the very clear HTML that they spit out. What are those blanks for arguments #3 and #4 for in the startRow on line 2?Â  They&rsquo;re some potential <td> attributes (because, despite being &ldquo;startRow&rdquo;, the function echoes <tr> with no attributes, and then echoes the first <td>, and all these attributes belong to that first <td> tag). In this case, they&rsquo;re attributes that aren&rsquo;t being used. Which attributes? Who knows? You&rsquo;d have to go look at the definition of startRow. (Also note: this isn&rsquo;t a worst-case example. This is a pretty tame example of the kind of crap Dan did like this.)</p>
+
+<p>PHP can be useful in HTML generation &ndash; using Zend_Form from the Zend Framework, for example, can be very handy for creating forms with validation. Dan, however, wrapped trivial HTML into PHP functions, providing <em>absolutely no</em> additional value of their own, while unnecessarily increasing complexity and destroying readability.</p>
+
+<p>That&rsquo;s not the only gift Dan left behind, of course. Relative paths seemed to confuse Dan greatly. That meant the use of a lot of unnecessary absolute paths. It also meant that Dan would take his &ldquo;lib&rdquo; folder, which stored all his library code, and <em>copy it into subdirectories</em> so that the relative path &ldquo;lib/&rdquo; would still be valid, as opposed to usingÂ  &ldquo;/lib/&rdquo; or &ldquo;../lib/&rdquo; (or, on the HTML side, the <base> tag. Dan and <base> have never met.)</p>
+
+<p>These are just immediate things I ran into today, when fixing some old Dan code. It should come as no surprise that, even ignoring the &ldquo;WTFs&rdquo; like these, Dan Code &trade; is pretty bad code. None of it is shocking enough to be TheDailyWTF material, but it gets a small moment of recognition here today.</p>
+
+<p>Now I hate Dan too.</p>
+
+<p>(Side note: one of the most frightening parts of entering the work force was doing so with no professional programming experience. I&rsquo;d been writing code nonstop since entering college, but it was a constant flurry of jumping from language to language, paradigm to paradigm, and no settling in and mastering one development technology. That&rsquo;s a <strong>good</strong> academic approach, as it breeds the ability to rapidly pick up new technologies, and develops an understanding that separates a concept from its implementation in a specific language&hellip; but it&rsquo;s no fun to then go out and see job postings wanting X years of experience all centered around one language. That blow is softened when, even in your greenness, you&rsquo;re still better than the guy that was there before you.)</p>
+</div>
+  
+  
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/tech/'>Tech</a>
+  
+</span>
+
+
+      </p>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -745,100 +844,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/2009/04/21/5-things-i-think-i-think-about-resident-evil-4/">5 Things I Think I Think About&#8230; Resident Evil 4</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-21T06:58:23-07:00" pubdate data-updated="true">Apr 21<span>st</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>5 Things I Think I Think about&hellip;</p>
-
-<p><img src="http://www.economyofeffort.com/wp-content/uploads/2009/04/re4.jpg" alt="re4" /></p>
-
-<p><strong>1. I think the Wii version is the only one I can stand playing.</strong> This run-through of RE4 was the third time I tried to play the game. The first two false-starts were on the GameCube and the PC. I found the one-stick control style on the GameCube to be abhorant. The PC version looked <em>beautiful</em>, like a completely different game compared to the Cube and Wii versions (just from the high resolution support, really). But even with a 360 gamepad, the game was insistant on mapping movement and aiming to the left stick.</p>
-
-<p>By moving the aiming system to the Wiimote and putting movement on the nunchuk, the Wii version is the only one that uses a true two-sets-of-axes system &ndash; you know, the control approach that is the reason every gamepad comes with two analog sticks now. You still can&rsquo;t move and shoot at the same time, but the player&rsquo;s left thumb is no longer performing this awkward double-duty while the right thumb twiddles&hellip; itself.</p>
-
-<p>The Wiimote aiming scheme isn&rsquo;t a 1:1 mapped &ldquo;pointer&rdquo; like one might intuitively expect. Rather, the Wiimote acts, as one Gamers With Jobs poster describes it, like a giant right analog stick. It&rsquo;s nice and responsive, and allows for pretty good fine aiming control.</p>
-
-<p>There were some baffling control issues from time to time, though. When aiming through the rifle scope, the Wiimote no longer controls aiming, but rather the nunchuk stick does! This is jarring, of course, because the rest of the game uses the Wiimote for aiming. But what is worse is that the nunchuk stick is <em>very</em> sensitive, in part (I imagine) because it&rsquo;s only used for movement and camera control throughout the rest of the game. Aiming through the scope with the hyper-sensitive nunchuk stick is a bitch and a half. I understand that the rifle scope is a &ldquo;fixed view&rdquo; rather than a floating aim cursor like non-scoped weapons. But there still ought to be an option to aim with the Wiimote, which offers the fine movement control that the sensitive nunchuk stick lacks.</p>
-
-<p>Oh, and to add one little wrinkle: I&rsquo;m an inverted control sort of person. Not just thumbsticks, either, but mice too. Everything. Aiming with the Wiimote is pretty natural, but at first I found myself having a hard time dealing with the nunchuk&rsquo;s stick for &ldquo;looking&rdquo; around while aiming. Pushing &ldquo;up&rdquo; to look down is natural for me, but at the same time it felt at odds with how my right hand moved to go &ldquo;up&rdquo;. Trying to switch the nunchuk&rsquo;s stick back to Normal, however, was disasterous. Eventually, my brain was able to deal with the slight disconnect, and my inverted thumbstick and pointed Wiimote worked in harmony.</p>
-
-<p><img src="http://www.economyofeffort.com/wp-content/uploads/2009/04/resident_evil_4__wii_edition.jpg" alt="resident_evil_4__wii_edition" /></p>
-
-<p><strong>2. I think the Wiimote-aimed exploding headshot is one of the most satisfying &ldquo;kills&rdquo; in any game I&rsquo;ve played recently.</strong> I could very easily spend these 5 Things just rattling off complaints about the game. In fact, that&rsquo;s sort of what my first draft of this looked like. So I took a step back and tried to put my finger on why I enjoyed the 16 hours I sunk into this game. I&rsquo;ve been a fan of previous Resident Evil games, but this one was a very different experience. The one thing that I could point to with zero hesitation was the satisfaction behind every well-placed shot. Being rid of the awkward, uncomfortable feeling of trying to aim with my left thumb (my &ldquo;non-aiming&rdquo; thumb, you could say) helped with this feeling, I&rsquo;m sure.</p>
-
-<p><strong>3. I think the visuals in this port deserved some attention that they didn&rsquo;t receive.</strong> It probably looks just fine on an SDTV, but blown up on my 47&#8221; 1080p panel, even with the Wii component cables, RE4 on the Wii was a jagged, muddy mess. This doesn&rsquo;t <em>truly</em> come across in screenshots, which don&rsquo;t look particularly bad. But in action, the game&rsquo;s great detail was partially lost in the upconversion process.</p>
-
-<p>I understand that the game also makes use of the Wii&rsquo;s &ldquo;deflicker&rdquo; filter, which softens and blurs the image. Some Wii games, like Super Smash Bros. Brawl, make this filter a user-selectable option. RE4, however, has no such option. The blurred image doesn&rsquo;t do enough to deal with the heavy aliasing. Really, it just blurs away any edge definition, and makes it difficult for things to stand out from the background.</p>
-
-<p>At the very least, I wish the Wii supported higher output resolutions.</p>
-
-<p><img src="http://www.economyofeffort.com/wp-content/uploads/2009/04/re4_ss01.jpg" alt="re4_ss01" /></p>
-
-<p><strong>4. I think the game really tried to piss me off.</strong><strong> </strong>None of the sections in this game were unduly difficult. A couple required repeating, but nothing brought progress to a halt or raised frustration levels from excessive challenge. The game was quite adept, though, at doing small things to piss me off.</p>
-
-<p>I&rsquo;m OK with the tank-like movement in RE games. I&rsquo;m not OK with areas that have enemies drop from above to land <strong>right next</strong> to me, irritatingly poking at the weaknesses of the RE combat style. (This one wasn&rsquo;t <em>too</em> bad on the Wii, where I could reach the edges of the screen with the crosshair even before holding the button to go into &ldquo;aim&rdquo; mode, but I can&rsquo;t imagine how much I would have howled at these situtations if I had to deal with the GameCube aiming.)</p>
-
-<p>I&rsquo;m not OK with enemy and boss types that involve running around with the enemy <em>off the screen</em> the majority of the time. You didn&rsquo;t make the RE4 camera or combat system for these. Don&rsquo;t do them. The Garridors (the blind claw guys) and the Gigantes were just <em>awful</em>. Some of the worst moments of the game.</p>
-
-<p>I&rsquo;m not OK with the maddening inconsistency with how enemies react to taking bullets to the face. Some enemies, like the big dudes with axes, might normally stumble after taking a bullet or two to the dome. But then, randomly, they would decide that they could shrug off a half-dozen hits to the face on their way to closing the gap and slashing you with a devastating axe chop. Look, is a bullet to the face going to deter this guy or not? Don&rsquo;t making a certain approach to an enemy a winning tactic 90% of the time, but then gash me for half my health the other 10% of the time.</p>
-
-<p>I&rsquo;m never, <em>ever, ever</em> OK with item boxes that contain a trap instead of an item &ndash; in this case, a snake. OK, if it&rsquo;s a DnD-style game, and detecting traps is part of the game world, fine. But if not, what&rsquo;s the point? You&rsquo;re not turning the box into a risk/reward scenario. The player <em>has</em> to hit up every single box. He/she is totally dependent on them for acquiring sufficient supplies to progress. All sticking a snake in there does is punish the player for a choice that he/she <em>has to make</em>. (And yes, I know killing the snake yields a healing item. It doesn&rsquo;t make the idea any less dumb.)</p>
-
-<p><img src="http://www.economyofeffort.com/wp-content/uploads/2009/04/395158-image15_super.gif" alt="395158-image15_super" /></p>
-
-<p><strong>5. I think I had my best gaming &ldquo;ticking bomb&rdquo; scenario ever.</strong> Near the end of the game, there&rsquo;s a boss fight (Krauser) that requires beating the boss and exiting the &ldquo;room&rdquo; before a 3-minute countdown timer hits zero. As I finished off Krauser and bolted for the exit, my time ran awfully low. When I got to the exit door, there was less than a second on the clock. But I had to stick 3 things into the door to reveal a door behind it that I could actually exit through.</p>
-
-<p>I mashed the &ldquo;A&rdquo; button as fast as I could. The clock wouldn&rsquo;t count as the game &ldquo;placed&rdquo; the objects, but it would start back up again as soon as one was placed. I mashed faster. By the time the actual exit door was revealed and control returned back to me to register one last pound of the &ldquo;A&rdquo; button, the clock was down to 00:00.07 &ndash; seven hundredths of a second.</p>
-
-<p>I don&rsquo;t know how punishing the game is when that clock reaches zero. Maybe there&rsquo;s a second or so of hesitation, or maybe being all the way by the door was &ldquo;clear enough&rdquo; of the blast. Or maybe it was indeed instant death at 00:00.00. I didn&rsquo;t intend on finding out. All I know is that when I saw Leon finally enter the door with seven hundredths of a second left, I thought to myself, &ldquo;<strong>oh damn!</strong>&rdquo;.</p>
-</div>
-  
-  
-    <footer>
-      <p class="meta">
-        categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/categories/games/'>Games</a>
-  
-</span>
-
-
-      </p>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/8/">&larr; Older</a>
@@ -856,6 +861,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/07/20/convert-html-to-haml-within-vim-buffer/">Convert HTML to Haml (and Back Again) Within a Vim Buffer</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/07/20/fixed-the-archive-page/">Fixed the Archive Page</a>
       </li>
     
@@ -869,10 +878,6 @@
     
       <li class="post">
         <a href="/2013/08/03/careful-what-you-name-your-rails-partials/">Careful What You Name Your Rails Partials</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/07/29/reattach-to-user-namespace-the-fix-for-your-tmux-in-os-x-woes/">Reattach-to-user-namespace: The Fix for Your Tmux in OS X Woes</a>
       </li>
     
   </ul>
