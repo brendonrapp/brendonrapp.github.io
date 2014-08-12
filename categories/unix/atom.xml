@@ -4,7 +4,7 @@
   <title><![CDATA[Category: unix | Economy of Effort]]></title>
   <link href="http://www.economyofeffort.com/categories/unix/atom.xml" rel="self"/>
   <link href="http://www.economyofeffort.com/"/>
-  <updated>2014-07-20T16:55:07-07:00</updated>
+  <updated>2014-08-11T21:09:01-07:00</updated>
   <id>http://www.economyofeffort.com/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
@@ -12,6 +12,90 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Beyond Ctrl: Make That Caps Lock Key Useful]]></title>
+    <link href="http://www.economyofeffort.com/2014/08/11/beyond-ctrl-remap-make-that-caps-lock-key-useful/"/>
+    <updated>2014-08-11T14:19:00-07:00</updated>
+    <id>http://www.economyofeffort.com/2014/08/11/beyond-ctrl-remap-make-that-caps-lock-key-useful</id>
+    <content type="html"><![CDATA[<p><strong>tl;dr: Supercharge your Caps Lock key by making it Esc when tapped, and Ctrl when held</strong></p>
+
+<p>Caps Lock. A useless key sitting in prime keyboard real estate. Many software developers and power users repurpose the key by remapping it to Control.</p>
+
+<p>After all, on old UNIX terminals, that&rsquo;s exactly what the key to the left of &ldquo;A&rdquo; was:</p>
+
+<p><img src="/media/images/sun-keyboard.png" alt="" /></p>
+
+<p>Replacing the Caps Lock key with Ctrl makes a lot of keyboard shortcuts more convenient. But we need not stop there. Some true Men and Women of Genius came to the realization that, since Ctrl&rsquo;s behavior is based around behind held down (a modifier key) and doesn&rsquo;t do anything when pressed and released, it is possible to make Caps Lock do something <em>else</em> when tapped instead of held. For Vim users, the obvious choice is the Esc key.</p>
+
+<p>We can do this in both Mac OS X and Linux.</p>
+
+<h2>OS X</h2>
+
+<h3>If you want all Ctrl keys to behave like Esc when tapped</h3>
+
+<p>This is the easiest way, and the option I use. (I rarely find myself hitting the normal Ctrl keys anyway.)</p>
+
+<p>First, open System Preferences &ndash;> Keyboard, and click Modifier Keys button. Click the Caps Lock drop-down and set it to Control:</p>
+
+<p><img src="/media/images/osx-remap-esc-key.png" alt="" /></p>
+
+<p>Now, install <a href="https://pqrs.org/osx/karabiner/">Karabiner</a> (formerly known as KeyRemap4MacBook). If you are a Homebrew user, you should check out <a href="https://github.com/caskroom/homebrew-cask">Homebrew Cask</a> and install Karabiner with <code>$ brew cask install karabiner</code></p>
+
+<p>Open Karabiner. Enable the first setting from the screenshot below:</p>
+
+<p><img src="/media/images/karabiner-1.png" alt="" /></p>
+
+<p>The other option I have there, &ldquo;Disable Escape Key&rdquo;, is something I&rsquo;ve done just to get myself in the habit of using the Caps Lock key for Esc. It is not required, it is just an option if you want to help train yourself to use the new key.</p>
+
+<h3>If you only want the Caps Lock key to behave like Esc when tapped</h3>
+
+<p>To do this, we&rsquo;re going to take a slightly different approach. Instead of using OS X&rsquo;s native Caps Lock remapping, we need to use another app, called <a href="https://pqrs.org/osx/karabiner/seil.html">Seil</a> (from the same developer as Karabiner) to remap the Esc key to F19, and then use Karabiner to map F19 to our cool Ctrl/Esc hybrid key.</p>
+
+<p>Install both <a href="https://pqrs.org/osx/karabiner/">Karabiner</a> and <a href="https://pqrs.org/osx/karabiner/seil.html">Seil</a>. (Here again, if you use <a href="https://github.com/caskroom/homebrew-cask">Homebrew Cask</a>, you can do this with <code>$ brew cask install karabiner</code> and <code>$ brew cask install seil</code>)</p>
+
+<p>Open Seil. First, enable the &ldquo;Change Caps Lock&rdquo; option, and set the keycode to 80:</p>
+
+<p><img src="/media/images/seil.png" alt="" /></p>
+
+<p>Next, in Karabiner, enable the &ldquo;F19 for Escape and Control&rdquo; option:</p>
+
+<p><img src="/media/images/karabiner-2.png" alt="" /></p>
+
+<h2>Linux</h2>
+
+<p>To accomplish the same setup in Linux, we need to use a tool called <a href="https://github.com/alols/xcape">xcape</a>.</p>
+
+<p>Build and install xcape per the instructions on the project&rsquo;s Wiki page. One additional step I take after building the app is copying the <code>xcape</code> executable to /usr/local/bin.</p>
+
+<h3>If you only want the Caps Lock key to behave like Esc when tapped</h3>
+
+<p>Add the following lines to your ~/.profile:
+<code>
+setxkbmap -option 'caps:ctrl_modifier'
+xcape -e 'Caps_Lock=Escape'
+</code></p>
+
+<h3>If you want all Ctrl keys to behave like Esc when tapped</h3>
+
+<p>Same as above, except we add more arguments to the xcape line:</p>
+
+<p><code>
+setxkbmap -option 'caps:ctrl_modifier'
+xcape -e 'Caps_Lock=Escape;Control_L=Escape;Control_R=Escape'
+</code></p>
+
+<p>Note: If you use some other method of remapping the Caps Lock key to Ctrl (some desktop environments have it as an option in their Keyboard settings, much like OS X), then the Caps_Lock=Escape mapping may not do anything, and you will need to use the Control_L one.</p>
+
+<p>One last little tidbit: Ubuntu 14.10 (&ldquo;Utopic&rdquo;) has xcape <a href="http://packages.ubuntu.com/utopic/xcape">in the universe repos</a>, at least as of the time of this writing. Hopefully it will be included in Ubuntu releases from here on out.</p>
+
+<h2>Now Your Caps Lock Key Rules</h2>
+
+<p>The most useless key on the keyboard (except maybe for Pause, when&rsquo;s the last time you used that?) is now your Swiss Army knife. Vim&rsquo;s keybindings will make a lot more sense now that you can use your pinky the way Bill Joy did on his old ADM3A terminal:</p>
+
+<p><img src="/media/images/adm3a.png" alt="" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[zsh, tmux, vim, and 256 color madness]]></title>

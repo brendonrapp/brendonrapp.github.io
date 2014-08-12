@@ -9,7 +9,7 @@
   <meta name="author" content="Brendon Rapp">
 
   
-  <meta name="description" content="On Twitter, @philcooper asked me: OK, so technically he didn&rsquo;t ask me specifically. But I think it&rsquo;s safe to say that there was an &hellip;">
+  <meta name="description" content="I love open source software. A lot. There are times, however, when a silly lack of attention to detail drives me absolutely nuts. Software &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -87,6 +87,150 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2010/03/18/why-is-the-default-option-not-an-option/">Why Is the Default Option Not an Option??</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-18T15:46:51-07:00" pubdate data-updated="true">Mar 18<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I love open source software. A lot.</p>
+
+<p>There are times, however, when a silly lack of attention to detail drives me absolutely nuts.</p>
+
+<p>Software applications come with a lot of options, usually set to reasonable defaults. Can you ever think of a time, in using a normal desktop application, where you would want the ability to change the default setting, but in doing so, forever lose the ability to revert back to that default setting?</p>
+
+<p>Well, <strong>Firefox</strong> and <strong>gnome-terminal</strong> think you do, when it comes to colors.</p>
+
+<p>Let&rsquo;s start with Firefox. I&rsquo;m not a fan of visited links having a different color as normal links. I like being able to change this setting so that they match. What I found out last time I did this, though, is that the default colors for visited and unvisited links <strong>aren&rsquo;t available options in the color palette</strong> that appears when you click to change these.</p>
+
+<p>Seriously, look:</p>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2010/03/firefox-blue.png" alt="" /></p>
+
+<p>You&rsquo;ll note that none of the available color boxes are highlighted. That&rsquo;s because that default blue color is <strong>not one of the options</strong>. In other words, once you change it, you can never change it back (though, I imagine, you could by digging through your profile or about:config or something like that &ndash; but not with the GUI you just used to set the color).</p>
+
+<p>Sure, some blues are in the same ballpark, but why in God&rsquo;s name is the exact default blue not even an option??</p>
+
+<p>Same thing goes with the visited link purple:</p>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2010/03/firefox-purple.png" alt="" /></p>
+
+<p>None of those purples you can click on are the same as the default. And once you click on one and save the change, there&rsquo;s no going back. Why??</p>
+
+<p>It turns out this problem exists in Opera too, although to a much lesser extent:</p>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2010/03/opera.png" alt="" /></p>
+
+<p>The default blue <em>still</em> isn&rsquo;t an option in the default clickable palette. (Yes, the blue in the first column, three spots down, is very close. It&rsquo;s RGB 0,0,255 and HSV 240,255,255 instead of the default&rsquo;s 0,0,204 and 240,255,204, respectively). But at least I can type in the RGB and HSV values if I know them and get the color back. In Firefox, all I have in that GUI is the clickable palette, with no apparent way to ever get the original color back.</p>
+
+<p>(Chrome/Chromium, meanwhile, don&rsquo;t even offer changing link colors as an option, though there is an extension that lets you do it).</p>
+
+<p>And for the second half of this braindead-fest, we have gnome-terminal. Now, I&rsquo;m not sure if this is a default in gnome-terminal itself, or if this is the doing of the Ubuntu package maintainers. But in gnome-terminal in Ubuntu, the &ldquo;Default&rdquo; profile has a Custom color palette:</p>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2010/03/gnometerm.png" alt="" /></p>
+
+<p>If you click on that drop-down box where it says Custom and choose another palette, <strong>you can never, ever, ever get back to the default color palette</strong>. You don&rsquo;t even have the ability to hit Cancel. Once you click on something other than Custom, whatever was set in Custom gets sent right to /dev/null.</p>
+
+<p>So, for my sake, I went through the palette and recorded all of the values:</p>
+
+<blockquote><p>Column 1:</p>
+
+<h1>2E3436</h1>
+
+<h1>555753</h1></blockquote>
+
+<p>Column 2:</p>
+
+<h1>CC0000</h1>
+
+<h1>EF2929</h1>
+
+<p>Column 3:</p>
+
+<h1>4E9A06</h1>
+
+<h1>8AE234</h1>
+
+<p>Column 4:</p>
+
+<h1>C4A000</h1>
+
+<h1>FCE94F</h1>
+
+<p>Column 5:</p>
+
+<h1>3465A4</h1>
+
+<h1>729FCF</h1>
+
+<p>Column 6:</p>
+
+<h1>729FCF</h1>
+
+<h1>AD7FA8</h1>
+
+<p>Column 7:</p>
+
+<h1>06989A</h1>
+
+<h1>34E2E2</h1>
+
+<p>Column 8:</p>
+
+<h1>D3D7CF</h1>
+
+<h1>EEEEEC</h1>
+
+<p>What we have here are two examples of Humane Mouse Trap usability (I just made that up). You know the traps, the ones with the door that only can be pushed inward, never back outward:</p>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2010/03/Humane-Mousetrap.jpg" alt="" /></p>
+
+<p>Shame on you, Firefox, and shame on you, gnome-terminal. While these are far from the biggest usability problems in the world, they&rsquo;re just so mind-meltingly <strong>stupid</strong> and unnecessary that they can&rsquo;t help but rile up my anger.</p>
+</div>
+  
+  
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/general/'>General</a>
+  
+</span>
+
+
+      </p>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -643,86 +787,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/2009/10/26/upgrade-to-karmic-subclipse-eclipse-svn-plugin-and-64-bit-javahl/">Upgrade to Karmic: Subclipse (Eclipse SVN Plugin) and 64-bit JavaHL</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-10-26T02:58:24-07:00" pubdate data-updated="true">Oct 26<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This isn&rsquo;t about the Jaunty 9.04 &ndash;> Karmic 9.10 Ubuntu upgrade so much as it is about running Eclipse on 64-bit Linux. But I encountered it on my upgrade path, and so it gets posted here.</p>
-
-<p>I was having an error with the Subclipse SVN plugin for Eclipse. Specifically, when I tried a merge operation, I got:</p>
-
-<pre><code>SVNClientException: org.tigris.subversion.javahl.ClientException: svn: Cannot create new file '/tmp/(blahblahblah)...'
-</code></pre>
-
-<p>The problem was that Subclipse only comes with the 32-bit version of JavaHL. I confirmed JavaHL was not present by going to Window &ndash;> Preferences and browsing to Team &ndash;> SVN. In the SVN Interface dropdown, it said &ldquo;<em>JavaHL</em>(<em>JNI</em>) <em>Not Available&rdquo;.</em></p>
-
-<p>If you&rsquo;re on 64-bit Linux and using a 64-bit JVM, you need to provide JavaHL yourself. It can be installed by:</p>
-
-<pre><code>$ sudo aptitude install libsvn-java
-</code></pre>
-
-<p>&hellip; but you have to tell Eclipse to look at the location where the JNI will be installed (/usr/lib/jni). This can be done by editing <em>eclipse.ini</em> and adding the line &ldquo;-Djava.library.path=/usr/lib/jni&rdquo; under &ldquo;vmargs&rdquo;.</p>
-
-<p>So the eclipse.ini file would look something like this:</p>
-
-<pre><code>(... some junk ...)
--vmargs
--Djava.library.path=/usr/lib/jni
-(... possibly more junk ...)
-</code></pre>
-
-<p>Basically, you&rsquo;re looking for the line &ldquo;-vmargs&rdquo; and inserting the &ldquo;-Djava.library.path=/usr/lib/jni&rdquo; as a new line immediately underneath it. If you actually paste &ldquo;some junk&rdquo; into your eclipse.ini file, tell me about it and I will laugh at you.</p>
-
-<p>Save and re-launch Eclipse, and you should see the JavaHL version in that SVN Interface dropdown box.</p>
-
-<p>Reference: <a href="http://subclipse.tigris.org/wiki/JavaHL#head-bb1dd50f9ec2f0d8c32246430c00e237d27a04fe">Subclipse wiki page</a>.</p>
-</div>
-  
-  
-    <footer>
-      <p class="meta">
-        categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/categories/general/'>General</a>
-  
-</span>
-
-
-      </p>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/6/">&larr; Older</a>
@@ -740,6 +804,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/08/11/beyond-ctrl-remap-make-that-caps-lock-key-useful/">Beyond Ctrl: Make That Caps Lock Key Useful</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/07/20/convert-html-to-haml-within-vim-buffer/">Convert HTML to Haml (and Back Again) Within a Vim Buffer</a>
       </li>
     
@@ -753,10 +821,6 @@
     
       <li class="post">
         <a href="/2014/07/04/zsh/">Zsh, Tmux, Vim, and 256 Color Madness</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/08/03/careful-what-you-name-your-rails-partials/">Careful What You Name Your Rails Partials</a>
       </li>
     
   </ul>

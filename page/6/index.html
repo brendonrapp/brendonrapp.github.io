@@ -9,7 +9,7 @@
   <meta name="author" content="Brendon Rapp">
 
   
-  <meta name="description" content="It looks like a generic, default Wordpress install. But that simple page provides a great tool for turning crappy partial text RSS feeds into actual &hellip;">
+  <meta name="description" content="This isn&rsquo;t about the Jaunty 9.04 &ndash;> Karmic 9.10 Ubuntu upgrade so much as it is about running Eclipse on 64-bit Linux. But I encountered &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -87,6 +87,86 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2009/10/26/upgrade-to-karmic-subclipse-eclipse-svn-plugin-and-64-bit-javahl/">Upgrade to Karmic: Subclipse (Eclipse SVN Plugin) and 64-bit JavaHL</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-10-26T02:58:24-07:00" pubdate data-updated="true">Oct 26<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This isn&rsquo;t about the Jaunty 9.04 &ndash;> Karmic 9.10 Ubuntu upgrade so much as it is about running Eclipse on 64-bit Linux. But I encountered it on my upgrade path, and so it gets posted here.</p>
+
+<p>I was having an error with the Subclipse SVN plugin for Eclipse. Specifically, when I tried a merge operation, I got:</p>
+
+<pre><code>SVNClientException: org.tigris.subversion.javahl.ClientException: svn: Cannot create new file '/tmp/(blahblahblah)...'
+</code></pre>
+
+<p>The problem was that Subclipse only comes with the 32-bit version of JavaHL. I confirmed JavaHL was not present by going to Window &ndash;> Preferences and browsing to Team &ndash;> SVN. In the SVN Interface dropdown, it said &ldquo;<em>JavaHL</em>(<em>JNI</em>) <em>Not Available&rdquo;.</em></p>
+
+<p>If you&rsquo;re on 64-bit Linux and using a 64-bit JVM, you need to provide JavaHL yourself. It can be installed by:</p>
+
+<pre><code>$ sudo aptitude install libsvn-java
+</code></pre>
+
+<p>&hellip; but you have to tell Eclipse to look at the location where the JNI will be installed (/usr/lib/jni). This can be done by editing <em>eclipse.ini</em> and adding the line &ldquo;-Djava.library.path=/usr/lib/jni&rdquo; under &ldquo;vmargs&rdquo;.</p>
+
+<p>So the eclipse.ini file would look something like this:</p>
+
+<pre><code>(... some junk ...)
+-vmargs
+-Djava.library.path=/usr/lib/jni
+(... possibly more junk ...)
+</code></pre>
+
+<p>Basically, you&rsquo;re looking for the line &ldquo;-vmargs&rdquo; and inserting the &ldquo;-Djava.library.path=/usr/lib/jni&rdquo; as a new line immediately underneath it. If you actually paste &ldquo;some junk&rdquo; into your eclipse.ini file, tell me about it and I will laugh at you.</p>
+
+<p>Save and re-launch Eclipse, and you should see the JavaHL version in that SVN Interface dropdown box.</p>
+
+<p>Reference: <a href="http://subclipse.tigris.org/wiki/JavaHL#head-bb1dd50f9ec2f0d8c32246430c00e237d27a04fe">Subclipse wiki page</a>.</p>
+</div>
+  
+  
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/general/'>General</a>
+  
+</span>
+
+
+      </p>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -616,62 +696,6 @@ export GDK_NATIVE_WINDOWS=true
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/2009/08/10/the-aftermath-of-dan-addendum/">The Aftermath of Dan, Addendum</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-08-10T00:50:41-07:00" pubdate data-updated="true">Aug 10<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>One thing I forgot to include in the previous post:</p>
-
-<p>Either Dan never had our MySQL server&rsquo;s root password, or he lost it along the way. You&rsquo;d think he&rsquo;d, I don&rsquo;t know, ask someone for it, but no. So, instead of creating new databases for each new site (which he was unable to do without root or another privileged user), he just jammed all the tables for whatever new site he was making into an existing database that he already had access to. So we&rsquo;ve got a database that&rsquo;s for a registration page for some corporate event in 2007 (and is named as such) that is packed full of tables for a whole mess of other sites.</p>
-
-<p><em>sigh</em>&hellip; yeah&hellip;</p>
-</div>
-  
-  
-    <footer>
-      <p class="meta">
-        categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/categories/general/'>General</a>
-  
-</span>
-
-
-      </p>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/7/">&larr; Older</a>
@@ -689,6 +713,10 @@ export GDK_NATIVE_WINDOWS=true
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/08/11/beyond-ctrl-remap-make-that-caps-lock-key-useful/">Beyond Ctrl: Make That Caps Lock Key Useful</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/07/20/convert-html-to-haml-within-vim-buffer/">Convert HTML to Haml (and Back Again) Within a Vim Buffer</a>
       </li>
     
@@ -702,10 +730,6 @@ export GDK_NATIVE_WINDOWS=true
     
       <li class="post">
         <a href="/2014/07/04/zsh/">Zsh, Tmux, Vim, and 256 Color Madness</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/08/03/careful-what-you-name-your-rails-partials/">Careful What You Name Your Rails Partials</a>
       </li>
     
   </ul>
