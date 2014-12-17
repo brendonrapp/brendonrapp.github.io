@@ -4,7 +4,7 @@
   <title><![CDATA[Economy of Effort]]></title>
   <link href="http://www.economyofeffort.com/atom.xml" rel="self"/>
   <link href="http://www.economyofeffort.com/"/>
-  <updated>2014-12-16T19:27:55-08:00</updated>
+  <updated>2014-12-16T20:35:17-08:00</updated>
   <id>http://www.economyofeffort.com/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
@@ -12,6 +12,96 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ActiveRecord save not updating hstore fields in Rails 4.0-4.1]]></title>
+    <link href="http://www.economyofeffort.com/2014/12/16/activerecord-save-not-updating-hstore-fields-in-rails-4-dot-0-4-dot-1/"/>
+    <updated>2014-12-16T20:10:00-08:00</updated>
+    <id>http://www.economyofeffort.com/2014/12/16/activerecord-save-not-updating-hstore-fields-in-rails-4-dot-0-4-dot-1</id>
+    <content type="html"><![CDATA[<p>Here&rsquo;s some behavior you might not expect when using Postgres&rsquo;s hstore with ActiveRecord.</p>
+
+<p>ActiveRecord::Base#update_attributes does what you&rsquo;d think:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">thing</span> <span class="o">=</span> <span class="no">Thing</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">thing</span><span class="o">.</span><span class="n">update_attributes</span><span class="p">({</span><span class="ss">data</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;mykey&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;myval&#39;</span><span class="p">}})</span>
+</span><span class='line'><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">thing</span><span class="o">.</span><span class="n">reload</span>
+</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">thing</span><span class="o">.</span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;mykey&#39;</span><span class="o">]</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;myval&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>However, ActiveRecord::Base#save might not:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">thing</span> <span class="o">=</span> <span class="no">Thing</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">thing</span><span class="o">.</span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;mykey&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;myval&#39;</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;myval&quot;</span>
+</span><span class='line'><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">thing</span><span class="o">.</span><span class="n">save</span>
+</span><span class='line'>   <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">3</span><span class="n">ms</span><span class="p">)</span>  <span class="k">BEGIN</span>
+</span><span class='line'>  <span class="no">SQL</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">4</span><span class="n">ms</span><span class="p">)</span>  <span class="no">INSERT</span> <span class="no">INTO</span> <span class="s2">&quot;things&quot;</span> <span class="p">(</span><span class="s2">&quot;created_at&quot;</span><span class="p">,</span> <span class="s2">&quot;updated_at&quot;</span><span class="p">)</span> <span class="no">VALUES</span> <span class="p">(</span><span class="vg">$1</span><span class="p">,</span> <span class="vg">$2</span><span class="p">)</span> <span class="no">RETURNING</span> <span class="s2">&quot;id&quot;</span>  <span class="o">[[</span><span class="s2">&quot;created_at&quot;</span><span class="p">,</span> <span class="s2">&quot;2014-12-17 04:02:03.119354&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;updated_at&quot;</span><span class="p">,</span> <span class="s2">&quot;2014-12-17 04:02:03.119354&quot;</span><span class="o">]]</span>
+</span><span class='line'>   <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">9</span><span class="n">ms</span><span class="p">)</span>  <span class="no">COMMIT</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">thing</span><span class="o">.</span><span class="n">reload</span>
+</span><span class='line'><span class="o">[</span><span class="mi">4</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">thing</span><span class="o">.</span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;mykey&#39;</span><span class="o">]</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="kp">nil</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Huh? I left the SQL log line in the output here so we can see that our hstore field is indeed left out of the SQL INSERT statement entirely, which explains why the field is <code>nil</code> once we re-fetch the object from the database.</p>
+
+<p>But why is it doing this? It turns out that, in Rails 4.0 and 4.1, this operation doesn&rsquo;t mark the field as &ldquo;dirty&rdquo; in ActiveRecord, so the change is not detected and included in the save operation.</p>
+
+<p>We can mark it manually with <a href="http://api.rubyonrails.org/classes/ActiveModel/Dirty.html">ActiveModel::Dirty</a>&rsquo;s <code>attr_name_will_change!</code>, eg.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">thing</span> <span class="o">=</span> <span class="no">Thing</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">thing</span><span class="o">.</span><span class="n">data_will_change!</span>
+</span><span class='line'><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">thing</span><span class="o">.</span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;mykey&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;myval&#39;</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;myval&quot;</span>
+</span><span class='line'><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">thing</span><span class="o">.</span><span class="n">save</span>
+</span><span class='line'>   <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">3</span><span class="n">ms</span><span class="p">)</span>  <span class="k">BEGIN</span>
+</span><span class='line'>  <span class="no">SQL</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">3</span><span class="n">ms</span><span class="p">)</span>  <span class="no">INSERT</span> <span class="no">INTO</span> <span class="s2">&quot;things&quot;</span> <span class="p">(</span><span class="s2">&quot;created_at&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;updated_at&quot;</span><span class="p">)</span> <span class="no">VALUES</span> <span class="p">(</span><span class="vg">$1</span><span class="p">,</span> <span class="vg">$2</span><span class="p">,</span> <span class="vg">$3</span><span class="p">)</span> <span class="no">RETURNING</span> <span class="s2">&quot;id&quot;</span>  <span class="o">[[</span><span class="s2">&quot;created_at&quot;</span><span class="p">,</span> <span class="s2">&quot;2014-12-17 04:08:32.066027&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">mykey</span><span class="se">\&quot;</span><span class="s2">=&gt;</span><span class="se">\&quot;</span><span class="s2">myval</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;updated_at&quot;</span><span class="p">,</span> <span class="s2">&quot;2014-12-17 04:08:32.066027&quot;</span><span class="o">]]</span>
+</span><span class='line'>   <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="n">ms</span><span class="p">)</span>  <span class="no">COMMIT</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'><span class="o">[</span><span class="mi">4</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">thing</span><span class="o">.</span><span class="n">reload</span>
+</span><span class='line'><span class="o">[</span><span class="mi">5</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">thing</span><span class="o">.</span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;mykey&#39;</span><span class="o">]</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;myval&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The documentation states that <code>attr_name_will_change!</code> should be called <em>before</em> changes to the attribute, as seen in the example above.</p>
+
+<p>Doesn&rsquo;t this seem like a pain? Well, as discussed in <a href="https://github.com/rails/rails/issues/6127">Rails issue #6127</a>, it was expected behavior for Rails 4.0 and 4.1, but improvements to serialized attributes have been <a href="https://github.com/rails/rails/pull/15674">merged into Rails</a> and will appear in Rails 4.2. Setting values and calling save will just work.</p>
+
+<p>So, in the meantime, the workaround is manually marking properties as dirty with <code>attr_data_will_change!</code> before making and saving changes to those fields.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[PostgreSQL hstore default value in Rails 4]]></title>
@@ -979,132 +1069,6 @@ $ rbenv install /tmp/1.8.7-p358-with-rogue-stdout-patch
 <p>When I spied the router, high up on the wall, I soon discovered why.</p>
 
 <p><img src="http://www.economyofeffort.com/wp-content/uploads/2011/09/router-to-nowhere.jpg" alt="" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[YubiKey: Inexpensive Two-Factor Authentication]]></title>
-    <link href="http://www.economyofeffort.com/2011/06/10/yubikey/"/>
-    <updated>2011-06-10T05:10:27-07:00</updated>
-    <id>http://www.economyofeffort.com/2011/06/10/yubikey</id>
-    <content type="html"><![CDATA[<p><img class="center" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/two-factor.gif">
-<small>Pointless trivia: This image, nicely depicting the concept of two-factor authentication, was taken from the <a href="http://www.info.gov.hk/hkma/eng/consumer/two_factor_auth_index.htm">Hong Kong central bank&rsquo;s website</a></small>></p>
-
-<h2>What is Two-Factor Authentication?</h2>
-
-<p>Normally, when you log onto a computer-based service, you enter a username to tell the system who you are, and a password to <em>authenticate</em> (prove that you are who you say you are) with the system.</p>
-
-<p>That is one-factor authentication: you are providing only one thing to prove your identity.</p>
-
-<p>Two-factor authentication is a setup where you have to provide more than one thing to authenticate yourself. In most cases, this means your password in addition with some physical device, a hardware-based <em>token</em>. (It is possible to create authentication systems that require even more than two factors. Systems that require two or more factors are more generally called <em>multi-factor authentication</em>).</p>
-
-<p>The YubiKey is an inexpensive ($25) device that provides this sort of additional authentication factor.</p>
-
-<p><img class="center" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/yubikey.jpg"></p>
-
-<h2>How does it work?</h2>
-
-<p>The YubiKey is a simple device that plugs into any USB port on your computer. The device has a single button, which, when you press it, spits out a One Time Password (OTP). In the eyes of the computer, the YubiKey is literally just a USB keyboard, and when you press the button, it enters text as if a person is typing (very fast) on that keyboard. Most operating systems support USB keyboards without any additional software, which means that at least on <strong>Windows, Mac OS X, and Linux</strong>, you can stick the YubiKey into the computer and press the button without having to install any additional software. Needless to say, this makes it incredibly convenient.</p>
-
-<p><img class="center" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/yubikey-lastpass.png"></p>
-
-<p>So, when you log into a service that supports YubiKey authentication, you&rsquo;ll enter your username and password as usual, but you&rsquo;ll also be presented with a text box for the YubiKey itself to &ldquo;type&rdquo; into. You&rsquo;ll click in the text box as if you&rsquo;re going to type in it yourself, but instead, you&rsquo;ll press the YubiKey&rsquo;s button and it will &ldquo;type in&rdquo; a very long password. Then you&rsquo;ll click to log in like normal, and assuming both your password and YubiKey are valid, you&rsquo;ll log in.</p>
-
-<h2>What makes this more secure?</h2>
-
-<p><img class="right" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/nikolai-300x225.jpg"></p>
-
-<p>The idea behind a one-time password is that, as the name states, the password can only be used once. Even if someone is sniffing your network traffic and grabs a copy of the OTP you just used, he can&rsquo;t turn around and re-use the password itself, as it&rsquo;s been used and is no longer valid.</p>
-
-<p>The idea being multi-factor authentication is that anyone who wishes to login to services as you has to be able to provide all factors. Stealing your password or stealing your YubiKey isn&rsquo;t enough &ndash; they&rsquo;d need to have both. That requirement of getting ahold of something that&rsquo;s physically in your possession dramatically reduces the number of people with opportunity to take your digital identity. A hacker in Russia might be able to set up a website to trick me into giving up my password, but it&rsquo;s a long flight for him to come get my YubiKey too.</p>
-
-<h2>How do I make services &ldquo;use&rdquo; my YubiKey?</h2>
-
-<p><img class="right" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/lastpass-logo.gif"></p>
-
-<p>First of all, to use the YubiKey, the service itself has to support YubiKey authentication. This won&rsquo;t be common with your average website, but it will be more common with more security-minded services, like <a href="http://www.lastpass.com">LastPass</a> or <a href="http://www.passpack.com">PassPack</a>.</p>
-
-<p>Secondly, before you can use your YubiKey to authenticate with a service, you have to associate your YubiKey with your account on that service. How this is done depends entirely on how that service has that feature set up. <a href="http://helpdesk.lastpass.com/security-options/yubikey-authentication/">Here, for example, is LastPass&rsquo;s instruction page</a> for associating YubiKeys with your account on their service.</p>
-
-<h2>What about services that don&rsquo;t support YubiKey?</h2>
-
-<p>If a service doesn&rsquo;t support the YubiKey directly, but does support OpenID authentication, you can use your YubiKey for two-factor authentication by using an OpenID service which supports the YubiKey itself.</p>
-
-<p><a href="http://www.clavid.com"><img class="right" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/Clavid_logo.gif"></a></p>
-
-<p><a href="http://www.clavid.com">Clavid.com</a> is such a service. With a properly set-up Clavid.com OpenID identity, you can have two-factor authentication for any service that does OpenID.</p>
-
-<p>However, outside of those options, there&rsquo;s nothing you can do to add YubiKey support to a service that doesn&rsquo;t have it, besides emailing them and bugging them to add it.</p>
-
-<h2>What if those services get hacked? Is my YubiKey compromised?</h2>
-
-<p>When you register your YubiKey with a service like LastPass, that service does not have your Yubico encrypted identity. All they store is the 12-character Yubico ID. When you tap your YubiKey&rsquo;s button and send a One-Time Password to that service, they don&rsquo;t have the means of processing the password and verifying your identity. Instead, they send that password (which contains your 12-character ID) to the Yubico servers, which responds back with a &ldquo;yes&rdquo; or &ldquo;no&rdquo; to that service. Yubico acts as an authentication gateway for that factor.</p>
-
-<p>So, only Yubico has the information necessary to process the passwords that your YubiKey creates. So, that leads to the question: what if Yubico is hacked? That is the scenario where your YubiKey&rsquo;s identity may be compromised. Indeed, this happened with another token authentication system recently, <a href="http://www.extremetech.com/article2/0,2845,2386541,00.asp">RSA&rsquo;s SecurID</a>. However, as long as you are using YubiKeys for multi-factor authentication, and not as a replacement for passwords, then the result of this would be that your accounts are still protected by your passwords. In other words, you&rsquo;d be in the exact same place as if you weren&rsquo;t using YubiKeys to begin with.</p>
-
-<h2>The YubiKey website says this thing supports a bunch of different authentication systems. What&rsquo;s the story there?</h2>
-
-<p>The YubiKey is quite a flexible little device, and can indeed be used with a number of different authentication systems.</p>
-
-<p>The most common of these, the thing that people are generally referring to when talking about YubiKey authentication, is Yubico&rsquo;s YubiKey OTP authentication service. This is what standard YubiKeys come ready to work with right out-of-the-box, and this is what services like LastPass are referring to when stating that they support YubiKey.</p>
-
-<p>However, you can program YubiKeys to support different systems. One thing you can do is program the YubiKey to store a single <a href="http://www.yubico.com/static-password">static password</a>. You press the button, and the YubiKey types in this password. This is a way to be able to create a and use a long, complex password that you can&rsquo;t possibly memorize. And because it&rsquo;s just a plain password, you can use it with any password-based system. This isn&rsquo;t multi-factor authentication (since you&rsquo;re back to using just a password, not something in addition to a password), but it can be very useful in certain circumstances. Yubico mentions an ideal use case: <a href="http://static.yubico.com/var/uploads/pdfs/TrueCrypt%202011-03-23.pdf">long passwords for encrypting TrueCrypt vaults</a>.</p>
-
-<p><img class="right" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/oath.png"></p>
-
-<p>YubiKeys can be programmed to work with Open Authentication (OATH). Now, read that closely. That is OATH, a system developed by VeriSign, and not OAuth, a system developed by Twitter. It took me a while before I noticed this, as I had only ever heard of OAuth before. <a href="http://blogs.verisign.com/identity-emea/2008/07/oauth_and_oath_confusing_1.php">Here&rsquo;s a post from a VeriSign blogger</a> describing the difference between these two unfortunately similarly-named projects. OATH is used in (formerly VeriSign&rsquo;s, now Symantec&rsquo;s) VIP authentication system, which we&rsquo;ll talk about later. Yubico does not run any OATH services themselves.</p>
-
-<p>YubiKeys can also be programmed to work with SAML authentication systems. SAML is used by Google Apps&#8217; Single Sign On feature, and Yubico provides a SAML server which can be used to set up SAML-based Single Sign On for your Google Apps domain. <a href="http://wiki.yubico.com/wiki/index.php/SAMLServerStepByStep">Here are Yubico&rsquo;s step by step instructions</a> for doing that.</p>
-
-<p>In general, these other non-Yubico systems are things you would use with a specific purpose in mind, not for generally-available web services.</p>
-
-<h2>Can you use all these services on the same YubiKey?</h2>
-
-<p>Originally, YubiKeys supported only one &ldquo;identity&rdquo;, meaning you had to pick and choose only one of these authentication systems to use your YubiKey with.</p>
-
-<p>Newer YubiKeys support two identities, so you make one YubiKey work with two different authentication systems. Naturally, most users will have a Yubico identity as one of their two. By default, the second identity is blank, so setting a key up to work with another authentication system requires using one of the <a href="http://www.yubico.com/personalization-tool">free personalization software tools</a> to program the second identity. It can be a little tricky if you haven&rsquo;t done it before, so be patient and find good instructions (I may write some of my own in another post).</p>
-
-<p>The way that you use a YubiKey with two different services is pretty clever. If you press the YubiKey button for 0 to 1.5 seconds, it outputs the results for the programmed identity in the first slot. Hold the button longer &ndash; 2.5 to 5 seconds &ndash; and it does the output for the second identity instead. There is a &ldquo;dead zone&rdquo; gap in the (approximately) 1.5-2.5 second range so that you can&rsquo;t accidentally end up at the &ldquo;border&rdquo; between the two. Any tap at all is sufficient for triggering slot 1, so you&rsquo;ll tap for slot 1 and hold the button down for slot 2, and you&rsquo;ll get nothing at all if you try to let go in no man&rsquo;s land.</p>
-
-<h2>What about the Symantec VIP service?</h2>
-
-<p><img class="center" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/VIP-Access.png">
-<small>The &ldquo;V&rdquo; still stands for VeriSign</small></p>
-
-<p>Symantec&rsquo;s VIP service uses OATH. However, there is a catch. While you can create an OATH-compatible identity, end users like us have no way of getting that identity into the VIP service. They do not provide a means of uploading your own created identity, as Yubico does with their service.</p>
-
-<p>As such, Yubico has created the <a href="http://yubico.com/VIP">Symantec VIP YubiKey</a>. It&rsquo;s a normal YubiKey, except with slot 1 pre-programmed with a Symantec VIP identity, which was entered in to the VIP service at the time of manufacturing, per Symantec&rsquo;s rules, as explained by the YubiKey YouTube user <a href="http://www.youtube.com/comment?lc=_MHd7s7c6pOoAzr_CTkpfIPzE-8HKVXNNZPVXZ_SbFk">in this YouTube comment reply</a>:</p>
-
-<blockquote><p>The [Symantec VIP] YubiKey is the same standard YubiKey &ndash; it already supported OATH. The problem is loading secrets and Symantec&rsquo;s rules are that they can only be loaded at the time of manufacture. Hence the need for a new SKU.</p></blockquote>
-
-<p>So, if you wish to use a YubiKey with the VIP service, you need to buy the &ldquo;VIP&rdquo;-specific model. Note that this model does <em>not</em> come pre-programmed with a Yubico identity, but you are of course free to create one on own for slot 2. Also, the VIP credential is hard-coded into slot 1 and can&rsquo;t be removed, so you only want to get the VIP model if you do intend on using VIP.</p>
-
-<h2>And what if you lose it, or it breaks?</h2>
-
-<p><img src="http://www.economyofeffort.com/wp-content/uploads/2011/06/lost-300x169.jpg"></p>
-
-<p>One big issue with multi-factor authentication is, what happens if you lose or damage one of the factors?</p>
-
-<p>Many services have a recovery process for this, where you have to jump through hoops to prove that you&rsquo;re who you claim to be. It&rsquo;s also possible to order an identical replacement YubiKey that contains the same identity as the one you lost. Again, here you have to jump through hoops to prove your identity.</p>
-
-<p>But there is a better, more forward-thinking way of protecting yourself from losing or damaging YubiKeys &ndash; more YubiKeys! Every YubiKey-compatible service I&rsquo;ve run into so far allows you to associate multiple YubiKeys to your account, allowing you to authenticate using any one of them.</p>
-
-<p>Thus, I own three YubiKeys:
-&hellip; one on my keyring,
-&hellip; one locked up somewhere safe in my house,
-&hellip; and one locked up in my bank safe deposit box.</p>
-
-<p>Should I lose or break the one on my keyring, I have backups available.</p>
-
-<p>It does mean, however, that for every new YubiKey-compatible service I start using, I need to round up all my keys to associate each of them with the new account. But in practice, this is exceedingly rare &ndash; I only have a few things I use YubiKeys with, but they&rsquo;re important things.</p>
-
-<h2>&ldquo;Would you like to know more?&rdquo;</h2>
-
-<p>I&rsquo;ll be writing some more posts as I go dig deeper into what you can do with the YubiKey. LastPass and OpenID are certainly cool and sufficient for picking up some YubiKeys, but I think the ability to integrate it with your own services is more interesting.</p>
-
-<p>There is a PAM module for YubiKey authentication, allowing it to be used with things like SSH and VPN. There are also plugins for web-based CMSs like Wordpress. I&rsquo;m going to dig around and I&rsquo;ll share what I find.</p>
-
-<p>If you have any questions, please ask them and I&rsquo;ll try to answer them, maybe in my next post. Also, if anything in this post is incorrect, please let me know and I will correct it. I am simply a consumer and do not work for Yubico or have any stake in their product other than the ~$75 I&rsquo;ve invested in the three keys I own.</p>
 ]]></content>
   </entry>
   

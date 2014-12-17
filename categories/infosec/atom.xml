@@ -4,7 +4,7 @@
   <title><![CDATA[Category: InfoSec | Economy of Effort]]></title>
   <link href="http://www.economyofeffort.com/categories/infosec/atom.xml" rel="self"/>
   <link href="http://www.economyofeffort.com/"/>
-  <updated>2014-12-16T19:27:55-08:00</updated>
+  <updated>2014-12-16T20:35:46-08:00</updated>
   <id>http://www.economyofeffort.com/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
@@ -18,7 +18,7 @@
     <link href="http://www.economyofeffort.com/2011/06/10/yubikey/"/>
     <updated>2011-06-10T05:10:27-07:00</updated>
     <id>http://www.economyofeffort.com/2011/06/10/yubikey</id>
-    <content type="html"><![CDATA[<p><img class="center <a" src="href="http://www.economyofeffort.com/wp-content/uploads/2011/06/two-factor.gif">http://www.economyofeffort.com/wp-content/uploads/2011/06/two-factor.gif</a>">
+    <content type="html"><![CDATA[<p>{% img center <a href="http://www.economyofeffort.com/wp-content/uploads/2011/06/two-factor.gif">http://www.economyofeffort.com/wp-content/uploads/2011/06/two-factor.gif</a> %}
 <small>Pointless trivia: This image, nicely depicting the concept of two-factor authentication, was taken from the <a href="http://www.info.gov.hk/hkma/eng/consumer/two_factor_auth_index.htm">Hong Kong central bank&rsquo;s website</a></small>></p>
 
 <h2>What is Two-Factor Authentication?</h2>
@@ -31,19 +31,19 @@
 
 <p>The YubiKey is an inexpensive ($25) device that provides this sort of additional authentication factor.</p>
 
-<p><img class="center <a" src="href="http://www.economyofeffort.com/wp-content/uploads/2011/06/yubikey.jpg">http://www.economyofeffort.com/wp-content/uploads/2011/06/yubikey.jpg</a>"></p>
+<p>{% img center <a href="http://www.economyofeffort.com/wp-content/uploads/2011/06/yubikey.jpg">http://www.economyofeffort.com/wp-content/uploads/2011/06/yubikey.jpg</a> %}</p>
 
 <h2>How does it work?</h2>
 
 <p>The YubiKey is a simple device that plugs into any USB port on your computer. The device has a single button, which, when you press it, spits out a One Time Password (OTP). In the eyes of the computer, the YubiKey is literally just a USB keyboard, and when you press the button, it enters text as if a person is typing (very fast) on that keyboard. Most operating systems support USB keyboards without any additional software, which means that at least on <strong>Windows, Mac OS X, and Linux</strong>, you can stick the YubiKey into the computer and press the button without having to install any additional software. Needless to say, this makes it incredibly convenient.</p>
 
-<p><img class="center <a" src="href="http://www.economyofeffort.com/wp-content/uploads/2011/06/yubikey-lastpass.png">http://www.economyofeffort.com/wp-content/uploads/2011/06/yubikey-lastpass.png</a>"></p>
+<p>{% img center <a href="http://www.economyofeffort.com/wp-content/uploads/2011/06/yubikey-lastpass.png">http://www.economyofeffort.com/wp-content/uploads/2011/06/yubikey-lastpass.png</a> %}</p>
 
 <p>So, when you log into a service that supports YubiKey authentication, you&rsquo;ll enter your username and password as usual, but you&rsquo;ll also be presented with a text box for the YubiKey itself to &ldquo;type&rdquo; into. You&rsquo;ll click in the text box as if you&rsquo;re going to type in it yourself, but instead, you&rsquo;ll press the YubiKey&rsquo;s button and it will &ldquo;type in&rdquo; a very long password. Then you&rsquo;ll click to log in like normal, and assuming both your password and YubiKey are valid, you&rsquo;ll log in.</p>
 
 <h2>What makes this more secure?</h2>
 
-<p><img class="right <a" src="href="http://www.economyofeffort.com/wp-content/uploads/2011/06/nikolai-300x225.jpg">http://www.economyofeffort.com/wp-content/uploads/2011/06/nikolai-300x225.jpg</a>"></p>
+<p>{% img right <a href="http://www.economyofeffort.com/wp-content/uploads/2011/06/nikolai-300x225.jpg">http://www.economyofeffort.com/wp-content/uploads/2011/06/nikolai-300x225.jpg</a> %}</p>
 
 <p>The idea behind a one-time password is that, as the name states, the password can only be used once. Even if someone is sniffing your network traffic and grabs a copy of the OTP you just used, he can&rsquo;t turn around and re-use the password itself, as it&rsquo;s been used and is no longer valid.</p>
 
@@ -51,7 +51,7 @@
 
 <h2>How do I make services &ldquo;use&rdquo; my YubiKey?</h2>
 
-<p><img class="right <a" src="href="http://www.economyofeffort.com/wp-content/uploads/2011/06/lastpass-logo.gif">http://www.economyofeffort.com/wp-content/uploads/2011/06/lastpass-logo.gif</a>"></p>
+<p>{% img right <a href="http://www.economyofeffort.com/wp-content/uploads/2011/06/lastpass-logo.gif">http://www.economyofeffort.com/wp-content/uploads/2011/06/lastpass-logo.gif</a> %}</p>
 
 <p>First of all, to use the YubiKey, the service itself has to support YubiKey authentication. This won&rsquo;t be common with your average website, but it will be more common with more security-minded services, like <a href="http://www.lastpass.com">LastPass</a> or <a href="http://www.passpack.com">PassPack</a>.</p>
 
@@ -61,7 +61,7 @@
 
 <p>If a service doesn&rsquo;t support the YubiKey directly, but does support OpenID authentication, you can use your YubiKey for two-factor authentication by using an OpenID service which supports the YubiKey itself.</p>
 
-<p><a href="http://www.clavid.com"><img class="right" src="http://www.economyofeffort.com/wp-content/uploads/2011/06/Clavid_logo.gif"></a></p>
+<p><a href="http://www.clavid.com">{% img right http://www.economyofeffort.com/wp-content/uploads/2011/06/Clavid_logo.gif %}</a></p>
 
 <p><a href="http://www.clavid.com">Clavid.com</a> is such a service. With a properly set-up Clavid.com OpenID identity, you can have two-factor authentication for any service that does OpenID.</p>
 
@@ -81,7 +81,7 @@
 
 <p>However, you can program YubiKeys to support different systems. One thing you can do is program the YubiKey to store a single <a href="http://www.yubico.com/static-password">static password</a>. You press the button, and the YubiKey types in this password. This is a way to be able to create a and use a long, complex password that you can&rsquo;t possibly memorize. And because it&rsquo;s just a plain password, you can use it with any password-based system. This isn&rsquo;t multi-factor authentication (since you&rsquo;re back to using just a password, not something in addition to a password), but it can be very useful in certain circumstances. Yubico mentions an ideal use case: <a href="http://static.yubico.com/var/uploads/pdfs/TrueCrypt%202011-03-23.pdf">long passwords for encrypting TrueCrypt vaults</a>.</p>
 
-<p><img class="right <a" src="href="http://www.economyofeffort.com/wp-content/uploads/2011/06/oath.png">http://www.economyofeffort.com/wp-content/uploads/2011/06/oath.png</a>"></p>
+<p>{% img right <a href="http://www.economyofeffort.com/wp-content/uploads/2011/06/oath.png">http://www.economyofeffort.com/wp-content/uploads/2011/06/oath.png</a> %}</p>
 
 <p>YubiKeys can be programmed to work with Open Authentication (OATH). Now, read that closely. That is OATH, a system developed by VeriSign, and not OAuth, a system developed by Twitter. It took me a while before I noticed this, as I had only ever heard of OAuth before. <a href="http://blogs.verisign.com/identity-emea/2008/07/oauth_and_oath_confusing_1.php">Here&rsquo;s a post from a VeriSign blogger</a> describing the difference between these two unfortunately similarly-named projects. OATH is used in (formerly VeriSign&rsquo;s, now Symantec&rsquo;s) VIP authentication system, which we&rsquo;ll talk about later. Yubico does not run any OATH services themselves.</p>
 
@@ -99,7 +99,7 @@
 
 <h2>What about the Symantec VIP service?</h2>
 
-<p><img class="center <a" src="href="http://www.economyofeffort.com/wp-content/uploads/2011/06/VIP-Access.png">http://www.economyofeffort.com/wp-content/uploads/2011/06/VIP-Access.png</a>">
+<p>{% img center <a href="http://www.economyofeffort.com/wp-content/uploads/2011/06/VIP-Access.png">http://www.economyofeffort.com/wp-content/uploads/2011/06/VIP-Access.png</a> %}
 <small>The &ldquo;V&rdquo; still stands for VeriSign</small></p>
 
 <p>Symantec&rsquo;s VIP service uses OATH. However, there is a catch. While you can create an OATH-compatible identity, end users like us have no way of getting that identity into the VIP service. They do not provide a means of uploading your own created identity, as Yubico does with their service.</p>
@@ -112,7 +112,7 @@
 
 <h2>And what if you lose it, or it breaks?</h2>
 
-<p><img class="<a" src="href="http://www.economyofeffort.com/wp-content/uploads/2011/06/lost-300x169.jpg">http://www.economyofeffort.com/wp-content/uploads/2011/06/lost-300x169.jpg</a>"></p>
+<p>{% img <a href="http://www.economyofeffort.com/wp-content/uploads/2011/06/lost-300x169.jpg">http://www.economyofeffort.com/wp-content/uploads/2011/06/lost-300x169.jpg</a> %}</p>
 
 <p>One big issue with multi-factor authentication is, what happens if you lose or damage one of the factors?</p>
 

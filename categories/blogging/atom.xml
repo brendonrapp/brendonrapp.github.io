@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blogging | Economy of Effort]]></title>
   <link href="http://www.economyofeffort.com/categories/blogging/atom.xml" rel="self"/>
   <link href="http://www.economyofeffort.com/"/>
-  <updated>2014-12-16T19:27:55-08:00</updated>
+  <updated>2014-12-16T20:35:46-08:00</updated>
   <id>http://www.economyofeffort.com/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
@@ -22,14 +22,14 @@
 
 <p>In the years since then, Wordpress has grown into something more akin to a CMS built around a blogging engine. At work, we have used it as such for a couple of <a href="http://www.luckydogsbakery.com">small</a> <a href="http://www.warginwines.com">storefronts</a>, built around the blog and the Wordpress e-Commerce shopping cart plugin.</p>
 
-<p><img class="right" src="/media/images/wordpress-world-problems.jpg" width="300">
+<p>{% img right /media/images/wordpress-world-problems.jpg 300 %}
 Maintaining a full Wordpress installation for my personal blog, however, had become cumbersome. Particularly so since I am not running any other PHP code for personal projects. At <a href="http://www.lonestarrubyconf.com/">Lone Star Ruby Conference</a>, <a href="https://speakerdeck.com/u/techpeace/p/front-end-web-development-with-ruby">one of the talks</a> finally convinced me that it was time to leave Wordpress behind, and to go with a static site compiled blog engine. I had previous experience with a static site compiler, nanoc, which we use at work for creating static websites. A more blog-aware tool that works similarly held plenty of appeal to me.</p>
 
 <p>I also no longer wished to run this site on hosting that costs me money. I started with shared hosts like Dreamhost, graduated to a Linode VPS (more for experimenting with VPS hosting than for any actual traffic needs), and most recently ditched the VPS and hosted on NearlyFreeSpeech&rsquo;s low-cost pay-as-you-use hosting. But for how low traffic the site is, paying even what I give to NearlyFreeSpeech seemed unnecessary. Heroku&rsquo;s free single web dyno was staring me in the face, offering more than enough hosting power for a static version of my site, for $0.</p>
 
 <h2>Introducing Jekyll and Octopress</h2>
 
-<p><img class="right" src="/media/images/jekyll-doctor.jpg" width="300"></p>
+<p>{% img right /media/images/jekyll-doctor.jpg 300 %}</p>
 
 <p><a href="https://github.com/imathis/octopress/">Octopress</a> is a framework built around the Jekyll blogging engine. It provides various plugins and extensions, as well as a nice default theme, to make blogging on Jekyll a nice out-of-the-box experience.</p>
 
@@ -39,7 +39,7 @@ Maintaining a full Wordpress installation for my personal blog, however, had bec
 
 <h2>Importing Content from Wordpress</h2>
 
-<p><img class="right" src="/media/images/wordpress-logo-small.png"></p>
+<p>{% img right /media/images/wordpress-logo-small.png %}</p>
 
 <p>My strategy for importing my Wordpress content into a Jekyll blog reolved around <a href="https://github.com/thomasf/exitwp">Exitwp</a>. Exitwp will parse a Wordpress export file and generate a Jekyll blog with the same content.</p>
 
@@ -73,7 +73,7 @@ download_images: True
 
 <h2>Setting up Octopress</h2>
 
-<p><img class="right" src="/media/images/octopress-logo.png"></p>
+<p>{% img right /media/images/octopress-logo.png %}</p>
 
 <p>After running Exitwp, I have my old blog exported into a raw Jekyll blog. But now, I have to get that blog into Octopress.</p>
 
@@ -99,7 +99,7 @@ $ git pull octopress master
 
 <h2>Deploying to Heroku</h2>
 
-<p><img class="left" src="/media/images/heroku-logo-light-300x100.png">
+<p>{% img left /media/images/heroku-logo-light-300x100.png %}
 Adding to the Git setup even more was the fact that I wanted to deploy this to <a href="http://www.heroku.com">Heroku</a>. For that setup, I basically followed <a href="http://def.reyssi.net/blog/2012/01/14/get-blogging-with-octopress-on-heroku">these instructions</a> starting at the &ldquo;Deploy to Heroku&rdquo; section. I had never deployed an app to Heroku, but it was very straightforward.</p>
 
 <p>Since Heroku acts as a Git server, I could have skipped the part where I made my own repository host, and just cloned from Heroku whenever I wanted to access the repo on another machine. But I prefer having a copy of the site in my own Git hosting account (on Bitbucket, for the record), and it&rsquo;s hardly any additional bother. My Bitbucket repo is on &ldquo;origin&rdquo;, the Octopress repo is on &ldquo;octopress&rdquo;, and Heroku is on &ldquo;heroku&rdquo;.</p>
@@ -127,7 +127,7 @@ $ git push heroku master
 
 <h2>Tip: Use IFTTT to tweet new posts</h2>
 
-<p><img class="right" src="/media/images/ifttt-logo.png">
+<p>{% img right /media/images/ifttt-logo.png %}
 One of the plugins I used with Wordpress would add tweets to my Twitter feed, informing followers of new posts to the blog.</p>
 
 <p>Without the server-side component, Octopress lacks this ability. However, thanks to the fact that Octopress generates an RSS feed file, we can use an external service to accomplish the same thing.</p>
@@ -136,7 +136,7 @@ One of the plugins I used with Wordpress would add tweets to my Twitter feed, in
 
 <h2>Tip: Use Pow on OS X for easy testing</h2>
 
-<p><img class="right" src="/media/images/pow-logo.png" width="200">
+<p>{% img right /media/images/pow-logo.png 200 %}
 By default, users can run <code>rake preview</code> to make Octopress spin up a web server at <a href="http://0.0.0.0:4000">http://0.0.0.0:4000</a> and listen for changes to files to automatically rebuild the site for easy previewing.</p>
 
 <p>This process can be made a little nicer with <a href="http://pow.cx/">Pow</a>, a handy little Rack webserver for OS X.</p>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: General | Economy of Effort]]></title>
   <link href="http://www.economyofeffort.com/categories/general/atom.xml" rel="self"/>
   <link href="http://www.economyofeffort.com/"/>
-  <updated>2014-12-16T19:27:55-08:00</updated>
+  <updated>2014-12-16T20:35:46-08:00</updated>
   <id>http://www.economyofeffort.com/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
@@ -96,7 +96,7 @@
 
 <p>BLOAT is a PDF reader that is a 70 MB download, and (according to the installer) takes up 418 MB of space in total once extracted.</p>
 
-<p><img class="<a" src="href="http://www.economyofeffort.com/wp-content/uploads/2011/05/adobe-reader-x.jpg">http://www.economyofeffort.com/wp-content/uploads/2011/05/adobe-reader-x.jpg</a>"></p>
+<p>{% img <a href="http://www.economyofeffort.com/wp-content/uploads/2011/05/adobe-reader-x.jpg">http://www.economyofeffort.com/wp-content/uploads/2011/05/adobe-reader-x.jpg</a> %}</p>
 
 <p>If Adobe software were people, they&rsquo;d be dead from <a href="http://knowyourmeme.com/memes/diabeetus">DIABEETUS</a>.</p>
 ]]></content>

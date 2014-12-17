@@ -4,7 +4,7 @@
   <title><![CDATA[Category: postgres | Economy of Effort]]></title>
   <link href="http://www.economyofeffort.com/categories/postgres/atom.xml" rel="self"/>
   <link href="http://www.economyofeffort.com/"/>
-  <updated>2014-12-16T19:27:55-08:00</updated>
+  <updated>2014-12-16T20:35:46-08:00</updated>
   <id>http://www.economyofeffort.com/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
@@ -12,6 +12,67 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ActiveRecord save not updating hstore fields in Rails 4.0-4.1]]></title>
+    <link href="http://www.economyofeffort.com/2014/12/16/activerecord-save-not-updating-hstore-fields-in-rails-4-dot-0-4-dot-1/"/>
+    <updated>2014-12-16T20:10:00-08:00</updated>
+    <id>http://www.economyofeffort.com/2014/12/16/activerecord-save-not-updating-hstore-fields-in-rails-4-dot-0-4-dot-1</id>
+    <content type="html"><![CDATA[<p>Here&rsquo;s some behavior you might not expect when using Postgres&rsquo;s hstore with ActiveRecord.</p>
+
+<p>ActiveRecord::Base#update_attributes does what you&rsquo;d think:</p>
+
+<p><code>ruby
+[0] pry(main)&gt; thing = Thing.new
+[1] pry(main)&gt; thing.update_attributes({data: {'mykey' =&gt; 'myval'}})
+[2] pry(main)&gt; thing.reload
+[3] pry(main)&gt; thing.data['mykey']
+=&gt; "myval"
+</code></p>
+
+<p>However, ActiveRecord::Base#save might not:</p>
+
+<p><code>ruby
+[0] pry(main)&gt; thing = Thing.new
+[1] pry(main)&gt; thing.data['mykey'] = 'myval'
+=&gt; "myval"
+[2] pry(main)&gt; thing.save
+   (0.3ms)  BEGIN
+  SQL (0.4ms)  INSERT INTO "things" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", "2014-12-17 04:02:03.119354"], ["updated_at", "2014-12-17 04:02:03.119354"]]
+   (0.9ms)  COMMIT
+=&gt; true
+[3] pry(main)&gt; thing.reload
+[4] pry(main)&gt; thing.data['mykey']
+=&gt; nil
+</code>
+Huh? I left the SQL log line in the output here so we can see that our hstore field is indeed left out of the SQL INSERT statement entirely, which explains why the field is <code>nil</code> once we re-fetch the object from the database.</p>
+
+<p>But why is it doing this? It turns out that, in Rails 4.0 and 4.1, this operation doesn&rsquo;t mark the field as &ldquo;dirty&rdquo; in ActiveRecord, so the change is not detected and included in the save operation.</p>
+
+<p>We can mark it manually with <a href="http://api.rubyonrails.org/classes/ActiveModel/Dirty.html">ActiveModel::Dirty</a>&rsquo;s <code>attr_name_will_change!</code>, eg.</p>
+
+<p><code>ruby
+[0] pry(main)&gt; thing = Thing.new
+[1] pry(main)&gt; thing.data_will_change!
+[2] pry(main)&gt; thing.data['mykey'] = 'myval'
+=&gt; "myval"
+[3] pry(main)&gt; thing.save
+   (0.3ms)  BEGIN
+  SQL (0.3ms)  INSERT INTO "things" ("created_at", "data", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2014-12-17 04:08:32.066027"], ["data", "\"mykey\"=&gt;\"myval\""], ["updated_at", "2014-12-17 04:08:32.066027"]]
+   (1.0ms)  COMMIT
+=&gt; true
+[4] pry(main)&gt; thing.reload
+[5] pry(main)&gt; thing.data['mykey']
+=&gt; "myval"
+</code></p>
+
+<p>The documentation states that <code>attr_name_will_change!</code> should be called <em>before</em> changes to the attribute, as seen in the example above.</p>
+
+<p>Doesn&rsquo;t this seem like a pain? Well, as discussed in <a href="https://github.com/rails/rails/issues/6127">Rails issue #6127</a>, it was expected behavior for Rails 4.0 and 4.1, but improvements to serialized attributes have been <a href="https://github.com/rails/rails/pull/15674">merged into Rails</a> and will appear in Rails 4.2. Setting values and calling save will just work.</p>
+
+<p>So, in the meantime, the workaround is manually marking properties as dirty with <code>attr_data_will_change!</code> before making and saving changes to those fields.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[PostgreSQL hstore default value in Rails 4]]></title>

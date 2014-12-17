@@ -4,7 +4,7 @@
   <title><![CDATA[Category: google-voice | Economy of Effort]]></title>
   <link href="http://www.economyofeffort.com/categories/google-voice/atom.xml" rel="self"/>
   <link href="http://www.economyofeffort.com/"/>
-  <updated>2014-12-16T19:27:55-08:00</updated>
+  <updated>2014-12-16T20:35:46-08:00</updated>
   <id>http://www.economyofeffort.com/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
@@ -22,7 +22,7 @@
 
 <p>There are a lot of suggestions in the comments, though, that new readers might want to check out to accomplish what I did with these instructions in 2010.</p>
 
-<p><img class="center <a" src="href="http://www.economyofeffort.com/wp-content/uploads/2010/07/screenshot_sip.png">http://www.economyofeffort.com/wp-content/uploads/2010/07/screenshot_sip.png</a>"></p>
+<p>{% img center <a href="http://www.economyofeffort.com/wp-content/uploads/2010/07/screenshot_sip.png">http://www.economyofeffort.com/wp-content/uploads/2010/07/screenshot_sip.png</a> %}</p>
 
 <p>My wife and I recently abandoned our T-Mobile G1&rsquo;s to become iPhone people. As much as it pained me to (temporarily, at least) abandon a nice open platform I had followed for some time, I have to confess that the new iPhones hit a sweet spot in a way that the previous three generations of iPhone simply did not (for me, at least).</p>
 

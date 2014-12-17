@@ -1158,7 +1158,13 @@
         <loc>
             http://www.economyofeffort.com/2014/12/16/postgres-hstore-default-value-in-rails-4/
         </loc>
-        <lastmod>2014-12-16T19:27:05-08:00</lastmod>
+        <lastmod>2014-12-16T20:33:01-08:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://www.economyofeffort.com/2014/12/16/activerecord-save-not-updating-hstore-fields-in-rails-4-dot-0-4-dot-1/
+        </loc>
+        <lastmod>2014-12-16T20:34:41-08:00</lastmod>
     </url>
     <url>
         <loc>http://www.economyofeffort.com/about/</loc>
@@ -1166,11 +1172,11 @@
     </url>
     <url>
         <loc>http://www.economyofeffort.com/archives/</loc>
-        <lastmod>2014-12-16T19:27:05-08:00</lastmod>
+        <lastmod>2014-12-16T20:34:41-08:00</lastmod>
     </url>
     <url>
         <loc>http://www.economyofeffort.com/</loc>
-        <lastmod>2014-12-16T19:27:05-08:00</lastmod>
+        <lastmod>2014-12-16T20:34:41-08:00</lastmod>
     </url>
     <url>
         <loc>http://www.economyofeffort.com/robots.txt</loc>

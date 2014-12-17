@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Development | Economy of Effort]]></title>
   <link href="http://www.economyofeffort.com/categories/development/atom.xml" rel="self"/>
   <link href="http://www.economyofeffort.com/"/>
-  <updated>2014-12-16T19:27:55-08:00</updated>
+  <updated>2014-12-16T20:35:46-08:00</updated>
   <id>http://www.economyofeffort.com/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
@@ -20,56 +20,31 @@
     <id>http://www.economyofeffort.com/2012/05/10/error-building-ruby-1-8-7-with-rbenvruby-install-on-linux-with-glibc-2-14</id>
     <content type="html"><![CDATA[<p>If you&rsquo;re using rbenv and ruby-build on a Linux that has updated to glibc 2.14 or newer, you may have encountered an error like this when attempting to build an older version of MRI:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>$ rbenv install 1.8.7-p357 rbenv: 1.9.3-p194
-</span><span class='line'>Downloading http://ftp.ruby-lang.org/pub/ruby/1.8/ruby-1.8.7-p357.tar.gz...
-</span><span class='line'>Installing ruby-1.8.7-p357...
-</span><span class='line'>
-</span><span class='line'>BUILD FAILED
-</span><span class='line'>
-</span><span class='line'>Inspect or clean up the working tree at /tmp/ruby-build.20120508145707.21228
-</span><span class='line'>Results logged to /tmp/ruby-build.20120508145707.21228.log
-</span><span class='line'>
-</span><span class='line'>Last 10 log lines:
-</span><span class='line'>callback.func:79:24: error: ‘proc’ undeclared here (not in a function)
-</span><span class='line'>callback.func:79:39: error: ‘argc’ undeclared here (not in a function)
-</span><span class='line'>callback.func:79:45: error: ‘argv’ undeclared here (not in a function)
-</span><span class='line'>callback.func:82:1: error: expected identifier or ‘(’ before ‘}’ token
-</span><span class='line'>dl.c:106:1: error: expected ‘;’, ‘,’ or ‘)’ before ‘static’
-</span><span class='line'>cp ../.././ext/dl/lib/dl/import.rb ../../.ext/common/dl
-</span><span class='line'>make[1]: *** [dl.o] Error 1
-</span><span class='line'>make[1]: *** Waiting for unfinished jobs....
-</span><span class='line'>make[1]: Leaving directory `/tmp/ruby-build.20120508145707.21228/ruby-1.8.7-p357/ext/dl'
-</span><span class='line'>make: *** [all] Error 1
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock %}</p>
+
+<pre><code>$ rbenv install 1.8.7-p357 rbenv: 1.9.3-p194
+Downloading http://ftp.ruby-lang.org/pub/ruby/1.8/ruby-1.8.7-p357.tar.gz...
+Installing ruby-1.8.7-p357...
+
+BUILD FAILED
+
+Inspect or clean up the working tree at /tmp/ruby-build.20120508145707.21228
+Results logged to /tmp/ruby-build.20120508145707.21228.log
+
+Last 10 log lines:
+callback.func:79:24: error: ‘proc’ undeclared here (not in a function)
+callback.func:79:39: error: ‘argc’ undeclared here (not in a function)
+callback.func:79:45: error: ‘argv’ undeclared here (not in a function)
+callback.func:82:1: error: expected identifier or ‘(’ before ‘}’ token
+dl.c:106:1: error: expected ‘;’, ‘,’ or ‘)’ before ‘static’
+cp ../.././ext/dl/lib/dl/import.rb ../../.ext/common/dl
+make[1]: *** [dl.o] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make[1]: Leaving directory `/tmp/ruby-build.20120508145707.21228/ruby-1.8.7-p357/ext/dl'
+make: *** [all] Error 1
+</code></pre>
+
+<p>{% endcodeblock %}</p>
 
 <p>The issue isn&rsquo;t specific to ruby-build or rbenv, but rather is an issue with <a href="http://bugs.ruby-lang.org/issues/5108">building Ruby after upgrading glibc to 2.14</a>:</p>
 

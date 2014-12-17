@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ios | Economy of Effort]]></title>
   <link href="http://www.economyofeffort.com/categories/ios/atom.xml" rel="self"/>
   <link href="http://www.economyofeffort.com/"/>
-  <updated>2014-12-16T19:27:55-08:00</updated>
+  <updated>2014-12-16T20:35:46-08:00</updated>
   <id>http://www.economyofeffort.com/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
@@ -26,13 +26,13 @@
 
 <p>Nitrous adds a menu to the iOS Settings app, which allows users to selectively flag applications to use Nitro, thus allowing that app&rsquo;s web views to perform as they do in mobile Safari.</p>
 
-<p><img class="center" src="/media/images/nitrous-settings.png"></p>
+<p>{% img center /media/images/nitrous-settings.png %}</p>
 
 <p>Enabling Nitro on non-Safari web browsers is great enough, but it also allows enabling Nitro on other apps that make use of UIWebViews, such as client apps for Reddit, Twitter, and Facebook.</p>
 
 <p>The following image from <a href="http://www.letsunlockiphone.com/nitrous-cydia-tweak-nitro-javascript-chrome-ios/">this post</a> demonstrates the performance improvement of Nitro in Chrome by running the SunSpider JavaScript performance test:</p>
 
-<p><img class="center" src="/media/images/nitrous-sunspider.jpg"></p>
+<p>{% img center /media/images/nitrous-sunspider.jpg %}</p>
 
 <p>While it&rsquo;s not quite the same thing as Chrome being able to include V8 in iOS Chrome, the ability to use Nitro in Chrome takes away one of the two major disadvantages Chrome has on iOS. (The other disadvantage &ndash; not being the default browser &ndash; can be solved with the Browser Chooser app, allowing users to elevate Chrome to the iOS default browser).</p>
 ]]></content>
