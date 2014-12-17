@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | Economy of Effort]]></title>
   <link href="http://www.economyofeffort.com/categories/rails/atom.xml" rel="self"/>
   <link href="http://www.economyofeffort.com/"/>
-  <updated>2014-08-11T21:09:01-07:00</updated>
+  <updated>2014-12-16T19:27:55-08:00</updated>
   <id>http://www.economyofeffort.com/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
@@ -12,6 +12,40 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[PostgreSQL hstore default value in Rails 4]]></title>
+    <link href="http://www.economyofeffort.com/2014/12/16/postgres-hstore-default-value-in-rails-4/"/>
+    <updated>2014-12-16T19:02:00-08:00</updated>
+    <id>http://www.economyofeffort.com/2014/12/16/postgres-hstore-default-value-in-rails-4</id>
+    <content type="html"><![CDATA[<p>Having used <a href="https://github.com/diogob/activerecord-postgres-hstore">activerecord-postgres-hstore</a> before native hstore support was added to Rails 4, I was used to the behavior of empty hstore fields returning an empty hash <code>{}</code> when a row with such a field was instantiated into an ActiveRecord object, as was discussed and added in the gem&rsquo;s <a href="https://github.com/diogob/activerecord-postgres-hstore/issues/22">issue #22</a>.</p>
+
+<p>This behavior changed in Rails 4&rsquo;s hstore support. An ActiveRecord object with an empty hstore field will return <code>nil</code> for that field rather than an empty hash. (When someone opened a bug in the Rails repo to suggest implementing the same behavior in the new native hstore support, <a href="https://github.com/rails/rails/issues/11520">it was brushed off</a>.)</p>
+
+<p>By default, that leaves us to have to nil-check every hstore property in our objects before accessing any keys (eg. <code>@myobj.data &amp;&amp; @myobj.data['mykey']</code>). However, we can get our &ldquo;empty&rdquo; hstore fields instantiating as empty hashes instead of nil with a tweak of our migration.</p>
+
+<p>Simply add <code>default: '', null: false</code> to the migration, eg.</p>
+
+<p>```ruby
+class AddDataToThings &lt; ActiveRecord::Migration
+  def change</p>
+
+<pre><code>add_column :things, :data, :hstore, default: '', null: false
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>With that default in place, our empty hstore fields will instantiate as empty hashes, and we can avoid the nil check:
+<code>ruby
+[1] pry(main)&gt; thing = Thing.new
+=&gt; #&lt;Thing id: nil, ... &gt;
+[2] pry(main)&gt; Thing.data
+=&gt; {}
+</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Careful What You Name Your Rails Partials]]></title>

@@ -9,7 +9,7 @@
   <meta name="author" content="Brendon Rapp">
 
   
-  <meta name="description" content="1993 is considered to be the starting point of the commercial Internet. For those of us living in little farm towns in the San Joaquin Valley, &hellip;">
+  <meta name="description" content="When Google released Chrome for iOS, initial excitement was tempered when users realized that, thanks to Apple&rsquo;s restrictions, Chrome lacked &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -87,6 +87,74 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2012/08/16/nitrous-my-jailbreaks-killer-app/">Nitrous: My Jailbreak&#8217;s Killer App</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-16T15:58:00-07:00" pubdate data-updated="true">Aug 16<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When Google released Chrome for iOS, initial excitement was tempered when users realized that, thanks to Apple&rsquo;s restrictions, Chrome lacked Google&rsquo;s V8 JavaScript engine. When you get down to it, Chrome in iOS is just a browsery widget wrapper around iOS UIWebViews.</p>
+
+<p>Worse, because Chrome is not an Apple app, it does not take advantage of the Nitro JavaScript engine that is built into iOS and used by Apple apps like Safari.</p>
+
+<p>Thankfully, jailbreaking iOS users can now add Nitro support to Chrome (and other apps) with the new Nitrous app on the Cydia store.</p>
+
+<p>Nitrous adds a menu to the iOS Settings app, which allows users to selectively flag applications to use Nitro, thus allowing that app&rsquo;s web views to perform as they do in mobile Safari.</p>
+
+<p><img class="center" src="/media/images/nitrous-settings.png"></p>
+
+<p>Enabling Nitro on non-Safari web browsers is great enough, but it also allows enabling Nitro on other apps that make use of UIWebViews, such as client apps for Reddit, Twitter, and Facebook.</p>
+
+<p>The following image from <a href="http://www.letsunlockiphone.com/nitrous-cydia-tweak-nitro-javascript-chrome-ios/">this post</a> demonstrates the performance improvement of Nitro in Chrome by running the SunSpider JavaScript performance test:</p>
+
+<p><img class="center" src="/media/images/nitrous-sunspider.jpg"></p>
+
+<p>While it&rsquo;s not quite the same thing as Chrome being able to include V8 in iOS Chrome, the ability to use Nitro in Chrome takes away one of the two major disadvantages Chrome has on iOS. (The other disadvantage &ndash; not being the default browser &ndash; can be solved with the Browser Chooser app, allowing users to elevate Chrome to the iOS default browser).</p>
+</div>
+  
+  
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/ios/'>ios</a>
+  
+</span>
+
+
+      </p>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -879,87 +947,6 @@ $ rbenv install /tmp/1.8.7-p358-with-rogue-stdout-patch
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/2011/06/07/stuff-i-like-that-you-should-too-homebrew-for-mac-os-x/">Stuff I Like That You Should Too: Homebrew for Mac OS X</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-07T05:51:51-07:00" pubdate data-updated="true">Jun 7<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Mac OS X is a UNIX-based operating system. Apple proudly states that fact whenever they&rsquo;re pitching OS X.</p>
-
-<p><img src="http://www.economyofeffort.com/wp-content/uploads/2011/06/apple-unix.png"></p>
-
-<p>A lot of people &ndash; myself included &ndash; like OS X in part because of this fact. I am primarily a Linux user, but for my personal laptop, it&rsquo;s nice to have a system with all the friendly-out-of-the-box UI trappings of a general consumer product, while still having UNIX at my fingertips.</p>
-
-<p>As a UNIX system, though, Mac OS X has some limiting factors. One of the big ones is that the base system (the set of core tools that make up the OS, named Darwin on the Mac) is not really updatable. Updates come from Apple packaged as part of general operating system updates, but even when Apple does push out updates, it usually not all that up-to-date.</p>
-
-<p>What&rsquo;s more, the base system doesn&rsquo;t necessarily come with everything you might want. You can always compile from source, but this is 2011 and package management is a good thing.</p>
-
-<p>There are three main community projects which bring package management for UNIX programs to Mac OS X. They are <a href="http://finkproject.org/">Fink</a>, <a href="http://www.macports.org/">MacPorts</a>, and <a href="http://mxcl.github.com/homebrew/">Homebrew</a>.</p>
-
-<p><a href="http://mxcl.github.com/homebrew/"><img src="http://www.economyofeffort.com/wp-content/uploads/2011/06/homebrew.png"></a></p>
-
-<p>Of these, my favorite is Homebrew. Homebrew is very light and lean, and ideal for people who just want to install some select packages to augment the Darwin base system.</p>
-
-<p>Both Fink and MacPorts work around Darwin by existing in their own little ecosystems. When installing something that depends on another tool that already exists in Darwin, these package managers tend to install their own copies of those tools instead of using the one already on the system. There are some compatibility advantages to this, but at the same time, there is some confusion when there are multiple copies of libraries and binaries on the same system.</p>
-
-<p>Homebrew takes the other approach, relying on what is provided in the Darwin base system instead of replicating everything itself. It augments Darwin instead of treating it as unreliable and building its own little world.</p>
-
-<p>Homebrew in general &ldquo;feels&rdquo; nicer than Fink or MacPorts. In <a href="http://news.ycombinator.com/item?id=1096177">the words</a> of HackerNews commenter dschobel: &ldquo;There is so much less friction than using macports or fink that I dropped them immediately.&rdquo; That&rsquo;s a good way of putting it. Homebrew is just less noisy and less intrusive.</p>
-
-<p>There are other advantages to Homebrew. The scripts (or &ldquo;formula&rdquo; in Homebrew nomenclature) for building and installing packages are simple Ruby scripts. Combine the ease of creating formula with the ease of submitting them to the project &ndash; as it <a href="https://github.com/mxcl/homebrew">lives on Github</a> and anyone can contribute with a simple fork and a pull request &ndash; and you&rsquo;ve got an environment for rapid crowdsourced updates.</p>
-
-<p>And update it has. Originally I ran Homebrew with MacPorts as a backup for things that weren&rsquo;t yet in Homebrew, but the number of such packages has decreased dramatically. The 1587 formulas (as of this writing) in Homebrew is still much less than the 8100 packages in MacPorts or the 12000 packages in Fink, but the important stuff is well represented (and part of the difference is due to Homebrew intentionally excluding things already in Darwin). Still, it is perfectly fine to run more than one package manager to get the package coverage you need.</p>
-
-<p>Homebrew is very easy to use &ndash; I won&rsquo;t bother replicating the explanation of basic commands here, as the <a href="http://mxcl.github.com/homebrew/">home page</a> and the <a href="https://github.com/mxcl/homebrew/wiki/Installation">instructions on the wiki</a> cover them nicely. But I will share one little BASH alias that I use. There is no single Homebrew command for upgrading all of your installed Homebrew packages to their latest versions, the way you might in a Debian-based OS with an &ldquo;apt-get upgrade&rdquo;. But a handy little BASH alias takes care of that:</p>
-
-<p>[bash]# Homebrew &ndash; upgrade all installed packages
-alias brew-upgrade=&lsquo;brew update &amp;&amp; brew list | xargs brew install&rsquo;[/bash]</p>
-</div>
-  
-  
-    <footer>
-      <p class="meta">
-        categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/categories/stuff-i-like/'>Stuff I Like</a>
-  
-</span>
-
-
-      </p>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/3/">&larr; Older</a>
@@ -977,6 +964,10 @@ alias brew-upgrade=&lsquo;brew update &amp;&amp; brew list | xargs brew install&
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/12/16/postgres-hstore-default-value-in-rails-4/">PostgreSQL Hstore Default Value in Rails 4</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/08/11/beyond-ctrl-remap-make-that-caps-lock-key-useful/">Beyond Ctrl: Make That Caps Lock Key Useful</a>
       </li>
     
@@ -990,10 +981,6 @@ alias brew-upgrade=&lsquo;brew update &amp;&amp; brew list | xargs brew install&
     
       <li class="post">
         <a href="/2014/07/09/vim-tricks-for-ruby-hashes/">Vim Tricks for Ruby Hashes</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/07/04/zsh/">Zsh, Tmux, Vim, and 256 Color Madness</a>
       </li>
     
   </ul>

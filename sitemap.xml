@@ -1155,16 +1155,22 @@
         <lastmod>2014-08-11T21:07:58-07:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://www.economyofeffort.com/2014/12/16/postgres-hstore-default-value-in-rails-4/
+        </loc>
+        <lastmod>2014-12-16T19:27:05-08:00</lastmod>
+    </url>
+    <url>
         <loc>http://www.economyofeffort.com/about/</loc>
         <lastmod>2013-11-22T10:32:20-08:00</lastmod>
     </url>
     <url>
         <loc>http://www.economyofeffort.com/archives/</loc>
-        <lastmod>2014-08-11T21:07:58-07:00</lastmod>
+        <lastmod>2014-12-16T19:27:05-08:00</lastmod>
     </url>
     <url>
         <loc>http://www.economyofeffort.com/</loc>
-        <lastmod>2014-08-11T21:07:58-07:00</lastmod>
+        <lastmod>2014-12-16T19:27:05-08:00</lastmod>
     </url>
     <url>
         <loc>http://www.economyofeffort.com/robots.txt</loc>

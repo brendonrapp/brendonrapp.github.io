@@ -9,7 +9,7 @@
   <meta name="author" content="Brendon Rapp">
 
   
-  <meta name="description" content="tl;dr: Supercharge your Caps Lock key by making it Esc when tapped, and Ctrl when held Caps Lock. A useless key sitting in prime keyboard real estate &hellip;">
+  <meta name="description" content="Having used activerecord-postgres-hstore before native hstore support was added to Rails 4, I was used to the behavior of empty hstore fields &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -87,6 +87,90 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2014/12/16/postgres-hstore-default-value-in-rails-4/">PostgreSQL Hstore Default Value in Rails 4</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-16T19:02:00-08:00" pubdate data-updated="true">Dec 16<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Having used <a href="https://github.com/diogob/activerecord-postgres-hstore">activerecord-postgres-hstore</a> before native hstore support was added to Rails 4, I was used to the behavior of empty hstore fields returning an empty hash <code>{}</code> when a row with such a field was instantiated into an ActiveRecord object, as was discussed and added in the gem&rsquo;s <a href="https://github.com/diogob/activerecord-postgres-hstore/issues/22">issue #22</a>.</p>
+
+<p>This behavior changed in Rails 4&rsquo;s hstore support. An ActiveRecord object with an empty hstore field will return <code>nil</code> for that field rather than an empty hash. (When someone opened a bug in the Rails repo to suggest implementing the same behavior in the new native hstore support, <a href="https://github.com/rails/rails/issues/11520">it was brushed off</a>.)</p>
+
+<p>By default, that leaves us to have to nil-check every hstore property in our objects before accessing any keys (eg. <code>@myobj.data &amp;&amp; @myobj.data['mykey']</code>). However, we can get our &ldquo;empty&rdquo; hstore fields instantiating as empty hashes instead of nil with a tweak of our migration.</p>
+
+<p>Simply add <code>default: '', null: false</code> to the migration, eg.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">AddDataToThings</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Migration</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">change</span>
+</span><span class='line'>    <span class="n">add_column</span> <span class="ss">:things</span><span class="p">,</span> <span class="ss">:data</span><span class="p">,</span> <span class="ss">:hstore</span><span class="p">,</span> <span class="ss">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="ss">null</span><span class="p">:</span> <span class="kp">false</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>With that default in place, our empty hstore fields will instantiate as empty hashes, and we can avoid the nil check:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">thing</span> <span class="o">=</span> <span class="no">Thing</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="c1">#&lt;Thing id: nil, ... &gt;</span>
+</span><span class='line'><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="no">Thing</span><span class="o">.</span><span class="n">data</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="p">{}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+    <footer>
+      <p class="meta">
+        categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/categories/postgres/'>postgres</a>, <a class='category' href='/categories/rails/'>rails</a>, <a class='category' href='/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+      </p>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -1100,74 +1184,6 @@ By default, users can run <code>rake preview</code> to make Octopress spin up a 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/2012/08/16/nitrous-my-jailbreaks-killer-app/">Nitrous: My Jailbreak&#8217;s Killer App</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-16T15:58:00-07:00" pubdate data-updated="true">Aug 16<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>When Google released Chrome for iOS, initial excitement was tempered when users realized that, thanks to Apple&rsquo;s restrictions, Chrome lacked Google&rsquo;s V8 JavaScript engine. When you get down to it, Chrome in iOS is just a browsery widget wrapper around iOS UIWebViews.</p>
-
-<p>Worse, because Chrome is not an Apple app, it does not take advantage of the Nitro JavaScript engine that is built into iOS and used by Apple apps like Safari.</p>
-
-<p>Thankfully, jailbreaking iOS users can now add Nitro support to Chrome (and other apps) with the new Nitrous app on the Cydia store.</p>
-
-<p>Nitrous adds a menu to the iOS Settings app, which allows users to selectively flag applications to use Nitro, thus allowing that app&rsquo;s web views to perform as they do in mobile Safari.</p>
-
-<p><img class="center" src="/media/images/nitrous-settings.png"></p>
-
-<p>Enabling Nitro on non-Safari web browsers is great enough, but it also allows enabling Nitro on other apps that make use of UIWebViews, such as client apps for Reddit, Twitter, and Facebook.</p>
-
-<p>The following image from <a href="http://www.letsunlockiphone.com/nitrous-cydia-tweak-nitro-javascript-chrome-ios/">this post</a> demonstrates the performance improvement of Nitro in Chrome by running the SunSpider JavaScript performance test:</p>
-
-<p><img class="center" src="/media/images/nitrous-sunspider.jpg"></p>
-
-<p>While it&rsquo;s not quite the same thing as Chrome being able to include V8 in iOS Chrome, the ability to use Nitro in Chrome takes away one of the two major disadvantages Chrome has on iOS. (The other disadvantage &ndash; not being the default browser &ndash; can be solved with the Browser Chooser app, allowing users to elevate Chrome to the iOS default browser).</p>
-</div>
-  
-  
-    <footer>
-      <p class="meta">
-        categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/categories/ios/'>ios</a>
-  
-</span>
-
-
-      </p>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -1183,6 +1199,10 @@ By default, users can run <code>rake preview</code> to make Octopress spin up a 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/12/16/postgres-hstore-default-value-in-rails-4/">PostgreSQL Hstore Default Value in Rails 4</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/08/11/beyond-ctrl-remap-make-that-caps-lock-key-useful/">Beyond Ctrl: Make That Caps Lock Key Useful</a>
       </li>
     
@@ -1196,10 +1216,6 @@ By default, users can run <code>rake preview</code> to make Octopress spin up a 
     
       <li class="post">
         <a href="/2014/07/09/vim-tricks-for-ruby-hashes/">Vim Tricks for Ruby Hashes</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/07/04/zsh/">Zsh, Tmux, Vim, and 256 Color Madness</a>
       </li>
     
   </ul>

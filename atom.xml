@@ -4,7 +4,7 @@
   <title><![CDATA[Economy of Effort]]></title>
   <link href="http://www.economyofeffort.com/atom.xml" rel="self"/>
   <link href="http://www.economyofeffort.com/"/>
-  <updated>2014-08-11T21:09:01-07:00</updated>
+  <updated>2014-12-16T19:27:55-08:00</updated>
   <id>http://www.economyofeffort.com/</id>
   <author>
     <name><![CDATA[Brendon Rapp]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[PostgreSQL hstore default value in Rails 4]]></title>
+    <link href="http://www.economyofeffort.com/2014/12/16/postgres-hstore-default-value-in-rails-4/"/>
+    <updated>2014-12-16T19:02:00-08:00</updated>
+    <id>http://www.economyofeffort.com/2014/12/16/postgres-hstore-default-value-in-rails-4</id>
+    <content type="html"><![CDATA[<p>Having used <a href="https://github.com/diogob/activerecord-postgres-hstore">activerecord-postgres-hstore</a> before native hstore support was added to Rails 4, I was used to the behavior of empty hstore fields returning an empty hash <code>{}</code> when a row with such a field was instantiated into an ActiveRecord object, as was discussed and added in the gem&rsquo;s <a href="https://github.com/diogob/activerecord-postgres-hstore/issues/22">issue #22</a>.</p>
+
+<p>This behavior changed in Rails 4&rsquo;s hstore support. An ActiveRecord object with an empty hstore field will return <code>nil</code> for that field rather than an empty hash. (When someone opened a bug in the Rails repo to suggest implementing the same behavior in the new native hstore support, <a href="https://github.com/rails/rails/issues/11520">it was brushed off</a>.)</p>
+
+<p>By default, that leaves us to have to nil-check every hstore property in our objects before accessing any keys (eg. <code>@myobj.data &amp;&amp; @myobj.data['mykey']</code>). However, we can get our &ldquo;empty&rdquo; hstore fields instantiating as empty hashes instead of nil with a tweak of our migration.</p>
+
+<p>Simply add <code>default: '', null: false</code> to the migration, eg.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">AddDataToThings</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Migration</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">change</span>
+</span><span class='line'>    <span class="n">add_column</span> <span class="ss">:things</span><span class="p">,</span> <span class="ss">:data</span><span class="p">,</span> <span class="ss">:hstore</span><span class="p">,</span> <span class="ss">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="ss">null</span><span class="p">:</span> <span class="kp">false</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>With that default in place, our empty hstore fields will instantiate as empty hashes, and we can avoid the nil check:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">thing</span> <span class="o">=</span> <span class="no">Thing</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="c1">#&lt;Thing id: nil, ... &gt;</span>
+</span><span class='line'><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="no">Thing</span><span class="o">.</span><span class="n">data</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="p">{}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Beyond Ctrl: Make That Caps Lock Key Useful]]></title>
@@ -1064,44 +1105,6 @@ $ rbenv install /tmp/1.8.7-p358-with-rogue-stdout-patch
 <p>There is a PAM module for YubiKey authentication, allowing it to be used with things like SSH and VPN. There are also plugins for web-based CMSs like Wordpress. I&rsquo;m going to dig around and I&rsquo;ll share what I find.</p>
 
 <p>If you have any questions, please ask them and I&rsquo;ll try to answer them, maybe in my next post. Also, if anything in this post is incorrect, please let me know and I will correct it. I am simply a consumer and do not work for Yubico or have any stake in their product other than the ~$75 I&rsquo;ve invested in the three keys I own.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Stuff I Like That You Should Too: Homebrew for Mac OS X]]></title>
-    <link href="http://www.economyofeffort.com/2011/06/07/stuff-i-like-that-you-should-too-homebrew-for-mac-os-x/"/>
-    <updated>2011-06-07T05:51:51-07:00</updated>
-    <id>http://www.economyofeffort.com/2011/06/07/stuff-i-like-that-you-should-too-homebrew-for-mac-os-x</id>
-    <content type="html"><![CDATA[<p>Mac OS X is a UNIX-based operating system. Apple proudly states that fact whenever they&rsquo;re pitching OS X.</p>
-
-<p><img src="http://www.economyofeffort.com/wp-content/uploads/2011/06/apple-unix.png"></p>
-
-<p>A lot of people &ndash; myself included &ndash; like OS X in part because of this fact. I am primarily a Linux user, but for my personal laptop, it&rsquo;s nice to have a system with all the friendly-out-of-the-box UI trappings of a general consumer product, while still having UNIX at my fingertips.</p>
-
-<p>As a UNIX system, though, Mac OS X has some limiting factors. One of the big ones is that the base system (the set of core tools that make up the OS, named Darwin on the Mac) is not really updatable. Updates come from Apple packaged as part of general operating system updates, but even when Apple does push out updates, it usually not all that up-to-date.</p>
-
-<p>What&rsquo;s more, the base system doesn&rsquo;t necessarily come with everything you might want. You can always compile from source, but this is 2011 and package management is a good thing.</p>
-
-<p>There are three main community projects which bring package management for UNIX programs to Mac OS X. They are <a href="http://finkproject.org/">Fink</a>, <a href="http://www.macports.org/">MacPorts</a>, and <a href="http://mxcl.github.com/homebrew/">Homebrew</a>.</p>
-
-<p><a href="http://mxcl.github.com/homebrew/"><img src="http://www.economyofeffort.com/wp-content/uploads/2011/06/homebrew.png"></a></p>
-
-<p>Of these, my favorite is Homebrew. Homebrew is very light and lean, and ideal for people who just want to install some select packages to augment the Darwin base system.</p>
-
-<p>Both Fink and MacPorts work around Darwin by existing in their own little ecosystems. When installing something that depends on another tool that already exists in Darwin, these package managers tend to install their own copies of those tools instead of using the one already on the system. There are some compatibility advantages to this, but at the same time, there is some confusion when there are multiple copies of libraries and binaries on the same system.</p>
-
-<p>Homebrew takes the other approach, relying on what is provided in the Darwin base system instead of replicating everything itself. It augments Darwin instead of treating it as unreliable and building its own little world.</p>
-
-<p>Homebrew in general &ldquo;feels&rdquo; nicer than Fink or MacPorts. In <a href="http://news.ycombinator.com/item?id=1096177">the words</a> of HackerNews commenter dschobel: &ldquo;There is so much less friction than using macports or fink that I dropped them immediately.&rdquo; That&rsquo;s a good way of putting it. Homebrew is just less noisy and less intrusive.</p>
-
-<p>There are other advantages to Homebrew. The scripts (or &ldquo;formula&rdquo; in Homebrew nomenclature) for building and installing packages are simple Ruby scripts. Combine the ease of creating formula with the ease of submitting them to the project &ndash; as it <a href="https://github.com/mxcl/homebrew">lives on Github</a> and anyone can contribute with a simple fork and a pull request &ndash; and you&rsquo;ve got an environment for rapid crowdsourced updates.</p>
-
-<p>And update it has. Originally I ran Homebrew with MacPorts as a backup for things that weren&rsquo;t yet in Homebrew, but the number of such packages has decreased dramatically. The 1587 formulas (as of this writing) in Homebrew is still much less than the 8100 packages in MacPorts or the 12000 packages in Fink, but the important stuff is well represented (and part of the difference is due to Homebrew intentionally excluding things already in Darwin). Still, it is perfectly fine to run more than one package manager to get the package coverage you need.</p>
-
-<p>Homebrew is very easy to use &ndash; I won&rsquo;t bother replicating the explanation of basic commands here, as the <a href="http://mxcl.github.com/homebrew/">home page</a> and the <a href="https://github.com/mxcl/homebrew/wiki/Installation">instructions on the wiki</a> cover them nicely. But I will share one little BASH alias that I use. There is no single Homebrew command for upgrading all of your installed Homebrew packages to their latest versions, the way you might in a Debian-based OS with an &ldquo;apt-get upgrade&rdquo;. But a handy little BASH alias takes care of that:</p>
-
-<p>[bash]# Homebrew &ndash; upgrade all installed packages
-alias brew-upgrade=&lsquo;brew update &amp;&amp; brew list | xargs brew install&rsquo;[/bash]</p>
 ]]></content>
   </entry>
   
