@@ -1,0 +1,5 @@
+/* override settings from the compiled legacy screen.css */
+
+article p {
+  text-align: left;
+}

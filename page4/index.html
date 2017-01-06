@@ -1,0 +1,752 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Economy of Effort - page 4 - Economy of Effort</title>
+  <meta name="author" content="Brendon Rapp">
+
+  
+  <meta name="description" content="
+  
+  
+  
+    
+      
+    
+      
+        Linux USB Bootable Stick Netinstall That Works
+      
+    
+    
+      
+        
+        
+      
+    
+  
+
+...">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.economyofeffort.com/page4/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/override.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Economy of Effort" type="application/atom+xml">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='/stylesheets/all-f148572c56ea56711810ba4a6f7e7729.css' media='all' rel='stylesheet' type='text/css'>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-3578812-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <div id="logo">
+    <a href="/"><img src="/images/icons/area.jpg" alt="logo"></a>
+  </div>
+  <h1><a href="/">Economy of Effort</a></h1>
+  
+  <div class="clear"></div>
+</hgroup>
+
+<hgroup>
+  <div id="social-icons">
+    <a href="http://www.twitter.com/legion"><img src="/images/icons/webicon-twitter.png" alt="Twitter"></a>
+    <a href="http://www.linkedin.com/in/legion/"><img src="/images/icons/webicon-linkedin.png" alt="LinkedIn"></a>
+    <a href="http://github.com/brendonrapp"><img src="/images/icons/webicon-github.png" alt="GitHub"></a>
+    <a href="mailto:brendon@economyofeffort.com"><img src="/images/icons/webicon-mail.png" alt="Mail"></a>
+    <a href="atom.xml"><img src="/images/icons/webicon-rss.png" alt="RSS"></a>
+  </div>
+</hgroup></header>
+  <nav role="navigation"><form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:http://www.economyofeffort.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+
+<ul class="main-navigation">
+  <li><a href="/about">About</a></li>
+  <li><a href="/archives">Archive</a></li>
+  <li><a href="http://www.pinterest.com/legion/stuff-i-want/">Wish List</a></li>
+  <li><a href="http://steamcommunity.com/id/legion/wishlist/">Steam Wish List</a></li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2010/08/12/linux-usb-bootable-stick-netinstall-that-works/">Linux USB Bootable Stick Netinstall That Works</a></h1>
+      
+    
+    
+      <p class="meta">
+        <time datetime="2010-08-12T07:37:26-07:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Today, I spent a lot of time fussing with bootable USB thumbsticks, trying to set one up that would boot the new backup server I just built at work. The machine has no optical drive, so I just wanted to boot a simple netinstall and have the system pull everything it needs from remote mirrors.</p>
+
+<p>The supposed easy method was to use <a href="http://unetbootin.sourceforge.net/">Unetbootin</a>. Everything about it <em>was</em> easy, except for the part where the bootable USB sticks it created didn’t work. Every boot attempt was met with “Boot error” or “Missing operating system”.</p>
+
+<p>Since I am on Ubuntu, I tried to use Ubuntu’s <a href="http://en.wikipedia.org/wiki/Ubuntu_Live_USB_creator">usb-creator</a>. Also a nice app, except for the fact that it too failed to work. In usb-creator’s case, the failure was to even get started. I would browse to the ISO that I wanted to use as the image for my boot stick, and the app refused to load it, or any ISO. No error, the app simply didn’t respond to the input.</p>
+
+<p>So, two piece-a-junk GUI apps down. After a little digging, I found the methods that created working USB sticks on the first try.</p>
+
+<h3 id="for-centos">For CentOS:</h3>
+
+<ol>
+  <li>Download diskboot.img from a CentOS mirror’s centos/(version)/os/(arch)/images folder.
+(I used the kernel.org mirror and i386 arch, so my diskboot.img was located at: http://mirrors.kernel.org/centos/5.5/os/i386/images/)</li>
+  <li>Insert USB stick (I’ll assume it’s /dev/sdb, adjust instructions to fit your system), format to FAT32 (I used Gparted for this)</li>
+  <li>Run:
+    <div class="highlighter-rouge"><pre class="highlight"><code> dd if=diskboot.img of=/dev/sdb
+</code></pre>
+    </div>
+  </li>
+  <li>Remove USB drive, stick into machine that’s getting the CentOS install, and boot
+When asked for installation media, select HTTP. Use the website and folder path of the mirror you’re using.<br />
+So, from my example:<br />
+<strong>Website name:</strong> mirrors.kernel.org<br />
+<strong>CentOS directory:</strong> centos/5.5/os/i386<br /></li>
+</ol>
+
+<p>Proceed through installer as normal.</p>
+
+<h3 id="for-debian">For Debian:</h3>
+
+<ol>
+  <li>Download boot.img.gz from /debian/dists/(version)/main/(installer-arch)/current/images/hd-media folder<br />
+(I did i386 stable from Debian’s US mirror, so boot.img.gz was located at:<br />
+http://ftp.us.debian.org/debian/dists/stable/main/installer-i386/current/images/hd-media/)</li>
+  <li>Download Debian netinstall ISO (I used: http://cdimage.debian.org/debian-cd/5.0.5/i386/iso-cd/debian-505-i386-netinst.iso)</li>
+  <li>Insert USB drive (again I’ll assume /dev/sdb) and format to FAT32</li>
+  <li>Run:
+    <div class="highlighter-rouge"><pre class="highlight"><code> zcat boot.img.gz &gt; /dev/sdb
+</code></pre>
+    </div>
+  </li>
+  <li>Remove and re-insert USB drive. Copy the netinstall ISO to the USB drive.</li>
+  <li>Stick USB into machine getting the Debian install, boot, and run through installer.</li>
+</ol>
+
+<p>I imagine these instructions will probably stay good for a long time. You’ll just need to adjust for mirror location, arch and release numbers, but the URLs I’ve provided here should give you a good clue as to where to find the necessary files on the mirror you’re using.</p>
+</div>
+  
+  
+    <footer>
+      <p class="meta">
+        categories: <span class="categories">
+  
+    <a href="/category/linux/">linux</a>
+  
+</span>
+      </p>
+    </footer>
+    </article>
+  
+  
+    <article>
+      <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2010/08/08/why-brightkite-is-pissing-me-off/">Why Brightkite Is Pissing Me Off</a></h1>
+      
+    
+    
+      <p class="meta">
+        <time datetime="2010-08-08T13:00:16-07:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img class="center" src="http://www.economyofeffort.com/wp-content/uploads/2010/08/brightkite.jpg" /></p>
+
+<p>Brightkite is one of those location-based social net services, the ones where you “check in” at places and see where other people check in. It’s like Gowalla and Foursquare, except (IMO) not quite as good.</p>
+
+<p>The one compelling feature of Brightkite, however, is group SMS. It allows users to create an SMS “party line”, which works with any SMS-capable phone. Chatters don’t even have to be part of the service - they can simply be invited by phone number.</p>
+
+<p>This, however, creates weird Brightkite “garbage” accounts (my term), which creates issues when that phone number goes and becomes a full-blown Brightkite member. In my family’s little group text, for example, there’s one of these garbage accounts which corresponds to a phone number that is now a number associated with a real Brightkite account. But other than polluting our chat’s user list, this is mostly harmless.</p>
+
+<p>Less harmless is the fact that the friends list appears <em>completely</em> broken. My wife and I, for example, just sat next to each other, on our respective MacBooks, typing in each other’s username and real names, trying to pull up each other’s profile so that we can friend each other.</p>
+
+<p>Every search, zero hits.</p>
+
+<p>We were finally able to figure out that we could see each other’s profile by clicking on each other’s name in the group chat userlist. However, when we attempted to friend each other, the service said that we’re already friends.</p>
+
+<p>Yet, when we look at our own friends list, neither of us appear on the other’s friend list.</p>
+
+<p>This is just the latest way in which Brightkite has shown itself to me to be a bit of a wreck. Unfortunately, I have found no other service that gives us the ability to do this sort of group SMS that works with any SMS user (we’ve found things that work with all iPhones, for example, but my parents aren’t on iPhones yet. If anyone knows of other services that do this, please let me know).</p>
+
+<p>Brightkite: <a href="http://www.youtube.com/watch?v=85HT4Om6JT4">For God’s Sake, Sort Yourself Out</a>.</p>
+</div>
+  
+  
+    <footer>
+      <p class="meta">
+        categories: <span class="categories">
+  
+    <a href="/category/general/">General</a>
+  
+</span>
+      </p>
+    </footer>
+    </article>
+  
+  
+    <article>
+      <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2010/08/02/back-online/">Back Online</a></h1>
+      
+    
+    
+      <p class="meta">
+        <time datetime="2010-08-02T13:02:04-07:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Migrated this site from Dreamhost to my VPS at <a href="http://prgmr.com/xen/">prgmr.com</a>. After running our own servers at work for the past year, I couldn’t put up with a shared host anymore. I put myself on prgmr’s waiting list and picked up a 512MB slice when they finally started selling some again (they’re out of everything again).</p>
+
+<p>Eventually I’m going to get Nginx + PHP5-FPM to run this Wordpress install, but for now, it’s Apache2 + mod_php. Definitely looking at using Nginx + Passenger for Rails deployments at work, need to get some practice setting that up too.</p>
+</div>
+  
+  
+    <footer>
+      <p class="meta">
+        categories: <span class="categories">
+  
+    <a href="/category/general/">General</a>
+  
+</span>
+      </p>
+    </footer>
+    </article>
+  
+  
+    <article>
+      <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2010/07/30/turn-an-android-handset-into-a-free-wifi-phone-with-google-voice/">Turn an Android Handset Into a Free Wifi Phone With Google Voice</a></h1>
+      
+    
+    
+      <p class="meta">
+        <time datetime="2010-07-30T09:00:07-07:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>UPDATE 2012-08-17</strong>: I’m surprised at how much traffic this post still gets. The post is over 2 years old at this point, and may not be directly useful anymore. The Android landscape has changed a lot, and I haven’t touched an Android phone newer than my old G1’s.</p>
+
+<p>There are a lot of suggestions in the comments, though, that new readers might want to check out to accomplish what I did with these instructions in 2010.</p>
+
+<p><img class="center" src="http://www.economyofeffort.com/wp-content/uploads/2010/07/screenshot_sip.png" /></p>
+
+<p>My wife and I recently abandoned our T-Mobile G1’s to become iPhone people. As much as it pained me to (temporarily, at least) abandon a nice open platform I had followed for some time, I have to confess that the new iPhones hit a sweet spot in a way that the previous three generations of iPhone simply did not (for me, at least).</p>
+
+<p>But that is a post for another time. This post is about what we did with our G1’s once that service icon turned into an “X”.</p>
+
+<p>The G1 is a wifi-enabled device. Even without traditional mobile phone service, it can be used with VOIP services. There are a number of paid SIP (Session Initiation Protocol)-based VOIP services which you can pair with a SIP application on the phone to create a fully-functional wifi phone.</p>
+
+<p>But, that costs money. What about something you can use for free? Well, that’s where Google Voice comes in.</p>
+
+<p>To understand how this works, you just need to know two things:</p>
+
+<ul>
+  <li>There are a number of SIP providers that give you free incoming (domestic) calls, while charging for outbound calls.</li>
+  <li>Google Voice traditionally works by calling your phone number, and then connecting you to the outbound number you intend to call (in other words, it turns an outbound call into an incoming one)</li>
+</ul>
+
+<p>See where I’m going with this?</p>
+
+<p>With a Google Voice account, a SIP service account, and the right Android apps to interoperate with each, you can have an Android handset that gives you free incoming calls, and free outbound calls by way of Google Voice’s method of connecting you.</p>
+
+<p>The phone, obviously, must be in range of (and connected to) a wifi network to be able to make and receive calls. Well, my house’s wifi network is always on. So by setting up my wife’s old G1 this way and plugging it into its AC adapter in the wall, we’ve turned that G1 into an always-on, free “home phone line”. One with voicemail transcription and SMS, even.</p>
+
+<p>The following instructions explain how I set this up with a phone that I wiped and started from scratch with. You should have no problems creating the same setup on an existing Android phone without wiping everything - I just wiped everything so that my G1 would be clean and not running any other junk that might slow the (easily slowed) phone down.</p>
+
+<p>These instructions are geared primarily toward my use case of adding VOIP to an Android phone that no longer has active cell service. You can also add free VOIP calling to a phone that has service. If you have no data service, you can use VOIP entirely on wifi like I am. If you have 3G or EDGE data service, you have the option to have your VOIP service still be active when outside of wifi reach. You may have to make a couple of slight adjustments to these instructions for a phone that still has cell service, but they should mostly be obvious.</p>
+
+<h2 id="phase-1-getting-online-with-freshly-wiped-has-no-service-phone">Phase 1: Getting Online with Freshly Wiped. Has-No-Service Phone</h2>
+<p>(skip if you’re just adding wifi calling to your active Android phone)</p>
+
+<ul>
+  <li>Skip Google Account setup for now. With no service, it can’t connect to the Internet anyway, until we have wifi running.</li>
+  <li>Set time settings (remember to set time zone - it’s not detected if you have no phone service)</li>
+  <li>Settings -&gt; Wireless Networks
+    <ul>
+      <li>Wi-Fi (check to enable)</li>
+      <li>Wi-Fi Settings -&gt; pick your wireless network (and if you’re like me, type in painfully long, random character encryption key!)
+        <ul>
+          <li>Type the key in again because you did it wrong the first time</li>
+        </ul>
+      </li>
+      <li>Mobile Network Settings</li>
+      <li>Data enabled (uncheck to disable)</li>
+      <li>Data roaming (uncheck to disable)</li>
+    </ul>
+  </li>
+  <li>Settings -&gt; Accounts &amp; Senc
+    <ul>
+      <li>Now that we are on wifi, we can add our Google account</li>
+      <li>Click “Add account”, enter Google account info as prompted</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="phase-2-download-required-apps-from-market">Phase 2: Download Required Apps from Market</h2>
+
+<ul>
+  <li>Log in to Google Talk (especially if you’re on wifi only - downloading from Market often fails if you’re not logged into Google Talk)</li>
+  <li>Download <strong>Google Voice</strong></li>
+  <li>Download <strong>Google Voice Call Free</strong></li>
+  <li>Download <strong>sipdroid</strong></li>
+  <li>Download <strong>KeepWiFi</strong></li>
+</ul>
+
+<h2 id="phase-3-sipgate-and-sipdroid">Phase 3: sipgate and Sipdroid</h2>
+
+<ul>
+  <li>Go to <a href="http://www.sipgate.com/one">http://www.sipgate.com/one</a> and click Sign Up Now and create an account (you will need a mobile phone with SMS to receive the confirmation text)</li>
+  <li>When you have the account all set up and logged in, go to My Settings and click the “SIP Credentials” link way on the far right of the page. Keep this handy in a browser tab.</li>
+  <li><a href="http://www.hutsby.net/2010/03/how-to-sipgate-and-sipdroid.html">Configure Sipdroid</a> to use your new sipgate number:
+    <ul>
+      <li>Menu Button -&gt; Settings -&gt; SIP Account Settings</li>
+      <li>Enter the following Sipdroid settings with the information from the sipgate.com SIP Credentials</li>
+      <li>Authorization Username = SIP-ID</li>
+      <li>Password = SIP-Password</li>
+      <li>Server or Proxy = sipgate.com</li>
+      <li>Domain = (leave blank)</li>
+    </ul>
+  </li>
+  <li>Configure Sipdroid to use the connections you want
+    <ul>
+      <li>Settings -&gt; Call Options</li>
+      <li>For a phone with no cell service, just have <strong>Use WLAN</strong> checked</li>
+      <li>If you have cell service with data, it’s up to you whether you want to <strong>Use 3G</strong> and <strong>Use EDGE</strong> as well.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="phase-4-google-voice">Phase 4: Google Voice</h2>
+
+<ul>
+  <li>Go to <a href="http://voice.google.com">http://voice.google.com</a> and create a Google Voice account (you will need an invite to Google Voice if you don’t yet have an account)</li>
+  <li>You will be required to input a phone number to have GV forward to. You can input your sipgate number.</li>
+  <li>Have Google Voice call you to confirm, enter confirmation number</li>
+  <li>Launch <strong>Google Voice</strong> app
+    <ul>
+      <li>Select <strong>Do not use Google Voice to make any calls</strong>. We will be using the Google Voice Call Free app to do the dialing.
+        <ul>
+          <li>If you’re on a phone that still has normal call service, you’ll probably want to set this to Always Ask instead.</li>
+        </ul>
+      </li>
+      <li>If you have phone service, you can set GV to take over as the phone’s voicemail provider. If you have no service, ignore this option. Voicemail will come via the GV app.</li>
+      <li>After setup, go to Settings -&gt; Sync and Notifications, and enable <strong>Synchronize Inbox</strong> (and disable <strong>Notifications via text message</strong>).</li>
+    </ul>
+  </li>
+  <li>Launch <strong>Google Voice Call Free</strong> app
+    <ul>
+      <li>Select <strong>Use GV to make all calls</strong> under Enable Callback</li>
+      <li>Enter your Google Voice account info</li>
+      <li>Enter your sipgate.com phone number for the Callback Number</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="phase-5-keep-wifi-running">Phase 5: Keep WiFi Running</h2>
+
+<p>Android phones (at least, the ones I’ve used) put the wifi connection to sleep when the phone screen goes off. We want to stop this from happening if we want the phone to sit on wifi ready to receive VOIP calls all day.</p>
+
+<ul>
+  <li>Launch <strong>KeepWifi</strong></li>
+  <li>Enable it!</li>
+</ul>
+
+<h2 id="phase-6-enjoy-your-new-wifi-phone">Phase 6: Enjoy Your New WiFi Phone!</h2>
+
+<p>Dial phone calls as normal. Google Voice Call Free will “intercept” the outgoing dial, and call your phone. Answer, and then GV will connect you to the number you dialed.</p>
+
+<p>Missed calls will appear in the normal Android dialer.</p>
+
+<p>Voicemails will appear in Google Voice. As long as you have Synchronize Inbox set, it will receive a push notification when a voicemail is received, and will give you the transcription and an audio file to listen to.</p>
+</div>
+  
+  
+    <footer>
+      <p class="meta">
+        categories: <span class="categories">
+  
+    <a href="/category/android/">android</a>, <a href="/category/google-voice/">google-voice</a>
+  
+</span>
+      </p>
+    </footer>
+    </article>
+  
+  
+    <article>
+      <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2010/06/29/im-so-pretty/">I'm So Pretty</a></h1>
+      
+    
+    
+      <p class="meta">
+        <time datetime="2010-06-29T08:10:46-07:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Spam too good to ignore. Apparently, I still have a Xanga account:</p>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2010/06/xanga-spam.png" alt="" /></p>
+
+</div>
+  
+  
+    <footer>
+      <p class="meta">
+        categories: <span class="categories">
+  
+    <a href="/category/general/">General</a>
+  
+</span>
+      </p>
+    </footer>
+    </article>
+  
+  
+    <article>
+      <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2010/06/26/she-said-it/">She Said It</a></h1>
+      
+    
+    
+      <p class="meta">
+        <time datetime="2010-06-26T10:42:44-07:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ME: “You’re retarded, and you’re hurting my arm.”</p>
+
+<p>WIFE: “I’m not hurting your arm!”</p>
+</div>
+  
+  
+    <footer>
+      <p class="meta">
+        categories: <span class="categories">
+  
+    <a href="/category/general/">General</a>
+  
+</span>
+      </p>
+    </footer>
+    </article>
+  
+  
+    <article>
+      <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2010/05/31/podcast-rename-in-itunes/">Podcast Rename in iTunes</a></h1>
+      
+    
+    
+      <p class="meta">
+        <time datetime="2010-05-31T05:53:27-07:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I hate when podcast providers title their podcast feeds with anything other than the name of their show.</p>
+
+<p>Unfortunately, in iTunes, it is not possible to rename podcasts.</p>
+
+<p>The dude who wrote <a href="http://meta.stackoverflow.com/questions/6698/rename-the-podcast-to-something-other-than-blog-stack-overflow/30690#30690">this meta.stackoverflow post,</a> however, has done something about it.</p>
+
+<p>He made <a href="http://podcast-rename.appspot.com/index">podcast-rename.appspot.com</a>, a little web service running on Google App Engine, which takes a podcast feed URL and a title that you type in, and serves up that same podcast feed with your title inserted in place of the original title.</p>
+
+<p>This is especially useful for podcasts that add a lot of junk into their title, or related podcasts which maddeningly fail to set a naming convention and follow it. The latter is the case with the podcasts for the <a href="http://www.johnjayandrich.com">Johnjay &amp; Rich</a> radio show. Half of their podcasts have “Johnjay and Rich:” at the start of the title, and the other half have the segment name only. So, in iTunes and on an iPod, the ones that don’t have Johnjay &amp; Rich at the front are scattered away from the rest. Very dumb, but what can you expect from a Clear Channel production?</p>
+
+<p>Thankfully, this dude’s little Google App Engine project takes care of the problem. Here’s to you, guy who is as anal about podcast organization as me. You’ve earned the title:</p>
+
+<p><a href="http://www.economyofeffort.com/wp-content/uploads/2010/05/1246079_f520.jpg"><img src="http://www.economyofeffort.com/wp-content/uploads/2010/05/1246079_f520-300x173.jpg" alt="" /></a></p>
+
+</div>
+  
+  
+    <footer>
+      <p class="meta">
+        categories: <span class="categories">
+  
+    <a href="/category/general/">General</a>
+  
+</span>
+      </p>
+    </footer>
+    </article>
+  
+  
+    <article>
+      <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2010/05/27/reluctant-ipad-fan/">Reluctant iPad Fan</a></h1>
+      
+    
+    
+      <p class="meta">
+        <time datetime="2010-05-27T07:16:25-07:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When the iPad came out, I expressed concern and disappointment over its highly locked-down nature. Obviously, the iPhone is too, and that’s one reason why I am a big Android fan and supporter. But a locked-down smartphone is one thing. A device that can serve a family’s general home computer use (email, web, etc) being so restricted is, in my mind, another.</p>
+
+<p>On top of that came the new, more restrictive iPhone OS (which is what the iPad runs too) SDK agreement, which essentially terminated the ability to write iPhone and iPad software in any language other than C, C++, or Objective-C. The languages I prefer, namely Ruby and Python, were no longer welcome.</p>
+
+<p>These concerns and disappointments remain as strong as ever.</p>
+
+<p>However, while my intention was to wait for a good Android tablet to come along, life threw a curveball. My boss decided to reward our little core team for a job well done on our big annual job, and she bought us each iPads.</p>
+
+<p>The night before, I had taken my wife to the Apple Store to buy her a 13” MacBook Pro, which is the same laptop I have.</p>
+
+<p>Between the complaints above and Apple’s decision to sue HTC over phone touchscreen patents, I had suggested on Twitter that I might abstain from Apple products in the future. Now the view from my living room couch was two 13” MBPs and an iPad. Clearly, I was failing.</p>
+
+<p>Now, despite my recent misgivings about Apple, I did have some interest in the iPad. Specifically, I wanted something like it for an ebook reader. I have many books and whitepapers in PDF format, and I wanted a nice little tablet that would make reading them much more enjoyable (I had been reading them on my netbook, which was OK but not fabulous). While the e-ink ebook readers are tops in reading comfort, they don’t offer much more than black text.</p>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2010/05/ipad-gallery-2-400x300.jpg" /></p>
+
+<p>The iPad’s IPS LED display may not be e-ink, but it is more comfortable to read than older LCD computer screens. With a 99 cent purchase of GoodReader, the iPad has provided the PDF eBook reader I wanted. I expected it to succeed in that capacity. But the iPad has succeeded in other ways that I did not expect.</p>
+
+<p>Like many observers, I saw the iPad as a strange middle ground between a smartphone and a laptop, with netbooks crowding that middle ground even further. And as the owner of an Android smartphone, a netbook (EeePC), a 13” laptop (MacBook Pro), a 17” laptop (Sager), and a desktop PC, it was hard to see where the iPad fit, outside of the ebook functionality.</p>
+
+<p>But upon using it, I found the iPad succeeded in two unexpected spaces:</p>
+<ol>
+  <li>As a social computing device</li>
+  <li>Touchscreen applications impractical for smartphones</li>
+</ol>
+
+<p>I got the first hint of the iPad as a social computing device from <a href="http://www.gamerswithjobs.com/node/49755?page=1#comment-1459946">this Gamers With Jobs post</a>, where the poster mentioned how nice it was to shop for apartments with his girlfriend on the device, passing it back and forth. I was reminded of that today when reading <a href="http://www.avc.com/a_vc/2010/05/ive-changed-my-mind-about-the-ipad.html">this blog post</a>, where the author comments on how the iPad has become the kitchentop family computer that everyone simply picks up and uses, and shares.</p>
+
+<p>Since getting my own iPad, I’ve observed this myself. The thing just begs to be passed around. Right down to details like the screen’s extremely high viewing angles, it’s made for casual, shared use, in the way that even a netbook isn’t.</p>
+
+<p>I like the observation of that blog post:</p>
+
+<blockquote>
+  <p>Our iPhones, Androids, and Blackberries are our personal devices. We wear them and they are with us everywhere. Our iPad is our family computer in way that the kitchen macbook never was.</p>
+</blockquote>
+
+<p>This has spilled over to work. I bring my iPad to work, as the others who received one do as well. Rather than trying to hold up a laptop to show a webpage at a meeting, someone can punch it up on their iPad and easily hold it up or pass it around.</p>
+
+<p><img src="http://www.economyofeffort.com/wp-content/uploads/2010/05/ipad-3g-shipping-credit-card-charge.jpg" />
+<small>This is the closest image I could find to people sharing an iPad</small></p>
+
+<p>When people say that it’s an overgrown iPhone, I think they are only thinking of the device as a single-user machine. They’re not thinking of dropping it into the middle of a room of people. The device size, screen resolution, and screen quality (especially those viewing angles) make it a whole different beast in a group setting.</p>
+
+<p>The other area where the iPad surprised me is in touchscreen applications that just aren’t viable on a small iPhone screen. One of the ones I’m using at work is iMockups. It’s a $10 app that uses drag-and-drop touch functionality to allow users to quickly make mockups of webpages and web application UIs. I can’t imagine trying to make a webpage mockup on an iPhone touchscreen (or my Android phone), but the big iPad surface and screen resolution allow the kind of precision that makes this task possible.</p>
+
+<p>And, of course, that social, bring-it-to-the-meeting nature of the iPad means I draw up the mockup on the iPad, then bring it to the meeting to pass around.</p>
+
+<p>I’m sure part of my satisfaction has to do with not having to justify its price tag. Having it bought for me takes the “is it worth it?” question completely out of the equation. Naturally, a lot of tech devices look good when cast in that light. But I don’t think I can put myself into that cost/benefit headspace at this point, so I won’t even try. All I can say is that the iPad has definitely talked me out of the “overgrown iPhone” mindset. Using it has made clear to me where it fits in the computing spectrum, where before it seemed to be a device without a home. When looked at not as a personal computing device, but as an ebook reader plus as a social computing device, the iPad’s home becomes clear.</p>
+</div>
+  
+  
+    <footer>
+      <p class="meta">
+        categories: <span class="categories">
+  
+    <a href="/category/general/">General</a>
+  
+</span>
+      </p>
+    </footer>
+    </article>
+  
+  
+    <article>
+      <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2010/05/10/why-i-cant-stand-netbeans/">Why I Can't Stand NetBeans</a></h1>
+      
+    
+    
+      <p class="meta">
+        <time datetime="2010-05-10T08:09:55-07:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>NetBeans, the open source IDE, may be a very good piece of software. In fact, I’m sure it is. Unfortunately, I’ve never been able to get started using it.</p>
+
+<p>Why? For one reason - <strong>bad fonts!</strong></p>
+
+<p>That may be a petty reason for not using something, but when one writes code all day, it helps to have the text look nice. Having bad text that will piss me off is just going to ruin my day a little bit, every single day.</p>
+
+<p>The problem is that the Java Swing GUI toolkit, which NetBeans is written in, does not use the native font rendering like SWT (which Eclipse uses) does.</p>
+
+<p>NetBeans:
+<img class="center" src="http://www.economyofeffort.com/wp-content/uploads/2010/05/netbeans-sux.png" /></p>
+
+<p>I’ve clicked a GNOME menu so you can see the difference side-by-side. Notice that the NetBeans window menu looks like scraped dog crap compared to my nice, thick, don’t-kill-my-eyes-with-paper-thin-lines native GNOME fonts.</p>
+
+<p>I’ve tried plenty of /etc/netbeans.conf settings to try and fix this.</p>
+
+<p><code class="highlighter-rouge">-J-Dawt.useSystemAAFontSettings=lcd (or "on") #does not do sh*t
+-J-Dswing.aatext=true #does not do sh*t
+--laf javax.swing.plaf.(bunch of things) #changes decorations but does not do sh*t to fix fonts</code></p>
+
+<p><img class="center" src="http://www.economyofeffort.com/wp-content/uploads/2010/05/netbeans-sux-2.png" /></p>
+
+<p>Nobody deserves this sh*t.</p>
+
+<p>Now we look at Eclipse:</p>
+
+<p><img class="center" src="http://www.economyofeffort.com/wp-content/uploads/2010/05/eclipse-rules.png" /></p>
+
+<p><img class="center" src="http://www.economyofeffort.com/wp-content/uploads/2010/05/eclipse-rules-2.png" /></p>
+
+<p>Native fonts FTMFW!</p>
+</div>
+  
+  
+    <footer>
+      <p class="meta">
+        categories: <span class="categories">
+  
+    <a href="/category/general/">General</a>
+  
+</span>
+      </p>
+    </footer>
+    </article>
+  
+  
+    <article>
+      <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2010/04/07/talking-databases/">Talking Databases</a></h1>
+      
+    
+    
+      <p class="meta">
+        <time datetime="2010-04-07T04:41:49-07:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>On Twitter:</p>
+
+<p><code class="highlighter-rouge">[legion](http://twitter.com/legion/status/11766899148): I get the so-called "NoSQL" databases in high-scaling apps, but do any of them make sense in tiny apps where SQL might be overkill?</code></p>
+
+<p><code class="highlighter-rouge">[CouchDB](http://twitter.com/CouchDB/status/11767341162): @Legion I was designed scratch for scaling down, running on mobiles, etc.</code></p>
+
+<p><code class="highlighter-rouge">[legion](http://twitter.com/legion/status/11767394363): @CouchDB Yeah, but you're a TALKING database! That's creepy!</code></p>
+</div>
+  
+  
+    <footer>
+      <p class="meta">
+        categories: <span class="categories">
+  
+    <a href="/category/general/">General</a>
+  
+</span>
+      </p>
+    </footer>
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="5">&larr; Older</a>
+    
+    <a href="/blog/archives/">Blog Archives</a>
+    
+    <a class="next" href="3">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Brendon Rapp -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p></footer>
+  <script type="text/javascript">
+      var disqus_shortname = 'economyofeffort';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+</body>
+</html>

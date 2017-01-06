@@ -9,7 +9,22 @@
   <meta name="author" content="Brendon Rapp">
 
   
-  <meta name="description" content="UPDATE 2012-08-17: I&rsquo;m surprised at how much traffic this post still gets. The post is over 2 years old at this point, and may not be directly &hellip;">
+  <meta name="description" content="
+
+  
+    
+      
+        Turn an Android Handset Into a Free Wifi Phone With Google Voice
+      
+    
+    
+      
+        
+        
+      
+    
+  
+...">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,6 +36,7 @@
   <link rel="canonical" href="http://www.economyofeffort.com/2010/07/30/turn-an-android-handset-into-a-free-wifi-phone-with-google-voice/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/override.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
@@ -29,8 +45,7 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
+<link href='/stylesheets/all-f148572c56ea56711810ba4a6f7e7729.css' media='all' rel='stylesheet' type='text/css'>
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-3578812-1']);
@@ -42,10 +57,7 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   </script>
-
-
 </head>
-
 <body    class="collapse-sidebar sidebar-footer" >
   <header role="banner"><hgroup>
   <div id="logo">
@@ -64,13 +76,10 @@
     <a href="mailto:brendon@economyofeffort.com"><img src="/images/icons/webicon-mail.png" alt="Mail"></a>
     <a href="atom.xml"><img src="/images/icons/webicon-rss.png" alt="RSS"></a>
   </div>
-</hgroup>
-
-</header>
-  <nav role="navigation">
-<form action="http://google.com/search" method="get">
+</hgroup></header>
+  <nav role="navigation"><form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:www.economyofeffort.com" />
+    <input type="hidden" name="q" value="site:http://www.economyofeffort.com" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -80,14 +89,11 @@
   <li><a href="/archives">Archive</a></li>
   <li><a href="http://www.pinterest.com/legion/stuff-i-want/">Wish List</a></li>
   <li><a href="http://steamcommunity.com/id/legion/wishlist/">Steam Wish List</a></li>
-</ul>
-
-</nav>
+</ul></nav>
   <div id="main">
     <div id="content">
       <div>
 <article class="hentry" role="article">
-  
   <header>
     
       
@@ -96,170 +102,143 @@
     
     
       <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-07-30T09:00:07-07:00" pubdate data-updated="true">Jul 30<span>th</span>, 2010</time>
+        <time datetime="2010-07-30T09:00:07-07:00" pubdate data-updated="true"></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p><strong>UPDATE 2012-08-17</strong>: I&rsquo;m surprised at how much traffic this post still gets. The post is over 2 years old at this point, and may not be directly useful anymore. The Android landscape has changed a lot, and I haven&rsquo;t touched an Android phone newer than my old G1&rsquo;s.</p>
+<div class="entry-content"><p><strong>UPDATE 2012-08-17</strong>: I’m surprised at how much traffic this post still gets. The post is over 2 years old at this point, and may not be directly useful anymore. The Android landscape has changed a lot, and I haven’t touched an Android phone newer than my old G1’s.</p>
 
 <p>There are a lot of suggestions in the comments, though, that new readers might want to check out to accomplish what I did with these instructions in 2010.</p>
 
-<p><img class="center" src="http://www.economyofeffort.com/wp-content/uploads/2010/07/screenshot_sip.png"></p>
+<p><img class="center" src="http://www.economyofeffort.com/wp-content/uploads/2010/07/screenshot_sip.png" /></p>
 
-<p>My wife and I recently abandoned our T-Mobile G1&rsquo;s to become iPhone people. As much as it pained me to (temporarily, at least) abandon a nice open platform I had followed for some time, I have to confess that the new iPhones hit a sweet spot in a way that the previous three generations of iPhone simply did not (for me, at least).</p>
+<p>My wife and I recently abandoned our T-Mobile G1’s to become iPhone people. As much as it pained me to (temporarily, at least) abandon a nice open platform I had followed for some time, I have to confess that the new iPhones hit a sweet spot in a way that the previous three generations of iPhone simply did not (for me, at least).</p>
 
-<p>But that is a post for another time. This post is about what we did with our G1&rsquo;s once that service icon turned into an &ldquo;X&rdquo;.</p>
+<p>But that is a post for another time. This post is about what we did with our G1’s once that service icon turned into an “X”.</p>
 
 <p>The G1 is a wifi-enabled device. Even without traditional mobile phone service, it can be used with VOIP services. There are a number of paid SIP (Session Initiation Protocol)-based VOIP services which you can pair with a SIP application on the phone to create a fully-functional wifi phone.</p>
 
-<p>But, that costs money. What about something you can use for free? Well, that&rsquo;s where Google Voice comes in.</p>
+<p>But, that costs money. What about something you can use for free? Well, that’s where Google Voice comes in.</p>
 
 <p>To understand how this works, you just need to know two things:</p>
 
 <ul>
-<li>There are a number of SIP providers that give you free incoming (domestic) calls, while charging for outbound calls.</li>
-<li>Google Voice traditionally works by calling your phone number, and then connecting you to the outbound number you intend to call (in other words, it turns an outbound call into an incoming one)</li>
+  <li>There are a number of SIP providers that give you free incoming (domestic) calls, while charging for outbound calls.</li>
+  <li>Google Voice traditionally works by calling your phone number, and then connecting you to the outbound number you intend to call (in other words, it turns an outbound call into an incoming one)</li>
 </ul>
 
+<p>See where I’m going with this?</p>
 
-<p>See where I&rsquo;m going with this?</p>
+<p>With a Google Voice account, a SIP service account, and the right Android apps to interoperate with each, you can have an Android handset that gives you free incoming calls, and free outbound calls by way of Google Voice’s method of connecting you.</p>
 
-<p>With a Google Voice account, a SIP service account, and the right Android apps to interoperate with each, you can have an Android handset that gives you free incoming calls, and free outbound calls by way of Google Voice&rsquo;s method of connecting you.</p>
+<p>The phone, obviously, must be in range of (and connected to) a wifi network to be able to make and receive calls. Well, my house’s wifi network is always on. So by setting up my wife’s old G1 this way and plugging it into its AC adapter in the wall, we’ve turned that G1 into an always-on, free “home phone line”. One with voicemail transcription and SMS, even.</p>
 
-<p>The phone, obviously, must be in range of (and connected to) a wifi network to be able to make and receive calls. Well, my house&rsquo;s wifi network is always on. So by setting up my wife&rsquo;s old G1 this way and plugging it into its AC adapter in the wall, we&rsquo;ve turned that G1 into an always-on, free &ldquo;home phone line&rdquo;. One with voicemail transcription and SMS, even.</p>
-
-<p>The following instructions explain how I set this up with a phone that I wiped and started from scratch with. You should have no problems creating the same setup on an existing Android phone without wiping everything &ndash; I just wiped everything so that my G1 would be clean and not running any other junk that might slow the (easily slowed) phone down.</p>
+<p>The following instructions explain how I set this up with a phone that I wiped and started from scratch with. You should have no problems creating the same setup on an existing Android phone without wiping everything - I just wiped everything so that my G1 would be clean and not running any other junk that might slow the (easily slowed) phone down.</p>
 
 <p>These instructions are geared primarily toward my use case of adding VOIP to an Android phone that no longer has active cell service. You can also add free VOIP calling to a phone that has service. If you have no data service, you can use VOIP entirely on wifi like I am. If you have 3G or EDGE data service, you have the option to have your VOIP service still be active when outside of wifi reach. You may have to make a couple of slight adjustments to these instructions for a phone that still has cell service, but they should mostly be obvious.</p>
 
-<h2>Phase 1: Getting Online with Freshly Wiped. Has-No-Service Phone</h2>
-
-<p>(skip if you&rsquo;re just adding wifi calling to your active Android phone)</p>
-
-<ul>
-<li>Skip Google Account setup for now. With no service, it can&rsquo;t connect to the Internet anyway, until we have wifi running.</li>
-<li>Set time settings (remember to set time zone &ndash; it&rsquo;s not detected if you have no phone service)</li>
-<li>Settings &ndash;> Wireless Networks
+<h2 id="phase-1-getting-online-with-freshly-wiped-has-no-service-phone">Phase 1: Getting Online with Freshly Wiped. Has-No-Service Phone</h2>
+<p>(skip if you’re just adding wifi calling to your active Android phone)</p>
 
 <ul>
-<li>Wi-Fi (check to enable)</li>
-<li>Wi-Fi Settings &ndash;> pick your wireless network (and if you&rsquo;re like me, type in painfully long, random character encryption key!)
+  <li>Skip Google Account setup for now. With no service, it can’t connect to the Internet anyway, until we have wifi running.</li>
+  <li>Set time settings (remember to set time zone - it’s not detected if you have no phone service)</li>
+  <li>Settings -&gt; Wireless Networks
+    <ul>
+      <li>Wi-Fi (check to enable)</li>
+      <li>Wi-Fi Settings -&gt; pick your wireless network (and if you’re like me, type in painfully long, random character encryption key!)
+        <ul>
+          <li>Type the key in again because you did it wrong the first time</li>
+        </ul>
+      </li>
+      <li>Mobile Network Settings</li>
+      <li>Data enabled (uncheck to disable)</li>
+      <li>Data roaming (uncheck to disable)</li>
+    </ul>
+  </li>
+  <li>Settings -&gt; Accounts &amp; Senc
+    <ul>
+      <li>Now that we are on wifi, we can add our Google account</li>
+      <li>Click “Add account”, enter Google account info as prompted</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="phase-2-download-required-apps-from-market">Phase 2: Download Required Apps from Market</h2>
 
 <ul>
-<li>Type the key in again because you did it wrong the first time</li>
+  <li>Log in to Google Talk (especially if you’re on wifi only - downloading from Market often fails if you’re not logged into Google Talk)</li>
+  <li>Download <strong>Google Voice</strong></li>
+  <li>Download <strong>Google Voice Call Free</strong></li>
+  <li>Download <strong>sipdroid</strong></li>
+  <li>Download <strong>KeepWiFi</strong></li>
 </ul>
-</li>
-<li>Mobile Network Settings</li>
-<li>Data enabled (uncheck to disable)</li>
-<li>Data roaming (uncheck to disable)</li>
-</ul>
-</li>
-<li>Settings &ndash;> Accounts &amp; Senc
+
+<h2 id="phase-3-sipgate-and-sipdroid">Phase 3: sipgate and Sipdroid</h2>
 
 <ul>
-<li>Now that we are on wifi, we can add our Google account</li>
-<li>Click &ldquo;Add account&rdquo;, enter Google account info as prompted</li>
-</ul>
-</li>
+  <li>Go to <a href="http://www.sipgate.com/one">http://www.sipgate.com/one</a> and click Sign Up Now and create an account (you will need a mobile phone with SMS to receive the confirmation text)</li>
+  <li>When you have the account all set up and logged in, go to My Settings and click the “SIP Credentials” link way on the far right of the page. Keep this handy in a browser tab.</li>
+  <li><a href="http://www.hutsby.net/2010/03/how-to-sipgate-and-sipdroid.html">Configure Sipdroid</a> to use your new sipgate number:
+    <ul>
+      <li>Menu Button -&gt; Settings -&gt; SIP Account Settings</li>
+      <li>Enter the following Sipdroid settings with the information from the sipgate.com SIP Credentials</li>
+      <li>Authorization Username = SIP-ID</li>
+      <li>Password = SIP-Password</li>
+      <li>Server or Proxy = sipgate.com</li>
+      <li>Domain = (leave blank)</li>
+    </ul>
+  </li>
+  <li>Configure Sipdroid to use the connections you want
+    <ul>
+      <li>Settings -&gt; Call Options</li>
+      <li>For a phone with no cell service, just have <strong>Use WLAN</strong> checked</li>
+      <li>If you have cell service with data, it’s up to you whether you want to <strong>Use 3G</strong> and <strong>Use EDGE</strong> as well.</li>
+    </ul>
+  </li>
 </ul>
 
-
-<h2>Phase 2: Download Required Apps from Market</h2>
+<h2 id="phase-4-google-voice">Phase 4: Google Voice</h2>
 
 <ul>
-<li>Log in to Google Talk (especially if you&rsquo;re on wifi only &ndash; downloading from Market often fails if you&rsquo;re not logged into Google Talk)</li>
-<li>Download <strong>Google Voice</strong></li>
-<li>Download <strong>Google Voice Call Free</strong></li>
-<li>Download <strong>sipdroid</strong></li>
-<li>Download <strong>KeepWiFi</strong></li>
+  <li>Go to <a href="http://voice.google.com">http://voice.google.com</a> and create a Google Voice account (you will need an invite to Google Voice if you don’t yet have an account)</li>
+  <li>You will be required to input a phone number to have GV forward to. You can input your sipgate number.</li>
+  <li>Have Google Voice call you to confirm, enter confirmation number</li>
+  <li>Launch <strong>Google Voice</strong> app
+    <ul>
+      <li>Select <strong>Do not use Google Voice to make any calls</strong>. We will be using the Google Voice Call Free app to do the dialing.
+        <ul>
+          <li>If you’re on a phone that still has normal call service, you’ll probably want to set this to Always Ask instead.</li>
+        </ul>
+      </li>
+      <li>If you have phone service, you can set GV to take over as the phone’s voicemail provider. If you have no service, ignore this option. Voicemail will come via the GV app.</li>
+      <li>After setup, go to Settings -&gt; Sync and Notifications, and enable <strong>Synchronize Inbox</strong> (and disable <strong>Notifications via text message</strong>).</li>
+    </ul>
+  </li>
+  <li>Launch <strong>Google Voice Call Free</strong> app
+    <ul>
+      <li>Select <strong>Use GV to make all calls</strong> under Enable Callback</li>
+      <li>Enter your Google Voice account info</li>
+      <li>Enter your sipgate.com phone number for the Callback Number</li>
+    </ul>
+  </li>
 </ul>
 
+<h2 id="phase-5-keep-wifi-running">Phase 5: Keep WiFi Running</h2>
 
-<h2>Phase 3: sipgate and Sipdroid</h2>
+<p>Android phones (at least, the ones I’ve used) put the wifi connection to sleep when the phone screen goes off. We want to stop this from happening if we want the phone to sit on wifi ready to receive VOIP calls all day.</p>
 
 <ul>
-<li>Go to <a href="http://www.sipgate.com/one">http://www.sipgate.com/one</a> and click Sign Up Now and create an account (you will need a mobile phone with SMS to receive the confirmation text)</li>
-<li>When you have the account all set up and logged in, go to My Settings and click the &ldquo;SIP Credentials&rdquo; link way on the far right of the page. Keep this handy in a browser tab.</li>
-<li><a href="http://www.hutsby.net/2010/03/how-to-sipgate-and-sipdroid.html">Configure Sipdroid</a> to use your new sipgate number:
-
-<ul>
-<li>Menu Button &ndash;> Settings &ndash;> SIP Account Settings</li>
-<li>Enter the following Sipdroid settings with the information from the sipgate.com SIP Credentials</li>
-<li>Authorization Username = SIP-ID</li>
-<li>Password = SIP-Password</li>
-<li>Server or Proxy = sipgate.com</li>
-<li>Domain = (leave blank)</li>
-</ul>
-</li>
-<li>Configure Sipdroid to use the connections you want
-
-<ul>
-<li>Settings &ndash;> Call Options</li>
-<li>For a phone with no cell service, just have <strong>Use WLAN</strong> checked</li>
-<li>If you have cell service with data, it&rsquo;s up to you whether you want to <strong>Use 3G</strong> and <strong>Use EDGE</strong> as well.</li>
-</ul>
-</li>
+  <li>Launch <strong>KeepWifi</strong></li>
+  <li>Enable it!</li>
 </ul>
 
+<h2 id="phase-6-enjoy-your-new-wifi-phone">Phase 6: Enjoy Your New WiFi Phone!</h2>
 
-<h2>Phase 4: Google Voice</h2>
-
-<ul>
-<li>Go to <a href="http://voice.google.com">http://voice.google.com</a> and create a Google Voice account (you will need an invite to Google Voice if you don&rsquo;t yet have an account)</li>
-<li>You will be required to input a phone number to have GV forward to. You can input your sipgate number.</li>
-<li>Have Google Voice call you to confirm, enter confirmation number</li>
-<li>Launch <strong>Google Voice</strong> app
-
-<ul>
-<li>Select <strong>Do not use Google Voice to make any calls</strong>. We will be using the Google Voice Call Free app to do the dialing.
-
-<ul>
-<li>If you&rsquo;re on a phone that still has normal call service, you&rsquo;ll probably want to set this to Always Ask instead.</li>
-</ul>
-</li>
-<li>If you have phone service, you can set GV to take over as the phone&rsquo;s voicemail provider. If you have no service, ignore this option. Voicemail will come via the GV app.</li>
-<li>After setup, go to Settings &ndash;> Sync and Notifications, and enable <strong>Synchronize Inbox</strong> (and disable <strong>Notifications via text message</strong>).</li>
-</ul>
-</li>
-<li>Launch <strong>Google Voice Call Free</strong> app
-
-<ul>
-<li>Select <strong>Use GV to make all calls</strong> under Enable Callback</li>
-<li>Enter your Google Voice account info</li>
-<li>Enter your sipgate.com phone number for the Callback Number</li>
-</ul>
-</li>
-</ul>
-
-
-<h2>Phase 5: Keep WiFi Running</h2>
-
-<p>Android phones (at least, the ones I&rsquo;ve used) put the wifi connection to sleep when the phone screen goes off. We want to stop this from happening if we want the phone to sit on wifi ready to receive VOIP calls all day.</p>
-
-<ul>
-<li>Launch <strong>KeepWifi</strong></li>
-<li>Enable it!</li>
-</ul>
-
-
-<h2>Phase 6: Enjoy Your New WiFi Phone!</h2>
-
-<p>Dial phone calls as normal. Google Voice Call Free will &ldquo;intercept&rdquo; the outgoing dial, and call your phone. Answer, and then GV will connect you to the number you dialed.</p>
+<p>Dial phone calls as normal. Google Voice Call Free will “intercept” the outgoing dial, and call your phone. Answer, and then GV will connect you to the number you dialed.</p>
 
 <p>Missed calls will appear in the normal Android dialer.</p>
 
@@ -267,48 +246,22 @@
 </div>
   <footer>
     <p class="meta">
-      categories: 
-
-<span class="categories">
+      categories: <span class="categories">
   
-    <a class='category' href='/categories/android/'>android</a>, <a class='category' href='/categories/google-voice/'>google-voice</a>
+    <a href="/category/android/">android</a>, <a href="/category/google-voice/">google-voice</a>
   
 </span>
-
-
     </p>
   </footer>
-
-
   <footer>
     <p class="meta">
-      
+      <span class="byline author vcard">Posted by <span class="fn">Brendon Rapp</span></span>
+      <time datetime="2010-07-30T09:00:07-07:00" pubdate data-updated="true"></time>
+      <span class="categories">
   
-
-<span class="byline author vcard">Posted by <span class="fn">Brendon Rapp</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-07-30T09:00:07-07:00" pubdate data-updated="true">Jul 30<span>th</span>, 2010</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/categories/android/'>android</a>, <a class='category' href='/categories/google-voice/'>google-voice</a>
+    <a href="/category/android/">android</a>, <a href="/category/google-voice/">google-voice</a>
   
 </span>
-
-
     </p>
     
       <div class="sharing">
@@ -316,7 +269,6 @@
   
   
 </div>
-
     
     <p class="meta">
       
@@ -331,56 +283,22 @@
 
   <section>
     <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
   </section>
 
 </div>
 
 <aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/2014/12/16/activerecord-save-not-updating-hstore-fields-in-rails-4-dot-0-4-dot-1/">ActiveRecord Save Not Updating Hstore Fields in Rails 4.0-4.1</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/12/16/postgres-hstore-default-value-in-rails-4/">PostgreSQL Hstore Default Value in Rails 4</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/08/11/beyond-ctrl-remap-make-that-caps-lock-key-useful/">Beyond Ctrl: Make That Caps Lock Key Useful</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/07/20/convert-html-to-haml-within-vim-buffer/">Convert HTML to Haml (and Back Again) Within a Vim Buffer</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/07/20/fixed-the-archive-page/">Fixed the Archive Page</a>
-      </li>
-    
-  </ul>
-</section>
-
-  
 </aside>
 
 
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Brendon Rapp -
+  Copyright &copy; 2017 - Brendon Rapp -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-<script type="text/javascript">
+</p></footer>
+  <script type="text/javascript">
       var disqus_shortname = 'economyofeffort';
       
         
@@ -395,16 +313,5 @@
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
-
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>

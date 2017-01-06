@@ -9,7 +9,24 @@
   <meta name="author" content="Brendon Rapp">
 
   
-  <meta name="description" content="Today, I spent a lot of time fussing with bootable USB thumbsticks, trying to set one up that would boot the new backup server I just built at work. &hellip;">
+  <meta name="description" content="
+
+  
+    
+      
+        Linux USB Bootable Stick Netinstall That Works
+      
+    
+    
+      
+        
+        
+      
+    
+  
+
+
+Today, I spent a...">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,6 +38,7 @@
   <link rel="canonical" href="http://www.economyofeffort.com/2010/08/12/linux-usb-bootable-stick-netinstall-that-works/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/override.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
@@ -29,8 +47,7 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
+<link href='/stylesheets/all-f148572c56ea56711810ba4a6f7e7729.css' media='all' rel='stylesheet' type='text/css'>
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-3578812-1']);
@@ -42,10 +59,7 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   </script>
-
-
 </head>
-
 <body    class="collapse-sidebar sidebar-footer" >
   <header role="banner"><hgroup>
   <div id="logo">
@@ -64,13 +78,10 @@
     <a href="mailto:brendon@economyofeffort.com"><img src="/images/icons/webicon-mail.png" alt="Mail"></a>
     <a href="atom.xml"><img src="/images/icons/webicon-rss.png" alt="RSS"></a>
   </div>
-</hgroup>
-
-</header>
-  <nav role="navigation">
-<form action="http://google.com/search" method="get">
+</hgroup></header>
+  <nav role="navigation"><form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:www.economyofeffort.com" />
+    <input type="hidden" name="q" value="site:http://www.economyofeffort.com" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -80,14 +91,11 @@
   <li><a href="/archives">Archive</a></li>
   <li><a href="http://www.pinterest.com/legion/stuff-i-want/">Wish List</a></li>
   <li><a href="http://steamcommunity.com/id/legion/wishlist/">Steam Wish List</a></li>
-</ul>
-
-</nav>
+</ul></nav>
   <div id="main">
     <div id="content">
       <div>
 <article class="hentry" role="article">
-  
   <header>
     
       
@@ -96,19 +104,7 @@
     
     
       <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-08-12T07:37:26-07:00" pubdate data-updated="true">Aug 12<span>th</span>, 2010</time>
+        <time datetime="2010-08-12T07:37:26-07:00" pubdate data-updated="true"></time>
         
       </p>
     
@@ -117,95 +113,69 @@
 
 <div class="entry-content"><p>Today, I spent a lot of time fussing with bootable USB thumbsticks, trying to set one up that would boot the new backup server I just built at work. The machine has no optical drive, so I just wanted to boot a simple netinstall and have the system pull everything it needs from remote mirrors.</p>
 
-<p>The supposed easy method was to use <a href="http://unetbootin.sourceforge.net/">Unetbootin</a>. Everything about it <em>was</em> easy, except for the part where the bootable USB sticks it created didn&rsquo;t work. Every boot attempt was met with &ldquo;Boot error&rdquo; or &ldquo;Missing operating system&rdquo;.</p>
+<p>The supposed easy method was to use <a href="http://unetbootin.sourceforge.net/">Unetbootin</a>. Everything about it <em>was</em> easy, except for the part where the bootable USB sticks it created didn’t work. Every boot attempt was met with “Boot error” or “Missing operating system”.</p>
 
-<p>Since I am on Ubuntu, I tried to use Ubuntu&rsquo;s <a href="http://en.wikipedia.org/wiki/Ubuntu_Live_USB_creator">usb-creator</a>. Also a nice app, except for the fact that it too failed to work. In usb-creator&rsquo;s case, the failure was to even get started. I would browse to the ISO that I wanted to use as the image for my boot stick, and the app refused to load it, or any ISO. No error, the app simply didn&rsquo;t respond to the input.</p>
+<p>Since I am on Ubuntu, I tried to use Ubuntu’s <a href="http://en.wikipedia.org/wiki/Ubuntu_Live_USB_creator">usb-creator</a>. Also a nice app, except for the fact that it too failed to work. In usb-creator’s case, the failure was to even get started. I would browse to the ISO that I wanted to use as the image for my boot stick, and the app refused to load it, or any ISO. No error, the app simply didn’t respond to the input.</p>
 
 <p>So, two piece-a-junk GUI apps down. After a little digging, I found the methods that created working USB sticks on the first try.</p>
 
-<h3>For CentOS:</h3>
+<h3 id="for-centos">For CentOS:</h3>
 
 <ol>
-<li>Download diskboot.img from a CentOS mirror&rsquo;s centos/(version)/os/(arch)/images folder.
-(I used the kernel.org mirror and i386 arch, so my diskboot.img was located at: <a href="http://mirrors.kernel.org/centos/5.5/os/i386/images/">http://mirrors.kernel.org/centos/5.5/os/i386/images/</a>)</li>
-<li>Insert USB stick (I&rsquo;ll assume it&rsquo;s /dev/sdb, adjust instructions to fit your system), format to FAT32 (I used Gparted for this)</li>
-<li>Run:
-<code>
- dd if=diskboot.img of=/dev/sdb
-</code></li>
-<li>Remove USB drive, stick into machine that&rsquo;s getting the CentOS install, and boot
-When asked for installation media, select HTTP. Use the website and folder path of the mirror you&rsquo;re using.<br>
-So, from my example:<br>
-<strong>Website name:</strong> mirrors.kernel.org<br>
-<strong>CentOS directory:</strong> centos/5.5/os/i386<br></li>
+  <li>Download diskboot.img from a CentOS mirror’s centos/(version)/os/(arch)/images folder.
+(I used the kernel.org mirror and i386 arch, so my diskboot.img was located at: http://mirrors.kernel.org/centos/5.5/os/i386/images/)</li>
+  <li>Insert USB stick (I’ll assume it’s /dev/sdb, adjust instructions to fit your system), format to FAT32 (I used Gparted for this)</li>
+  <li>Run:
+    <div class="highlighter-rouge"><pre class="highlight"><code> dd if=diskboot.img of=/dev/sdb
+</code></pre>
+    </div>
+  </li>
+  <li>Remove USB drive, stick into machine that’s getting the CentOS install, and boot
+When asked for installation media, select HTTP. Use the website and folder path of the mirror you’re using.<br />
+So, from my example:<br />
+<strong>Website name:</strong> mirrors.kernel.org<br />
+<strong>CentOS directory:</strong> centos/5.5/os/i386<br /></li>
 </ol>
-
 
 <p>Proceed through installer as normal.</p>
 
-<h3>For Debian:</h3>
+<h3 id="for-debian">For Debian:</h3>
 
 <ol>
-<li>Download boot.img.gz from /debian/dists/(version)/main/(installer-arch)/current/images/hd-media folder<br>
-(I did i386 stable from Debian&rsquo;s US mirror, so boot.img.gz was located at:<br>
-<a href="http://ftp.us.debian.org/debian/dists/stable/main/installer-i386/current/images/hd-media/">http://ftp.us.debian.org/debian/dists/stable/main/installer-i386/current/images/hd-media/</a>)</li>
-<li>Download Debian netinstall ISO (I used: <a href="http://cdimage.debian.org/debian-cd/5.0.5/i386/iso-cd/debian-505-i386-netinst.iso">http://cdimage.debian.org/debian-cd/5.0.5/i386/iso-cd/debian-505-i386-netinst.iso</a>)</li>
-<li>Insert USB drive (again I&rsquo;ll assume /dev/sdb) and format to FAT32</li>
-<li>Run:
-<code>
- zcat boot.img.gz &gt; /dev/sdb
-</code></li>
-<li>Remove and re-insert USB drive. Copy the netinstall ISO to the USB drive.</li>
-<li>Stick USB into machine getting the Debian install, boot, and run through installer.</li>
+  <li>Download boot.img.gz from /debian/dists/(version)/main/(installer-arch)/current/images/hd-media folder<br />
+(I did i386 stable from Debian’s US mirror, so boot.img.gz was located at:<br />
+http://ftp.us.debian.org/debian/dists/stable/main/installer-i386/current/images/hd-media/)</li>
+  <li>Download Debian netinstall ISO (I used: http://cdimage.debian.org/debian-cd/5.0.5/i386/iso-cd/debian-505-i386-netinst.iso)</li>
+  <li>Insert USB drive (again I’ll assume /dev/sdb) and format to FAT32</li>
+  <li>Run:
+    <div class="highlighter-rouge"><pre class="highlight"><code> zcat boot.img.gz &gt; /dev/sdb
+</code></pre>
+    </div>
+  </li>
+  <li>Remove and re-insert USB drive. Copy the netinstall ISO to the USB drive.</li>
+  <li>Stick USB into machine getting the Debian install, boot, and run through installer.</li>
 </ol>
 
-
-<p>I imagine these instructions will probably stay good for a long time. You&rsquo;ll just need to adjust for mirror location, arch and release numbers, but the URLs I&rsquo;ve provided here should give you a good clue as to where to find the necessary files on the mirror you&rsquo;re using.</p>
+<p>I imagine these instructions will probably stay good for a long time. You’ll just need to adjust for mirror location, arch and release numbers, but the URLs I’ve provided here should give you a good clue as to where to find the necessary files on the mirror you’re using.</p>
 </div>
   <footer>
     <p class="meta">
-      categories: 
-
-<span class="categories">
+      categories: <span class="categories">
   
-    <a class='category' href='/categories/linux/'>linux</a>
+    <a href="/category/linux/">linux</a>
   
 </span>
-
-
     </p>
   </footer>
-
-
   <footer>
     <p class="meta">
-      
+      <span class="byline author vcard">Posted by <span class="fn">Brendon Rapp</span></span>
+      <time datetime="2010-08-12T07:37:26-07:00" pubdate data-updated="true"></time>
+      <span class="categories">
   
-
-<span class="byline author vcard">Posted by <span class="fn">Brendon Rapp</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-08-12T07:37:26-07:00" pubdate data-updated="true">Aug 12<span>th</span>, 2010</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/categories/linux/'>linux</a>
+    <a href="/category/linux/">linux</a>
   
 </span>
-
-
     </p>
     
       <div class="sharing">
@@ -213,7 +183,6 @@ So, from my example:<br>
   
   
 </div>
-
     
     <p class="meta">
       
@@ -228,56 +197,22 @@ So, from my example:<br>
 
   <section>
     <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
   </section>
 
 </div>
 
 <aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/2014/12/16/activerecord-save-not-updating-hstore-fields-in-rails-4-dot-0-4-dot-1/">ActiveRecord Save Not Updating Hstore Fields in Rails 4.0-4.1</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/12/16/postgres-hstore-default-value-in-rails-4/">PostgreSQL Hstore Default Value in Rails 4</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/08/11/beyond-ctrl-remap-make-that-caps-lock-key-useful/">Beyond Ctrl: Make That Caps Lock Key Useful</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/07/20/convert-html-to-haml-within-vim-buffer/">Convert HTML to Haml (and Back Again) Within a Vim Buffer</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/07/20/fixed-the-archive-page/">Fixed the Archive Page</a>
-      </li>
-    
-  </ul>
-</section>
-
-  
 </aside>
 
 
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Brendon Rapp -
+  Copyright &copy; 2017 - Brendon Rapp -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-<script type="text/javascript">
+</p></footer>
+  <script type="text/javascript">
       var disqus_shortname = 'economyofeffort';
       
         
@@ -292,16 +227,5 @@ So, from my example:<br>
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
-
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>
