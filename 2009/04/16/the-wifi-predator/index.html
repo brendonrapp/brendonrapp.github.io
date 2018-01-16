@@ -38,7 +38,6 @@ My brother was struggling with a poor wifi ...">
   <link rel="canonical" href="http://www.economyofeffort.com/2009/04/16/the-wifi-predator/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/stylesheets/override.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
@@ -47,7 +46,7 @@ My brother was struggling with a poor wifi ...">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href='/stylesheets/all-f148572c56ea56711810ba4a6f7e7729.css' media='all' rel='stylesheet' type='text/css'>
+<link href='/stylesheets/all-425d9f4239cbec207833de2e7a73a46d.css' media='all' rel='stylesheet' type='text/css'>
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-3578812-1']);
@@ -115,37 +114,32 @@ My brother was struggling with a poor wifi ...">
 
 <p><a href="http://picasaweb.google.com/lh/photo/UgsQMrfGyTGlfToDjgJXAQ?feat=embedwebsite"><img src="http://lh4.ggpht.com/_qL0aKA9MDVY/SeelU6rtzsI/AAAAAAAAAMk/84HCNXQyB2E/s400/118.jpg" alt="" /></a></p>
 
-<p>So, inspired by <a href="http://www.i-hacked.com/content/view/261/42/">an article I read a few months back</a>, I cobbled together a little something to do the job. Not quite as elegant a form factor as the article’s tripod-mounted beauty, but a little more sensible for setting up on top of a bookshelf, or carrying around in a duffel bag.</p>
+<p>So, inspired by <a href="http://www.i-hacked.com/content/view/261/42/">an article I read a few months back</a>, I cobbled together a little something to do the job. Not quite as elegant a form factor as the article&rsquo;s tripod-mounted beauty, but a little more sensible for setting up on top of a bookshelf, or carrying around in a duffel bag.</p>
 
 <p>The key components here are:</p>
 
 <ul>
-  <li>
-    <p>Linksys WRT54GL wifi router</p>
-  </li>
-  <li>
-    <p><a href="http://shop3.frys.com/%7BlD6LaOuhZ7YvRiH4cTF8hA**.node2%7D/product/5286717">Super Cantenna</a> off-the-shelf “cantenna”-style 2.4 GHz antenna</p>
-  </li>
-  <li>
-    <p>DD-WRT firmware <a href="http://sourceforge.net/project/showfiles.php?group_id=185052">build with AutoAP included</a></p>
-  </li>
+<li><p>Linksys WRT54GL wifi router</p></li>
+<li><p><a href="http://shop3.frys.com/%7BlD6LaOuhZ7YvRiH4cTF8hA**.node2%7D/product/5286717">Super Cantenna</a> off-the-shelf &ldquo;cantenna&rdquo;-style 2.4 GHz antenna</p></li>
+<li><p>DD-WRT firmware <a href="http://sourceforge.net/project/showfiles.php?group_id=185052">build with AutoAP included</a></p></li>
 </ul>
 
-<p>The WRT54GL is the go-to router for anyone that wants to run open source firmware (and even if you’re just a regular wifi user, you want this). Here, we use a build of the DD-WRT firmware with AutoAP built in, provided by the AutoAP Sourceforge project.</p>
 
-<p><a href="http://www.dd-wrt.com/wiki/index.php/Autoap">AutoAP</a> is a brilliant little script that scans for open wifi connections, finds the strongest one that provides you a “live” connection to the Internet, and connects the router to this access point and repeats the signal. It also allows you to set a list of “preferred” networks for AutoAP to prioritize above random points. The easiest way to get AutoAP is to install a firmware image that comes with it. I used the <a href="http://sourceforge.net/project/showfiles.php?group_id=185052">AutoAP NG v24 Micro</a> build offered up on AutoAP’s Sourceforge downloads page.</p>
+<p>The WRT54GL is the go-to router for anyone that wants to run open source firmware (and even if you&rsquo;re just a regular wifi user, you want this). Here, we use a build of the DD-WRT firmware with AutoAP built in, provided by the AutoAP Sourceforge project.</p>
 
-<p>Installation involves simply logging into the router’s default firmware, and using the built-in firmware update function to “update” to the open-source firmware. (The Linksys firmware seems to like IE best - stupid Linksys - so for safety, I flash the firmware through IE. Though I have done it in other browsers before, I have also had the admin panel get pissy on non-IE browsers).</p>
+<p><a href="http://www.dd-wrt.com/wiki/index.php/Autoap">AutoAP</a> is a brilliant little script that scans for open wifi connections, finds the strongest one that provides you a &ldquo;live&rdquo; connection to the Internet, and connects the router to this access point and repeats the signal. It also allows you to set a list of &ldquo;preferred&rdquo; networks for AutoAP to prioritize above random points. The easiest way to get AutoAP is to install a firmware image that comes with it. I used the <a href="http://sourceforge.net/project/showfiles.php?group_id=185052">AutoAP NG v24 Micro</a> build offered up on AutoAP&rsquo;s Sourceforge downloads page.</p>
 
-<p>Once the DD-WRT firmware with AutoAP is installed, the router needs to be set up as a repeater. All the instructions you need on this part are here. The idea is to make the router set up to connect to remote access points as a client and repeat their signal, while also offering up its own SSIDÂ  that you connect to. The router’s “physical interface” represents the router’s connection to the remote access point, while the “virtual interface” is your private repeated version of that network, complete with the SSID and encryption of your choosing. This makes things easy, as while the router jumps to different access points, your client machines connect only to your private SSID.</p>
+<p>Installation involves simply logging into the router&rsquo;s default firmware, and using the built-in firmware update function to &ldquo;update&rdquo; to the open-source firmware. (The Linksys firmware seems to like IE best - stupid Linksys - so for safety, I flash the firmware through IE. Though I have done it in other browsers before, I have also had the admin panel get pissy on non-IE browsers).</p>
 
-<p>When the router is properly set up to work as a repeater, then AutoAP can be used. AutoAP functionality can be accessed from a web browser at http://routerIP/user/cgi-bin/autoap.cgi. (Bookmark this, as it’s not available through the regular DD-WRT panel). It’s pretty self-explanatory as to how to turn “on” and “off”. When turned on, it will connect to and begin repeating whatever open network it can find with the strongest signal. AutoAP will automatically “fill in” the SSID information of the newly-repeated network in DD-WRT’s Basic Wireless settings tab (what you yourself would fill in if repeating a signal manually - and which you can still do when you switch AutoAP off. This is necessary when you want to repeat a WPA/WPA2 encrypted signal, as AutoAP can only deal with open or WEP-encrypted access pointsÂ  - and only the latter when keys are known).</p>
+<p>Once the DD-WRT firmware with AutoAP is installed, the router needs to be set up as a repeater. All the instructions you need on this part are here. The idea is to make the router set up to connect to remote access points as a client and repeat their signal, while also offering up its own SSIDÂ  that you connect to. The router&rsquo;s &ldquo;physical interface&rdquo; represents the router&rsquo;s connection to the remote access point, while the &ldquo;virtual interface&rdquo; is your private repeated version of that network, complete with the SSID and encryption of your choosing. This makes things easy, as while the router jumps to different access points, your client machines connect only to your private SSID.</p>
 
-<p>A repeater works best with a nice high-gain antenna to work with. The <a href="http://shop3.frys.com/%7BlD6LaOuhZ7YvRiH4cTF8hA**.node2%7D/product/5286717">Super Cantenna</a> is a convenient off-the-shelf solution. Unlike the nearest Pringles can, it has a handy tripod that allows you to control tilt and even horizontal-axis rotation (“rolling” the cantenna away from it’s “upright” position can lead to a better signal in some cases). Moreover, it’s got an RP-SMA connector and an RP-TNC adapter. The WRT54GL’s removable antenna connections are RP-TNC connectors, so the included adapter takes care of compatibility. Unscrew the existing antennas (at least one of them - you can leave one on if you want, which you may consider if you find you need an omnidirectional antenna to help extend the reach of your repeated signal), and using the Super Cantenna’s RP-TNC adapter, screw the Cantenna in. Done!</p>
+<p>When the router is properly set up to work as a repeater, then AutoAP can be used. AutoAP functionality can be accessed from a web browser at <a href="http://routerIP/user/cgi-bin/autoap.cgi.">http://routerIP/user/cgi-bin/autoap.cgi.</a> (Bookmark this, as it&rsquo;s not available through the regular DD-WRT panel). It&rsquo;s pretty self-explanatory as to how to turn &ldquo;on&rdquo; and &ldquo;off&rdquo;. When turned on, it will connect to and begin repeating whatever open network it can find with the strongest signal. AutoAP will automatically &ldquo;fill in&rdquo; the SSID information of the newly-repeated network in DD-WRT&rsquo;s Basic Wireless settings tab (what you yourself would fill in if repeating a signal manually - and which you can still do when you switch AutoAP off. This is necessary when you want to repeat a WPA/WPA2 encrypted signal, as AutoAP can only deal with open or WEP-encrypted access pointsÂ  - and only the latter when keys are known).</p>
 
-<p>You may want to play around with the “Xmit Power” option in DD-WRT’s Wireless -&gt; Advanced Settings area. Higher can mean better range, but too high can mean excess noise and degraded signal quality. It’s something one has to play around with to find the optimal setting for their environment.</p>
+<p>A repeater works best with a nice high-gain antenna to work with. The <a href="http://shop3.frys.com/%7BlD6LaOuhZ7YvRiH4cTF8hA**.node2%7D/product/5286717">Super Cantenna</a> is a convenient off-the-shelf solution. Unlike the nearest Pringles can, it has a handy tripod that allows you to control tilt and even horizontal-axis rotation (&ldquo;rolling&rdquo; the cantenna away from it&rsquo;s &ldquo;upright&rdquo; position can lead to a better signal in some cases). Moreover, it&rsquo;s got an RP-SMA connector and an RP-TNC adapter. The WRT54GL&rsquo;s removable antenna connections are RP-TNC connectors, so the included adapter takes care of compatibility. Unscrew the existing antennas (at least one of them - you can leave one on if you want, which you may consider if you find you need an omnidirectional antenna to help extend the reach of your repeated signal), and using the Super Cantenna&rsquo;s RP-TNC adapter, screw the Cantenna in. Done!</p>
 
-<p>So, there you have it. Perfect for hopping onto the open wifi of the hotel next door, when your hotel proves to be too cheap to provide it themselves. Or, if you’re in a living situation where you don’t necessarily control all the wires, it lets you establish your personal repeated wifi haven.</p>
+<p>You may want to play around with the &ldquo;Xmit Power&rdquo; option in DD-WRT&rsquo;s Wireless -> Advanced Settings area. Higher can mean better range, but too high can mean excess noise and degraded signal quality. It&rsquo;s something one has to play around with to find the optimal setting for their environment.</p>
+
+<p>So, there you have it. Perfect for hopping onto the open wifi of the hotel next door, when your hotel proves to be too cheap to provide it themselves. Or, if you&rsquo;re in a living situation where you don&rsquo;t necessarily control all the wires, it lets you establish your personal repeated wifi haven.</p>
 </div>
   <footer>
     <p class="meta">
@@ -198,7 +192,7 @@ My brother was struggling with a poor wifi ...">
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2017 - Brendon Rapp -
+  Copyright &copy; 2018 - Brendon Rapp -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p></footer>
   <script type="text/javascript">
