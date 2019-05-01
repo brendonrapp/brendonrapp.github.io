@@ -17,7 +17,7 @@
       
     
       
-        Zsh, Tmux, Vim, And 256 Color Madness
+        Vim Tricks For Ruby Hashes
       
     
     
@@ -29,7 +29,7 @@
   
 
 
-  tl;dr:...">
+  I have a couple o...">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -49,7 +49,7 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href='/stylesheets/all-425d9f4239cbec207833de2e7a73a46d.css' media='all' rel='stylesheet' type='text/css'>
+<link href='/stylesheets/all-925dc7b4e27a8af3918eb1bbae3ea5a6.css' media='all' rel='stylesheet' type='text/css'>
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-3578812-1']);
@@ -98,6 +98,74 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/2014/07/09/vim-tricks-for-ruby-hashes/">Vim Tricks For Ruby Hashes</a></h1>
+      
+    
+    
+      <p class="meta">
+        <time datetime="2014-07-09T19:59:00-07:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have a couple of functions in my .vimrc for manipulating Ruby hashes.</p>
+
+<p>The first one is to convert hashes from Ruby 1.8 style into Ruby 1.9+ style, eg.</p>
+
+<p><figure class='code-highlight-figure'><div class='code-highlight'><pre class='code-highlight-pre'><div data-line='1' class='code-highlight-row numbered'><div class='code-highlight-line'><span class="c1"># before</span>
+</div></div><div data-line='2' class='code-highlight-row numbered'><div class='code-highlight-line'><span class="ss">:symbol_key</span> <span class="o">=&gt;</span> <span class="s1">&lsquo;value&rsquo;</span>
+</div></div><div data-line='3' class='code-highlight-row numbered'><div class='code-highlight-line'> </div></div><div data-line='4' class='code-highlight-row numbered'><div class='code-highlight-line'><span class="c1"># after</span>
+</div></div><div data-line='5' class='code-highlight-row numbered'><div class='code-highlight-line'><span class="ss">symbol_key: </span><span class="s1">&lsquo;value&rsquo;</span></div></div></pre></div></figure></p>
+
+<p>I create this function for both Normal and Visual modes to allow updating either a selected hash, or the entire file.
+<figure class='code-highlight-figure'><div class='code-highlight'><pre class='code-highlight-pre'><div data-line='1' class='code-highlight-row numbered'><div class='code-highlight-line'><span class="k">function</span><span class="p">!</span> RubyHashesAll<span class="p">()</span>
+</div></div><div data-line='2' class='code-highlight-row numbered'><div class='code-highlight-line'>  <span class="p">:</span>%s<span class="sr">/:([^ ]<em>)(\s</em>)=&gt;/</span>\<span class="m">1</span><span class="p">:</span>/ge
+</div></div><div data-line='3' class='code-highlight-row numbered'><div class='code-highlight-line'><span class="k">endfunction</span>
+</div></div><div data-line='4' class='code-highlight-row numbered'><div class='code-highlight-line'> </div></div><div data-line='5' class='code-highlight-row numbered'><div class='code-highlight-line'><span class="k">function</span><span class="p">!</span> RubyHashesSelected<span class="p">()</span>
+</div></div><div data-line='6' class='code-highlight-row numbered'><div class='code-highlight-line'>  <span class="p">:</span><span class="s1">&lsquo;&lt;,&rsquo;</span><span class="p">&gt;</span>s<span class="sr">/:([^ ]<em>)(\s</em>)=&gt;/</span>\<span class="m">1</span><span class="p">:</span>/ge
+</div></div><div data-line='7' class='code-highlight-row numbered'><div class='code-highlight-line'><span class="k">endfunction</span>
+</div></div><div data-line='8' class='code-highlight-row numbered'><div class='code-highlight-line'> </div></div><div data-line='9' class='code-highlight-row numbered'><div class='code-highlight-line'>nmap <span class="p">&lt;</span>Leader<span class="p">&gt;</span>rhh <span class="p">:</span><span class="k">call</span> RubyHashesAll<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
+</div></div><div data-line='10' class='code-highlight-row numbered'><div class='code-highlight-line'>vmap <span class="p">&lt;</span>Leader<span class="p">&gt;</span>rhh <span class="p">:</span><span class="k">call</span> RubyHashesSelected<span class="p">()&lt;</span>CR<span class="p">&gt;</span></div></div></pre></div></figure></p>
+
+<p>Next, I have one for taking a hash and extracting an array of the hash keys.</p>
+
+<p><figure class='code-highlight-figure'><div class='code-highlight'><pre class='code-highlight-pre'><div data-line='1' class='code-highlight-row numbered'><div class='code-highlight-line'><span class="c1"># before</span>
+</div></div><div data-line='2' class='code-highlight-row numbered'><div class='code-highlight-line'><span class="p">&#x7b;</span> <span class="s1">&lsquo;one&rsquo;</span> <span class="o">=&gt;</span> <span class="n">two</span><span class="p">,</span> <span class="ss">:three</span> <span class="o">=&gt;</span> <span class="s1">&lsquo;four&rsquo;</span><span class="p">,</span> <span class="ss">five: </span><span class="mi">6</span> <span class="p">&#x7d;</span>
+</div></div><div data-line='3' class='code-highlight-row numbered'><div class='code-highlight-line'> </div></div><div data-line='4' class='code-highlight-row numbered'><div class='code-highlight-line'><span class="c1"># after</span>
+</div></div><div data-line='5' class='code-highlight-row numbered'><div class='code-highlight-line'><span class="p">[</span><span class="s1">&lsquo;one&rsquo;</span><span class="p">,</span> <span class="ss">:three</span><span class="p">,</span> <span class="ss">:five</span><span class="p">]</span></div></div></pre></div></figure></p>
+
+<p>Here, I have the command bound only in Visual mode, as I don&rsquo;t see a case where I&rsquo;d want to do this globally.</p>
+
+<p><figure class='code-highlight-figure'><div class='code-highlight'><pre class='code-highlight-pre'><div data-line='1' class='code-highlight-row numbered'><div class='code-highlight-line'><span class="k">function</span><span class="p">!</span> RubyExtractHashKeys<span class="p">()</span>
+</div></div><div data-line='2' class='code-highlight-row numbered'><div class='code-highlight-line'>  <span class="p">:</span><span class="s1">&lsquo;&lt;,&rsquo;</span><span class="p">&gt;</span>s<span class="sr">/([:&lsquo;&ldquo;]\?[a-zA-Z]+[&rsquo;&rdquo;]\?)\s<em>=&gt;[^,&#x7d;]+([,&#x7d;])/</span>\<span class="m">1</span>\<span class="m">2</span>/ge
+</div></div><div data-line='3' class='code-highlight-row numbered'><div class='code-highlight-line'>  <span class="p">:</span><span class="s1">&lsquo;&lt;,&rsquo;</span><span class="p">&gt;</span>s<span class="sr">/([a-zA-Z]+)[:]\s</em>[^,&#x7d;]+([,&#x7d;])/</span><span class="p">:</span>\<span class="m">1</span>\<span class="m">2</span>/ge
+</div></div><div data-line='4' class='code-highlight-row numbered'><div class='code-highlight-line'>  <span class="p">:</span><span class="s1">&lsquo;&lt;,&rsquo;</span><span class="p">&gt;</span>s<span class="sr">/&#x7b;\s<em>/</span>\<span class="p">[</span>/ge
+</div></div><div data-line='5' class='code-highlight-row numbered'><div class='code-highlight-line'>  <span class="p">:</span><span class="s1">&lsquo;&lt;,&rsquo;</span><span class="p">&gt;</span>s<span class="sr">/\s</em>&#x7d;/</span>\<span class="p">]</span>/ge
+</div></div><div data-line='6' class='code-highlight-row numbered'><div class='code-highlight-line'><span class="k">endfunction</span>
+</div></div><div data-line='7' class='code-highlight-row numbered'><div class='code-highlight-line'> </div></div><div data-line='8' class='code-highlight-row numbered'><div class='code-highlight-line'>vmap <span class="p">&lt;</span>Leader<span class="p">&gt;</span>rhe <span class="p">:</span><span class="k">call</span> RubyExtractHashKeys<span class="p">()&lt;</span>CR<span class="p">&gt;</span></div></div></pre></div></figure></p>
+
+<p>The regexes can probably be improved to fix some edge cases, and I&rsquo;m certain there&rsquo;s a way in Vim to make it so that I don&rsquo;t have to define the All and Selected versions of RubyHashes as separate functions. But these do the job for me now, until I reach a higher plane of Vim mastery.</p>
+</div>
+  
+  
+    <footer>
+      <p class="meta">
+        categories: <span class="categories">
+  
+    <a href="/category/vim/">vim</a>, <a href="/category/ruby/">ruby</a>
+  
+</span>
+      </p>
+    </footer>
+    </article>
   
   
     <article>
@@ -805,81 +873,6 @@ By default, users can run <code>rake preview</code> to make Octopress spin up a 
     </footer>
     </article>
   
-  
-    <article>
-      <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/2012/05/10/error-building-ruby-1-8-7-with-rbenvruby-install-on-linux-with-glibc-2-14/">Error Building Ruby 1.8.7 With Rbenv/Ruby Install On Linux With Glibc >= 2.14</a></h1>
-      
-    
-    
-      <p class="meta">
-        <time datetime="2012-05-10T07:26:47-07:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If you&rsquo;re using rbenv and ruby-build on a Linux that has updated to glibc 2.14 or newer, you may have encountered an error like this when attempting to build an older version of MRI:</p>
-
-<p><figure class='code-highlight-figure'><div class='code-highlight'><pre class='code-highlight-pre'><div data-line='1' class='code-highlight-row numbered'><div class='code-highlight-line'>$ rbenv install 1.8.7-p357 rbenv: 1.9.3-p194
-</div></div><div data-line='2' class='code-highlight-row numbered'><div class='code-highlight-line'>    Downloading <a href="http://ftp.ruby-lang.org/pub/ruby/1.8/ruby-1.8.7-p357.tar.gz...">http://ftp.ruby-lang.org/pub/ruby/1.8/ruby-1.8.7-p357.tar.gz...</a>
-</div></div><div data-line='3' class='code-highlight-row numbered'><div class='code-highlight-line'>    Installing ruby-1.8.7-p357&hellip;
-</div></div><div data-line='4' class='code-highlight-row numbered'><div class='code-highlight-line'> </div></div><div data-line='5' class='code-highlight-row numbered'><div class='code-highlight-line'>    BUILD FAILED
-</div></div><div data-line='6' class='code-highlight-row numbered'><div class='code-highlight-line'> </div></div><div data-line='7' class='code-highlight-row numbered'><div class='code-highlight-line'>    Inspect or clean up the working tree at /tmp/ruby-build.20120508145707.21228
-</div></div><div data-line='8' class='code-highlight-row numbered'><div class='code-highlight-line'>    Results logged to /tmp/ruby-build.20120508145707.21228.log
-</div></div><div data-line='9' class='code-highlight-row numbered'><div class='code-highlight-line'> </div></div><div data-line='10' class='code-highlight-row numbered'><div class='code-highlight-line'>    Last 10 log lines:
-</div></div><div data-line='11' class='code-highlight-row numbered'><div class='code-highlight-line'>    callback.func:79:24: error: ‘proc’ undeclared here (not in a function)
-</div></div><div data-line='12' class='code-highlight-row numbered'><div class='code-highlight-line'>    callback.func:79:39: error: ‘argc’ undeclared here (not in a function)
-</div></div><div data-line='13' class='code-highlight-row numbered'><div class='code-highlight-line'>    callback.func:79:45: error: ‘argv’ undeclared here (not in a function)
-</div></div><div data-line='14' class='code-highlight-row numbered'><div class='code-highlight-line'>    callback.func:82:1: error: expected identifier or ‘(’ before ‘&#x7d;’ token
-</div></div><div data-line='15' class='code-highlight-row numbered'><div class='code-highlight-line'>    dl.c:106:1: error: expected ‘;’, ‘,’ or ‘)’ before ‘static’
-</div></div><div data-line='16' class='code-highlight-row numbered'><div class='code-highlight-line'>    cp ../.././ext/dl/lib/dl/import.rb ../../.ext/common/dl
-</div></div><div data-line='17' class='code-highlight-row numbered'><div class='code-highlight-line'>    make[1]: <strong><em> [dl.o] Error 1
-</div></div><div data-line='18' class='code-highlight-row numbered'><div class='code-highlight-line'>    make[1]: </em></strong> Waiting for unfinished jobs&hellip;.
-</div></div><div data-line='19' class='code-highlight-row numbered'><div class='code-highlight-line'>    make[1]: Leaving directory `/tmp/ruby-build.20120508145707.21228/ruby-1.8.7-p357/ext/dl'
-</div></div><div data-line='20' class='code-highlight-row numbered'><div class='code-highlight-line'>    make: *** [all] Error 1</div></div></pre></div></figure></p>
-
-<p>The issue isn&rsquo;t specific to ruby-build or rbenv, but rather is an issue with <a href="http://bugs.ruby-lang.org/issues/5108">building Ruby after upgrading glibc to 2.14</a>:</p>
-
-<blockquote><p>This is caused by the fact that the generated file callback.func is corrupt. The corruption is triggered by a recent glibc change:</p></blockquote>
-
-<p><a href="http://sourceware.org/git/?p=glibc.git;a=commitdiff;h=glibc-2.13-161-gfcabc0f">http://sourceware.org/git/?p=glibc.git;a=commitdiff;h=glibc-2.13-161-gfcabc0f</a></p>
-
-<p>which was to fix a POSIX compatibility issue:</p>
-
-<p><a href="http://sourceware.org/bugzilla/show_bug.cgi?id=12724">http://sourceware.org/bugzilla/show_bug.cgi?id=12724</a></p>
-
-<p>Patches are provided to manually patch the Ruby source before building, but what if you&rsquo;re using something like rbenv and ruby-install, instead of building Ruby manually?</p>
-
-<p><a href="https://gist.github.com/2159108">This Gist</a>, from GitHub user kungfoo, provides a ruby-build definition for building Ruby 1.8.7-p358 with the required patch for building on a system with the updated glibc.</p>
-
-<p>To date, I had only used rbenv and ruby-build to build Rubies from ruby-build&rsquo;s included definitions. Turns out, it&rsquo;s quite easy to use this definition, once I realized that that&rsquo;s what this was.</p>
-
-<p>Simply do the following:</p>
-
-<pre><code>$ vim /tmp/1.8.7-p358-with-rogue-stdout-patch
-... paste contents of Gist into file, save and exit ...
-$ rbenv install /tmp/1.8.7-p358-with-rogue-stdout-patch
-</code></pre>
-
-<p>Note, the filename will be the name that rbenv uses to identify this Ruby, so if you don&rsquo;t want the name to be &ldquo;1.8.7-p358-with-rogue-stdout-patch&rdquo;, name the file to match the name you prefer.</p>
-</div>
-  
-  
-    <footer>
-      <p class="meta">
-        categories: <span class="categories">
-  
-    <a href="/category/development/">Development</a>
-  
-</span>
-      </p>
-    </footer>
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="3">&larr; Older</a>
@@ -896,7 +889,7 @@ $ rbenv install /tmp/1.8.7-p358-with-rogue-stdout-patch
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2018 - Brendon Rapp -
+  Copyright &copy; 2019 - Brendon Rapp -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p></footer>
   <script type="text/javascript">
